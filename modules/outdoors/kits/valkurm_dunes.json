@@ -1,0 +1,46 @@
+{
+  "name": "Valkurm Dunes",
+  "from": 103,
+  "levels": [
+    0,
+    8,
+    16
+  ],
+  "step": 8,
+  "wall_rise": 17,
+  "avoid": [
+    "ke_roa"
+  ],
+  "coast": {
+    "sea": -10,
+    "beach": -4,
+    "sea_level": -4,
+    "sea_rows": 3,
+    "bay_widths": [
+      4,
+      5,
+      6
+    ],
+    "beach_tile": "be_ssl",
+    "sea_groups": "umi",
+    "surf": "sakn",
+    "sea_texture": "effect  umi1",
+    "sea_alpha": 150
+  },
+  "props": {
+    "rise_max": 3.0,
+    "level_wide": 1.0
+  },
+  "notes": {
+    "walls": "ke_moa cliffs rise ~18 over the ground they stand on; nothing is ever placed on top",
+    "slopes": "ke_sta / ke_sla / ke_rob climb 8 between floors",
+    "coast": "sand 0, be_sl down to -4, be_ssl down to the seabed at -10 (ke_cl_fla1); headlands from ke_moacl_jo*, sea cliffs ke_cl (top 8)",
+    "effects": "sea groups effe/umi1, umi2 (south coast; umi3 faces west), surf lines effe/sakn; campfires in mode/taki"
+  },
+  "walls": {
+    "families": [
+      "ke_moa",
+      "ke_cl"
+    ]
+  }
+}

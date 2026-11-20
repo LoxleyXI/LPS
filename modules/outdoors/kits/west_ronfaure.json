@@ -1,0 +1,47 @@
+{
+  "name": "West Ronfaure",
+  "from": 100,
+  "levels": [
+    0,
+    10,
+    20,
+    30
+  ],
+  "step": 10,
+  "wall_rise": 25,
+  "avoid": [
+    "kabe",
+    "san_",
+    "jime_tw",
+    "pl_",
+    "gake"
+  ],
+  "props": {
+    "rise_max": 3.0,
+    "level_wide": 1.0
+  },
+  "notes": {
+    "walls": "yama mountains rise ~38 over the ground",
+    "slopes": "jime climbs 10 between floors with no cliff face (a walkable slope)",
+    "cliffs": "gake: inner cliffs of 20 (two levels); left out for now (no outside-corner piece)",
+    "left out": "kabe city walls, san_ outpost pieces, jime_tw one-off",
+    "networks": "roads: miti a1 straight, a2 bend, a3 T, a4 end (flat), b1 straight up a slope, jime_ho an end; no crossroads. stream: izu 1 straight, 2 bend, 3 end, flat only"
+  },
+  "networks": {
+    "road": {
+      "texture": "ron_ro"
+    },
+    "stream": {
+      "texture": "ron_riv",
+      "length": [
+        3,
+        6
+      ]
+    }
+  },
+  "walls": {
+    "families": [
+      "yama"
+    ]
+  }
+}

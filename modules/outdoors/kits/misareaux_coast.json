@@ -1,0 +1,158 @@
+{
+  "name": "Misareaux Coast",
+  "from": 25,
+  "levels": [
+    0,
+    16,
+    32,
+    48,
+    64
+  ],
+  "step": 16,
+  "max_rise": 32,
+  "wall_rise": 16,
+  "walls": {
+    "families": [
+      "md_8a",
+      "md_16a",
+      "md_32a",
+      "md_8a16a",
+      "md_16a32a"
+    ]
+  },
+  "avoid": [
+    "fa_",
+    "ri_",
+    "nr_16a_tu",
+    "nr_32a_tu",
+    "se_lw",
+    "se_nr",
+    "se_md_16a",
+    "md_32c"
+  ],
+  "props": {
+    "rise_max": 3.0,
+    "level_wide": 1.0
+  },
+  "notes": {
+    "grammar": "terraces joined by walkable slopes (nr_ families climb 8/16/32 across a tile, md_16b too) with cliffs between (md_ families: a steep band of 50 degrees and more)",
+    "walls": "the play area is closed by the same md_ cliffs (16 to 32 high, nothing behind)",
+    "trails": "nr_16a_tu / nr_32a_tu: paths cut into a cliff; left out for now",
+    "river": "bridged where it runs straight: Misareaux's stone footbridge (fa_hasi00, made for its 8-deep river) or Lufaise's rope bridge, whichever was built for the gap nearest ours",
+    "sea": "seabed se_lw_fl1-4 under a still translucent umi3 surface at -34; the source's waves, splashes and shore surf laid by shores facing their way; the generators drawing its flat sea sheets (umi0, umi3) left out: moved, they showed as boxes",
+    "roles": "slopes (walkable, measured: steady climb across the tile): nr_16a, nr_32a, md_16b; cliffs and walls: md_8a, md_16a, md_32a and their transitions",
+    "heights": "walkable mesas climb 16 at a time (md_16b ramps); rocks stand 16 or 32 (md_32a with md_16a32a where the top steps); no 32 ramp exists",
+    "mesas": "a mesa is all cliff (md_16a: sheer rock, scenery) or all slope (nr_16a: a walkable hill); the two never meet along an edge, so mesas stand apart; reach 0.7 lets some be rock",
+    "coast": "an island ringed by sea cliffs: se_md_32a st/coi/coo (land at 0, sea ~ -34, holes on the sea side), se_md_16a32a where the top steps; a fence along the cliff tops",
+    "ramps": "a way up through a rock line: one side of a cliff mesa is md_16b (a gentle cliff-family slope), its two corners md_16b16a_coi1 (the switch); the rest md_16a cliff. Never on the outer edge",
+    "bridges": "each crossing takes the bridge built for the gap nearest its own: Misareaux's rope bridge (74) and stone footbridge, Lufaise's (24) rope bridge (a deck of two mirrored halves, rails of four)",
+    "sea effects": "effe/umi1, umi2: foam, swell and surf generators by south, east, north and west-facing sea cliffs; each laid by one of ours facing the same way, at the same offset"
+  },
+  "layout": "terraces",
+  "slopes": {
+    "families": [
+      "nr_16a",
+      "nr_32a",
+      "md_16b"
+    ],
+    "hills": 0.1,
+    "ramps": 0.5,
+    "plateaus": 2
+  },
+  "reach": 0.7,
+  "river": {
+    "depth": 8,
+    "length": [
+      8,
+      16
+    ],
+    "bridges": 2
+  },
+  "networks": {
+    "river": {
+      "texture": "lat_riv",
+      "kind": "water"
+    }
+  },
+  "coast": {
+    "island": {
+      "sea": 2,
+      "inlets": 6,
+      "width": [
+        2,
+        5
+      ],
+      "depth": [
+        1,
+        3
+      ],
+      "channels": 1,
+      "channel_width": [
+        1,
+        1
+      ]
+    },
+    "sea_level": -34,
+    "cliff_base": -32,
+    "beach_tile": "se_md_32a_st",
+    "sea_groups": "",
+    "surf": "",
+    "reach": 6,
+    "sea_texture": "effect  umi3",
+    "sea_alpha": 120,
+    "sea_margin": 120,
+    "sea_side_margin": 300,
+    "sea_repeat": 80,
+    "sea_shade": 118,
+    "sea_tiles": {
+      "names": [
+        "se_lw_fl1",
+        "se_lw_fl2",
+        "se_lw_fl3",
+        "se_lw_fl4"
+      ],
+      "height": -36,
+      "size": 80,
+      "margin": 160
+    },
+    "cliff_tile": "se_md",
+    "surface": true,
+    "animate": "umi",
+    "animate_skip": [
+      "umi0",
+      "umi3"
+    ]
+  },
+  "bridges": {
+    "chasm": [
+      {
+        "parts": [
+          "ri_hasi3_h",
+          "ri_hasi4_h"
+        ],
+        "twins": 0.0
+      },
+      {
+        "parts": [
+          "ri_hasi1_m",
+          "ri_hasi2_m"
+        ],
+        "from": 24
+      }
+    ],
+    "river": [
+      {
+        "parts": [
+          "fa_hasi00"
+        ]
+      },
+      {
+        "parts": [
+          "ri_hasi1_m",
+          "ri_hasi2_m"
+        ],
+        "from": 24
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "West Sarutabaruta",
+  "from": 115,
+  "levels": [
+    0,
+    4,
+    8,
+    12,
+    16
+  ],
+  "step": 4,
+  "wall_rise": 12,
+  "avoid": [
+    "sar_mado",
+    "sal_misaki"
+  ],
+  "props": {
+    "rise_max": 3.0,
+    "level_wide": 1.0
+  },
+  "notes": {
+    "walls": "gake cliffs (12) as the rim: sal_yama, the real mountains round the zone, are open on their outer side and can't be laid; sal_misaki sea capes drop to the sea, not up",
+    "terraces": "heich lowland and daich plateaus in steps of 4, gake cliffs of 12, iwa rocks",
+    "left out": "sar_mado windmill pieces, sal_misaki sea capes",
+    "scanned": "caves/build.py --scan-kit 115"
+  },
+  "walls": {
+    "families": [
+      "gake"
+    ]
+  }
+}

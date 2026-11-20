@@ -1,0 +1,11 @@
+{
+ "_about": "How spawns/pattern.py meets the study's figures in retail_fields.json: tuned by hand against pattern.measure() on generated lands.",
+ "busy_scale": 140,
+ "quiet": 0.12,
+ "territory": 1.0,
+ "territory_scale": 110,
+ "apart": 15.0,
+ "near": 6.0,
+ "pack_same": 0.75,
+ "edge_lean": 1.8
+}

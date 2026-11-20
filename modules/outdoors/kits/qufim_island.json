@@ -1,0 +1,77 @@
+{
+  "name": "Qufim Island",
+  "from": 126,
+  "compound": true,
+  "levels": [
+    20,
+    40,
+    60
+  ],
+  "step": 20,
+  "max_rise": 20,
+  "wall_rise": 20,
+  "avoid": [
+    "ga_clro",
+    "ga_ro_",
+    "ga_la_",
+    "pl_",
+    "zil_",
+    "del_",
+    "qfim_1",
+    "qfim_2",
+    "qfim_05",
+    "qfim_06"
+  ],
+  "walls": {
+    "families": [
+      "ga_cl",
+      "ga_wcl",
+      "ga_clb",
+      "ga_wclb",
+      "qfim_0"
+    ]
+  },
+  "coast": {
+    "island": {
+      "note": "sea all round: the layout is drawn (zone file grid), not generated"
+    },
+    "open_below": 1.0,
+    "cliff_base": 0,
+    "sea_level": 1.8,
+    "beach_tile": "qfim_03",
+    "sea_groups": "",
+    "surf": "",
+    "walk_down": [
+      "qfim_0"
+    ],
+    "sheets": {
+      "folder": "umi1",
+      "beach_tile": "qfim_03",
+      "beach_reach": 40,
+      "spacing": 220,
+      "margin": 200,
+      "note": "Qufim's sea is its effe/umi1 generators: some 30 animated sheets about 400 yalms across dotted round the island at 1.8, plus foam and waves (kmc, usb, uck) on its one beach. The sheets are laid over our sea, the beach's own go to our qfim_03 in the same place on it"
+    },
+    "seabed": {
+      "texture": "quf_wll1",
+      "yalms": 12,
+      "shallow": -1.5,
+      "deep": -10,
+      "slope": 70,
+      "cell": 8,
+      "shade": 0.65,
+      "margin": 240,
+      "note": "Qufim has no sea floor (its water is effects over nothing); ours: its dark cliff rock, shallow by the land, sloping down away from it"
+    }
+  },
+  "props": {
+    "rise_max": 3.0,
+    "level_wide": 1.0
+  },
+  "notes": {
+    "grid": "40-yalm tiles, floors at 20 (ga_fl) and 40; ga_cl climbs 20 (body _m with its foot _r: compound tiles), ga_wcl 40",
+    "coast": "land at 20 or 40 straight into the sea: ga_cl and ga_clb with their beach strip _s; the cove's beach slopes qfim_01-04 run from 20 down to 0, and ga_wclb_jo* drop a 40 cliff to it. The beach runs out at 0 with nothing beyond (the water is an effect): open_below makes a corner at 0 open sea, so a beach meets a sea cliff",
+    "sea": "Qufim's own: its umi1 sheets laid over our sea and its beach foam on our qfim_03 (coast sheets, effects.lay_sheets)",
+    "left out": "roads (ga_clro, ga_ro), the north shore's pl_ pieces (sea at -10), the south-east ravine's qfim_16-24, the islets qfim_05/06 (flat 0: they read as open sea here)"
+  }
+}

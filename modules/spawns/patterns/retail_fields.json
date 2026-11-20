@@ -1,0 +1,883 @@
+{
+ "pattern": {
+  "zones": [
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   115,
+   116,
+   117,
+   118,
+   119,
+   120,
+   126
+  ],
+  "density": 6.97,
+  "density_range": [
+   4.92,
+   18.97
+  ],
+  "density_used": 11.66,
+  "used": 0.6,
+  "spacing_median": 15.45,
+  "spacing_p25": 8.45,
+  "groups": {
+   "1": 0.736,
+   "2": 0.165,
+   "3": 0.057,
+   "4": 0.021,
+   "5": 0.022
+  },
+  "types": 30.0,
+  "top_share": 0.17,
+  "coverage": 0.09,
+  "mixing": 0.84,
+  "same_type": 0.67,
+  "type_spread": 0.81,
+  "edge_spawns": 24.4,
+  "edge_land": 22.4,
+  "band_density": {
+   "near": 3.84,
+   "middle": 7.56,
+   "open": 7.79
+  }
+ },
+ "zones": [
+  {
+   "zone": 100,
+   "spawns": 443,
+   "area": 644136,
+   "density": 6.88,
+   "used": 0.55,
+   "density_used": 12.58,
+   "spacing": {
+    "median": 14.2,
+    "p25": 7.9,
+    "p75": 19.7
+   },
+   "groups": {
+    "1": 211,
+    "2": 48,
+    "3": 23,
+    "4": 4,
+    "5": 9
+   },
+   "alone": 0.72,
+   "types": 21,
+   "top_shares": [
+    0.19,
+    0.1,
+    0.09,
+    0.08,
+    0.06
+   ],
+   "coverage": {
+    "median": 0.18,
+    "min": 0.01,
+    "max": 0.54
+   },
+   "mixing": 0.86,
+   "same_type": 0.75,
+   "type_spread": 0.72,
+   "edge": {
+    "spawns_median": 31.1,
+    "land_median": 25.1
+   },
+   "band_density": {
+    "near": 2.23,
+    "middle": 7.95,
+    "open": 8.33
+   }
+  },
+  {
+   "zone": 101,
+   "spawns": 386,
+   "area": 587512,
+   "density": 6.57,
+   "used": 0.55,
+   "density_used": 11.88,
+   "spacing": {
+    "median": 15.3,
+    "p25": 8.8,
+    "p75": 20.5
+   },
+   "groups": {
+    "1": 199,
+    "2": 45,
+    "3": 12,
+    "4": 3,
+    "5": 8
+   },
+   "alone": 0.75,
+   "types": 27,
+   "top_shares": [
+    0.19,
+    0.09,
+    0.08,
+    0.08,
+    0.06
+   ],
+   "coverage": {
+    "median": 0.13,
+    "min": 0.0,
+    "max": 0.57
+   },
+   "mixing": 0.85,
+   "same_type": 0.76,
+   "type_spread": 0.74,
+   "edge": {
+    "spawns_median": 47.2,
+    "land_median": 31.6
+   },
+   "band_density": {
+    "near": 2.32,
+    "middle": 5.04,
+    "open": 8.93
+   }
+  },
+  {
+   "zone": 102,
+   "spawns": 454,
+   "area": 923088,
+   "density": 4.92,
+   "used": 0.52,
+   "density_used": 9.52,
+   "spacing": {
+    "median": 18.1,
+    "p25": 10.2,
+    "p75": 29.1
+   },
+   "groups": {
+    "1": 272,
+    "2": 48,
+    "3": 16,
+    "4": 4,
+    "5": 3
+   },
+   "alone": 0.79,
+   "types": 38,
+   "top_shares": [
+    0.1,
+    0.09,
+    0.09,
+    0.08,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.06,
+    "min": 0.01,
+    "max": 0.32
+   },
+   "mixing": 0.86,
+   "same_type": 0.6,
+   "type_spread": 0.91,
+   "edge": {
+    "spawns_median": 22.4,
+    "land_median": 24.2
+   },
+   "band_density": {
+    "near": 3.39,
+    "middle": 6.13,
+    "open": 4.64
+   }
+  },
+  {
+   "zone": 103,
+   "spawns": 446,
+   "area": 590256,
+   "density": 7.56,
+   "used": 0.57,
+   "density_used": 13.33,
+   "spacing": {
+    "median": 13.5,
+    "p25": 8.1,
+    "p75": 21.3
+   },
+   "groups": {
+    "1": 194,
+    "2": 49,
+    "3": 27,
+    "4": 4,
+    "5": 8
+   },
+   "alone": 0.69,
+   "types": 22,
+   "top_shares": [
+    0.12,
+    0.11,
+    0.11,
+    0.09,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.12,
+    "min": 0.01,
+    "max": 0.45
+   },
+   "mixing": 0.82,
+   "same_type": 0.6,
+   "type_spread": 0.82,
+   "edge": {
+    "spawns_median": 26.2,
+    "land_median": 29.5
+   },
+   "band_density": {
+    "near": 7.92,
+    "middle": 8.51,
+    "open": 6.74
+   }
+  },
+  {
+   "zone": 104,
+   "spawns": 409,
+   "area": 583152,
+   "density": 7.01,
+   "used": 0.61,
+   "density_used": 11.44,
+   "spacing": {
+    "median": 16.5,
+    "p25": 9.5,
+    "p75": 23.5
+   },
+   "groups": {
+    "1": 223,
+    "2": 46,
+    "3": 15,
+    "4": 8,
+    "5": 2
+   },
+   "alone": 0.76,
+   "types": 35,
+   "top_shares": [
+    0.15,
+    0.11,
+    0.11,
+    0.11,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.07,
+    "min": 0.01,
+    "max": 0.52
+   },
+   "mixing": 0.82,
+   "same_type": 0.54,
+   "type_spread": 0.82,
+   "edge": {
+    "spawns_median": 22.6,
+    "land_median": 18.1
+   },
+   "band_density": {
+    "near": 4.31,
+    "middle": 7.17,
+    "open": 8.81
+   }
+  },
+  {
+   "zone": 105,
+   "spawns": 389,
+   "area": 615420,
+   "density": 6.32,
+   "used": 0.65,
+   "density_used": 9.79,
+   "spacing": {
+    "median": 16.1,
+    "p25": 9.9,
+    "p75": 24.4
+   },
+   "groups": {
+    "1": 218,
+    "2": 51,
+    "3": 9,
+    "4": 6,
+    "5": 2
+   },
+   "alone": 0.76,
+   "types": 41,
+   "top_shares": [
+    0.21,
+    0.15,
+    0.11,
+    0.07,
+    0.05
+   ],
+   "coverage": {
+    "median": 0.07,
+    "min": 0.01,
+    "max": 0.69
+   },
+   "mixing": 0.87,
+   "same_type": 0.78,
+   "type_spread": 0.84,
+   "edge": {
+    "spawns_median": 52.0,
+    "land_median": 42.4
+   },
+   "band_density": {
+    "near": 2.35,
+    "middle": 4.54,
+    "open": 7.94
+   }
+  },
+  {
+   "zone": 106,
+   "spawns": 444,
+   "area": 588980,
+   "density": 7.54,
+   "used": 0.59,
+   "density_used": 12.7,
+   "spacing": {
+    "median": 13.9,
+    "p25": 8.0,
+    "p75": 23.5
+   },
+   "groups": {
+    "1": 212,
+    "2": 42,
+    "3": 20,
+    "4": 8,
+    "5": 8
+   },
+   "alone": 0.73,
+   "types": 31,
+   "top_shares": [
+    0.16,
+    0.09,
+    0.09,
+    0.07,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.07,
+    "min": 0.0,
+    "max": 0.5
+   },
+   "mixing": 0.84,
+   "same_type": 0.56,
+   "type_spread": 0.57,
+   "edge": {
+    "spawns_median": 18.0,
+    "land_median": 17.9
+   },
+   "band_density": {
+    "near": 6.22,
+    "middle": 8.4,
+    "open": 7.42
+   }
+  },
+  {
+   "zone": 107,
+   "spawns": 441,
+   "area": 367644,
+   "density": 12.0,
+   "used": 0.75,
+   "density_used": 16.06,
+   "spacing": {
+    "median": 11.9,
+    "p25": 6.5,
+    "p75": 17.7
+   },
+   "groups": {
+    "1": 146,
+    "2": 42,
+    "3": 24,
+    "4": 14,
+    "5": 12
+   },
+   "alone": 0.61,
+   "types": 21,
+   "top_shares": [
+    0.15,
+    0.11,
+    0.1,
+    0.07,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.17,
+    "min": 0.01,
+    "max": 0.55
+   },
+   "mixing": 0.81,
+   "same_type": 0.56,
+   "type_spread": 0.78,
+   "edge": {
+    "spawns_median": 17.1,
+    "land_median": 14.1
+   },
+   "band_density": {
+    "near": 8.29,
+    "middle": 14.22,
+    "open": 12.8
+   }
+  },
+  {
+   "zone": 108,
+   "spawns": 409,
+   "area": 716964,
+   "density": 5.7,
+   "used": 0.59,
+   "density_used": 9.65,
+   "spacing": {
+    "median": 19.2,
+    "p25": 11.0,
+    "p75": 28.1
+   },
+   "groups": {
+    "1": 254,
+    "2": 46,
+    "3": 11,
+    "4": 2,
+    "5": 3
+   },
+   "alone": 0.8,
+   "types": 30,
+   "top_shares": [
+    0.19,
+    0.17,
+    0.15,
+    0.13,
+    0.06
+   ],
+   "coverage": {
+    "median": 0.07,
+    "min": 0.0,
+    "max": 0.59
+   },
+   "mixing": 0.82,
+   "same_type": 0.73,
+   "type_spread": 0.82,
+   "edge": {
+    "spawns_median": 34.2,
+    "land_median": 32.0
+   },
+   "band_density": {
+    "near": 3.95,
+    "middle": 6.26,
+    "open": 5.97
+   }
+  },
+  {
+   "zone": 109,
+   "spawns": 420,
+   "area": 668768,
+   "density": 6.28,
+   "used": 0.5,
+   "density_used": 12.55,
+   "spacing": {
+    "median": 12.4,
+    "p25": 7.7,
+    "p75": 20.4
+   },
+   "groups": {
+    "1": 168,
+    "2": 47,
+    "3": 19,
+    "4": 8,
+    "5": 11
+   },
+   "alone": 0.66,
+   "types": 35,
+   "top_shares": [
+    0.13,
+    0.12,
+    0.08,
+    0.08,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.07,
+    "min": 0.0,
+    "max": 0.46
+   },
+   "mixing": 0.86,
+   "same_type": 0.62,
+   "type_spread": 0.91,
+   "edge": {
+    "spawns_median": 28.6,
+    "land_median": 22.8
+   },
+   "band_density": {
+    "near": 4.98,
+    "middle": 5.44,
+    "open": 7.51
+   }
+  },
+  {
+   "zone": 110,
+   "spawns": 452,
+   "area": 731544,
+   "density": 6.18,
+   "used": 0.62,
+   "density_used": 9.97,
+   "spacing": {
+    "median": 18.4,
+    "p25": 12.8,
+    "p75": 25.3
+   },
+   "groups": {
+    "1": 291,
+    "2": 50,
+    "3": 9,
+    "4": 4,
+    "5": 2
+   },
+   "alone": 0.82,
+   "types": 40,
+   "top_shares": [
+    0.2,
+    0.17,
+    0.13,
+    0.09,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.05,
+    "min": 0.0,
+    "max": 0.52
+   },
+   "mixing": 0.8,
+   "same_type": 0.68,
+   "type_spread": 0.97,
+   "edge": {
+    "spawns_median": 42.3,
+    "land_median": 32.0
+   },
+   "band_density": {
+    "near": 2.29,
+    "middle": 5.1,
+    "open": 7.92
+   }
+  },
+  {
+   "zone": 115,
+   "spawns": 336,
+   "area": 476608,
+   "density": 7.05,
+   "used": 0.7,
+   "density_used": 10.14,
+   "spacing": {
+    "median": 19.3,
+    "p25": 11.4,
+    "p75": 27.1
+   },
+   "groups": {
+    "1": 206,
+    "2": 34,
+    "3": 9,
+    "4": 4,
+    "5": 2
+   },
+   "alone": 0.81,
+   "types": 25,
+   "top_shares": [
+    0.2,
+    0.11,
+    0.1,
+    0.1,
+    0.09
+   ],
+   "coverage": {
+    "median": 0.11,
+    "min": 0.01,
+    "max": 0.61
+   },
+   "mixing": 0.81,
+   "same_type": 0.65,
+   "type_spread": 0.66,
+   "edge": {
+    "spawns_median": 20.1,
+    "land_median": 17.9
+   },
+   "band_density": {
+    "near": 3.23,
+    "middle": 9.07,
+    "open": 6.8
+   }
+  },
+  {
+   "zone": 116,
+   "spawns": 437,
+   "area": 539532,
+   "density": 8.1,
+   "used": 0.73,
+   "density_used": 11.14,
+   "spacing": {
+    "median": 15.6,
+    "p25": 9.8,
+    "p75": 22.8
+   },
+   "groups": {
+    "1": 230,
+    "2": 52,
+    "3": 19,
+    "4": 3,
+    "5": 6
+   },
+   "alone": 0.74,
+   "types": 19,
+   "top_shares": [
+    0.18,
+    0.12,
+    0.1,
+    0.09,
+    0.08
+   ],
+   "coverage": {
+    "median": 0.2,
+    "min": 0.02,
+    "max": 0.65
+   },
+   "mixing": 0.85,
+   "same_type": 0.66,
+   "type_spread": 0.85,
+   "edge": {
+    "spawns_median": 20.4,
+    "land_median": 16.1
+   },
+   "band_density": {
+    "near": 2.65,
+    "middle": 9.78,
+    "open": 10.88
+   }
+  },
+  {
+   "zone": 117,
+   "spawns": 434,
+   "area": 464044,
+   "density": 9.35,
+   "used": 0.7,
+   "density_used": 13.33,
+   "spacing": {
+    "median": 13.6,
+    "p25": 7.9,
+    "p75": 20.0
+   },
+   "groups": {
+    "1": 188,
+    "2": 55,
+    "3": 15,
+    "4": 9,
+    "5": 7
+   },
+   "alone": 0.69,
+   "types": 30,
+   "top_shares": [
+    0.17,
+    0.15,
+    0.14,
+    0.14,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.08,
+    "min": 0.02,
+    "max": 0.76
+   },
+   "mixing": 0.84,
+   "same_type": 0.76,
+   "type_spread": 0.85,
+   "edge": {
+    "spawns_median": 28.4,
+    "land_median": 22.0
+   },
+   "band_density": {
+    "near": 3.73,
+    "middle": 10.72,
+    "open": 11.37
+   }
+  },
+  {
+   "zone": 118,
+   "spawns": 444,
+   "area": 599828,
+   "density": 7.4,
+   "used": 0.52,
+   "density_used": 14.14,
+   "spacing": {
+    "median": 13.5,
+    "p25": 7.4,
+    "p75": 19.4
+   },
+   "groups": {
+    "1": 190,
+    "2": 58,
+    "3": 15,
+    "4": 8,
+    "5": 10
+   },
+   "alone": 0.68,
+   "types": 19,
+   "top_shares": [
+    0.14,
+    0.13,
+    0.11,
+    0.09,
+    0.09
+   ],
+   "coverage": {
+    "median": 0.2,
+    "min": 0.02,
+    "max": 0.5
+   },
+   "mixing": 0.86,
+   "same_type": 0.74,
+   "type_spread": 0.79,
+   "edge": {
+    "spawns_median": 17.5,
+    "land_median": 22.0
+   },
+   "band_density": {
+    "near": 7.76,
+    "middle": 8.22,
+    "open": 6.1
+   }
+  },
+  {
+   "zone": 119,
+   "spawns": 429,
+   "area": 801276,
+   "density": 5.35,
+   "used": 0.53,
+   "density_used": 10.06,
+   "spacing": {
+    "median": 18.3,
+    "p25": 9.3,
+    "p75": 27.4
+   },
+   "groups": {
+    "1": 262,
+    "2": 42,
+    "3": 12,
+    "4": 6,
+    "5": 3
+   },
+   "alone": 0.81,
+   "types": 35,
+   "top_shares": [
+    0.17,
+    0.13,
+    0.11,
+    0.08,
+    0.05
+   ],
+   "coverage": {
+    "median": 0.07,
+    "min": 0.01,
+    "max": 0.45
+   },
+   "mixing": 0.86,
+   "same_type": 0.6,
+   "type_spread": 0.79,
+   "edge": {
+    "spawns_median": 20.6,
+    "land_median": 18.4
+   },
+   "band_density": {
+    "near": 3.0,
+    "middle": 6.34,
+    "open": 5.36
+   }
+  },
+  {
+   "zone": 120,
+   "spawns": 348,
+   "area": 502360,
+   "density": 6.93,
+   "used": 0.64,
+   "density_used": 10.91,
+   "spacing": {
+    "median": 16.2,
+    "p25": 7.7,
+    "p75": 23.7
+   },
+   "groups": {
+    "1": 185,
+    "2": 33,
+    "3": 14,
+    "4": 7,
+    "5": 4
+   },
+   "alone": 0.76,
+   "types": 41,
+   "top_shares": [
+    0.16,
+    0.11,
+    0.1,
+    0.08,
+    0.05
+   ],
+   "coverage": {
+    "median": 0.1,
+    "min": 0.0,
+    "max": 0.68
+   },
+   "mixing": 0.83,
+   "same_type": 0.81,
+   "type_spread": 0.79,
+   "edge": {
+    "spawns_median": 26.9,
+    "land_median": 24.4
+   },
+   "band_density": {
+    "near": 4.6,
+    "middle": 6.93,
+    "open": 7.66
+   }
+  },
+  {
+   "zone": 126,
+   "spawns": 271,
+   "area": 142820,
+   "density": 18.97,
+   "used": 0.85,
+   "density_used": 22.38,
+   "spacing": {
+    "median": 10.3,
+    "p25": 6.3,
+    "p75": 14.3
+   },
+   "groups": {
+    "1": 60,
+    "2": 41,
+    "3": 16,
+    "4": 2,
+    "5": 12
+   },
+   "alone": 0.46,
+   "types": 19,
+   "top_shares": [
+    0.23,
+    0.07,
+    0.07,
+    0.07,
+    0.07
+   ],
+   "coverage": {
+    "median": 0.39,
+    "min": 0.03,
+    "max": 0.8
+   },
+   "mixing": 0.84,
+   "same_type": 0.71,
+   "type_spread": 0.81,
+   "edge": {
+    "spawns_median": 16.5,
+    "land_median": 12.6
+   },
+   "band_density": {
+    "near": 14.3,
+    "middle": 21.15,
+    "open": 24.57
+   }
+  }
+ ]
+}

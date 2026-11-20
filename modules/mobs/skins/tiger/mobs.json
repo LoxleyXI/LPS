@@ -1,0 +1,23 @@
+{
+  "mobs": [
+    {
+      "name": "Template Tiger",
+      "clone": 308,
+      "model_id": 15173,
+      "paint": {
+        "tim     tiger": "template/tim_____tiger.png"
+      },
+      "_note": "the UV template itself on the tiger: proves the mapping, the brightness and the encoding"
+    },
+    {
+      "name": "Rimefang",
+      "clone": 308,
+      "model_id": 15174,
+      "parts": "parts.json",
+      "materials": {
+        "tim     tiger": "rimefang.json"
+      },
+      "_note": "materials laid on the body in 3D: placeholder fur from code until ChatGPT makes real tiles"
+    }
+  ]
+}

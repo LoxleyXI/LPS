@@ -1,0 +1,35 @@
+{
+  "name": "South Gustaberg",
+  "from": 107,
+  "levels": [
+    0,
+    10,
+    20,
+    30
+  ],
+  "step": 10,
+  "wall_rise": 40,
+  "avoid": [
+    "umigake",
+    "onsen",
+    "mark",
+    "kabe",
+    "mitid"
+  ],
+  "props": {
+    "rise_max": 3.0,
+    "level_wide": 1.0
+  },
+  "notes": {
+    "walls": "mawari: the zone's outer cliffs, ~44 over the ground",
+    "slopes": "kudari climbs 10 between floors (walkable); yama: inner cliffs of 20",
+    "left out": "umigake sea cliffs (no coast here), onsen hot spring, mark one-off, kabe walls",
+    "scanned": "caves/build.py --scan-kit 107"
+  },
+  "walls": {
+    "families": [
+      "mawari"
+    ]
+  },
+  "_avoid_note": "mitid: the road-dip variants don't meet the plain road tiles (a 0.25 yalm crack at their shared edge)"
+}

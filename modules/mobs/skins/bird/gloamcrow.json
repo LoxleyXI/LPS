@@ -1,0 +1,92 @@
+{
+  "shade": 0.75,
+  "occlusion": 0.6,
+  "curvature": 0.4,
+  "cutouts": {
+    "parts": [
+      "wings",
+      "plumes"
+    ],
+    "depth": 0.025,
+    "width": 0.05
+  },
+  "layers": [
+    {
+      "fur": {
+        "length": 0.04,
+        "stroke": 0.005
+      },
+      "tint": "#30343e",
+      "contrast": 0.5,
+      "parts": [
+        "body",
+        "head",
+        "thighs",
+        "other"
+      ]
+    },
+    {
+      "fur": {
+        "length": 0.09,
+        "stroke": 0.004,
+        "along": [
+          -1.0,
+          0.2,
+          0.4
+        ],
+        "seed": 1
+      },
+      "tint": "#2a2e38",
+      "contrast": 0.6,
+      "parts": [
+        "wings",
+        "plumes"
+      ]
+    },
+    {
+      "color": "#4a6a9a",
+      "facing": "up",
+      "soft": [
+        0.2,
+        0.9
+      ],
+      "opacity": 0.15,
+      "parts": [
+        "head",
+        "wings"
+      ]
+    },
+    {
+      "color": "#1c1e24",
+      "opacity": 0.6,
+      "parts": [
+        "wings",
+        "plumes"
+      ],
+      "stripes": {
+        "axis": "x",
+        "every": 0.12,
+        "width": 0.18,
+        "warp": 0.03,
+        "soft": 0.2,
+        "seed": 4
+      }
+    },
+    {
+      "color": "#3c3c42",
+      "parts": [
+        "beak"
+      ]
+    },
+    {
+      "scales": {
+        "size": 0.025
+      },
+      "tint": "#56524c",
+      "contrast": 1.2,
+      "parts": [
+        "feet"
+      ]
+    }
+  ]
+}

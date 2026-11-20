@@ -1,0 +1,11 @@
+{
+  "mobs": [
+    {
+      "name": "Gloamcrow",
+      "clone": 445,
+      "model_id": 15175,
+      "parts": "parts.json",
+      "materials": { "tim     tori": "gloamcrow.json" }
+    }
+  ]
+}

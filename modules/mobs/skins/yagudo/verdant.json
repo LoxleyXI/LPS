@@ -1,0 +1,13 @@
+{
+  "base": "original",
+  "shade": 0.5,
+  "occlusion": 0.45,
+  "curvature": 0.35,
+  "masks": {
+    "feathers": { "sat_max": 0.3, "val_min": 0.1 }
+  },
+  "layers": [
+    { "colorize": "#3f9448", "gain": 1.15, "mask": "feathers" },
+    { "color": "#cfe07a", "opacity": 0.3, "mask": "feathers", "facing": "down", "soft": [0.3, 0.9] }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Tahrongi canyon",
+  "from": 117,
+  "texture": "meri_wf",
+  "yalms": [
+    37.0,
+    18.5
+  ],
+  "regions": {
+    "ground": [
+      0.0,
+      0.0,
+      0.5,
+      1.0
+    ],
+    "rim": [
+      0.5,
+      0.0,
+      0.625,
+      0.75
+    ],
+    "strata": [
+      0.625,
+      0.125,
+      1.0,
+      1.0
+    ],
+    "lip": [
+      0.625,
+      0.0,
+      1.0,
+      0.125
+    ],
+    "sand": [
+      0.5,
+      0.75,
+      0.625,
+      1.0
+    ]
+  },
+  "notes": {
+    "texture": "meri_wf is the land atlas both Tahrongi Canyon (117) and Attohwa Chasm (7) are built from",
+    "yalms": "the whole texture spans 37 yalms across and 18.5 down on Tahrongi's own cliffs (v 0.054 per yalm of drop; 1024 x 512)",
+    "regions": "ground: dirt and scrubby grass; rim: rock through dirt; strata: the layered cliff face, bands level; lip: the dirt edge along a cliff's top; sand: pale"
+  }
+}

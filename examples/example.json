@@ -1,0 +1,32 @@
+{
+  "custom": {
+    "item": {
+      "items": {
+        "22501": {
+          "name": "Iron Blade",
+          "singular": "iron blade",
+          "plural": "iron blades",
+          "description": "DMG:50 Delay:240 STR+2\\nAccuracy+5",
+          "template": 16535,
+          "hq": 1,
+          "fields": { "dmg": 50, "delay": 240 }
+        },
+        "22502": {
+          "name": "Emerald Blade",
+          "description": "DMG:60 Delay:220",
+          "template": 16535,
+          "tint": "#20c02070",
+          "blend_mode": "overlay"
+        }
+      }
+    },
+    "strings": {
+      "spell_names": {
+        "100": "Custom Fire"
+      }
+    },
+    "ui_icons": [
+      { "slot": "mentor", "icon": "icons/custom-badge.png" }
+    ]
+  }
+}

@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LPS Item Creator</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            margin: 0;
+            padding: 10px;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+        h1 { color: #8b5cf6; margin-bottom: 5px; }
+        h2 { color: #8b5cf6; font-size: 16px; margin: 20px 0 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .subtitle { color: #666; margin-bottom: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .main-layout { display: grid; grid-template-columns: 1fr 400px; gap: 20px; }
+        @media (max-width: 1000px) { .main-layout { grid-template-columns: 1fr; } }
+
+        .panel { background: #252540; padding: 20px; border-radius: 8px; margin-bottom: 15px; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; }
+
+        .form-row { display: flex; gap: 15px; margin-bottom: 12px; flex-wrap: wrap; align-items: flex-end; }
+        .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .form-group.wide { flex: 1; min-width: 200px; }
+        .form-group.full { flex: 1 0 100%; }
+        label { font-size: 11px; color: #888; text-transform: uppercase; }
+        input[type="text"], input[type="number"], select, textarea {
+            background: #1a1a2e;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #8b5cf6; }
+        input[type="range"] { width: 100%; }
+        textarea { resize: vertical; min-height: 60px; font-family: inherit; }
+
+        /* File type selector - prominent at top */
+        .file-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .file-type-btn {
+            padding: 12px 24px;
+            background: #1a1a2e;
+            border: 2px solid #444;
+            border-radius: 8px;
+            color: #888;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .file-type-btn:hover { border-color: #666; color: #ccc; }
+        .file-type-btn.active { border-color: #8b5cf6; background: #3d3d6b; color: #fff; }
+
+        .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 6px; }
+        .checkbox-item {
+            display: flex; align-items: center; gap: 4px; font-size: 12px; cursor: pointer;
+            padding: 4px 6px; background: #1a1a2e; border-radius: 4px; border: 1px solid transparent;
+        }
+        .checkbox-item:hover { border-color: #444; }
+        .checkbox-item.selected { background: #3d3d6b; border-color: #8b5cf6; }
+
+        button { background: #8b5cf6; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; }
+        button:hover { background: #7c3aed; }
+        button.secondary { background: #444; }
+        button.secondary:hover { background: #555; }
+        .generate-btn { font-size: 10px; padding: 2px 6px; margin-left: 8px; background: #2a4a2a; border: 1px solid #4a6a4a; color: #8f8; border-radius: 3px; cursor: pointer; }
+        .generate-btn:hover { background: #3a5a3a; }
+
+        .icon-preview { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 15px; }
+        .icon-box { text-align: center; }
+        .icon-box label { display: block; margin-bottom: 5px; }
+        .icon-container { background: #000; padding: 8px; border-radius: 4px; display: inline-block; position: relative; }
+        canvas { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+        .color-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .color-wheel { width: 150px; height: 16px; background: linear-gradient(to right, hsl(0,100%,50%), hsl(60,100%,50%), hsl(120,100%,50%), hsl(180,100%,50%), hsl(240,100%,50%), hsl(300,100%,50%), hsl(360,100%,50%)); border-radius: 4px; }
+        .tint-preview-box { width: 24px; height: 24px; border-radius: 4px; border: 2px solid #444; }
+
+        .stats-input-container { position: relative; }
+        .stats-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #1a1a2e; border: 1px solid #444; border-radius: 0 0 4px 4px; max-height: 200px; overflow-y: auto; z-index: 100; display: none; }
+        .stats-suggestions.show { display: block; }
+        .stat-suggestion { padding: 8px 12px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #333; }
+        .stat-suggestion:hover { background: #3d3d6b; }
+        .stat-suggestion .stat-name { color: #fff; }
+        .stat-suggestion .stat-example { color: #666; font-size: 11px; margin-left: 10px; }
+        .stat-suggestion .stat-category { color: #8b5cf6; font-size: 10px; float: right; }
+
+        .stat-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .stat-tag { background: #3d3d6b; padding: 4px 8px; border-radius: 4px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+        .stat-tag .remove { cursor: pointer; color: #f66; font-weight: bold; }
+
+        .output-tabs { display: flex; gap: 10px; margin-bottom: 10px; }
+        .output-tab { padding: 6px 12px; background: #1a1a2e; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .output-tab.active { background: #8b5cf6; }
+        .output-box { background: #0d0d1a; padding: 15px; border-radius: 4px; font-family: 'Monaco', 'Consolas', monospace; font-size: 12px; white-space: pre-wrap; max-height: 400px; overflow-y: auto; }
+        .copy-btn { float: right; font-size: 11px; padding: 4px 8px; }
+
+        .flags-section .checkbox-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+        .quick-presets { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+        .preset-btn { background: #333; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; border: none; color: #ccc; }
+        .preset-btn:hover { background: #444; }
+
+        .hidden { display: none !important; }
+        .hq-select { display: flex; gap: 8px; align-items: center; }
+        .hq-option { padding: 6px 12px; background: #1a1a2e; border: 2px solid #444; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .hq-option.active { border-color: #8b5cf6; background: #3d3d6b; }
+        .hq-option img { width: 32px; height: 32px; image-rendering: pixelated; vertical-align: middle; margin-right: 4px; }
+
+        /* FFXI-style in-game preview */
+        .game-preview {
+            background: repeating-linear-gradient(180deg,
+                #0a0a1a 0px, #0a0a1a 4px,
+                #0f0f24 4px, #0f0f24 8px
+            );
+            border: 2px solid #2a2a4a;
+            border-radius: 4px;
+            padding: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            min-height: 90px;
+            position: relative;
+        }
+        .game-preview-header {
+            display: flex;
+            gap: 8px;
+        }
+        .game-preview-icon {
+            width: 32px;
+            height: 32px;
+            image-rendering: pixelated;
+            flex-shrink: 0;
+        }
+        .game-preview-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+        .game-preview-title {
+            color: #fff;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .game-preview-slot {
+            color: #aaa;
+            font-size: 10px;
+        }
+        .game-preview-stats {
+            color: #ccc;
+            font-size: 10px;
+            word-wrap: break-word;
+        }
+        .game-preview-level {
+            color: #8b8;
+            font-size: 10px;
+        }
+        .game-preview-flags {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 4px;
+        }
+        .flag-badge {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5px;
+            font-weight: bold;
+            color: #000;
+            opacity: 0.7;
+        }
+        .flag-badge.rare {
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+        }
+        .flag-badge.ex {
+            background: linear-gradient(135deg, #4ade80, #16a34a);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Title hidden when embedded in LPS Studio -->
+
+        <!-- Template loader -->
+        <div class="panel">
+            <div class="form-row" style="align-items: flex-end;">
+                <div class="form-group wide">
+                    <label>Load Template from Game (item ID)</label>
+                    <input type="number" id="templateId" value="10501" style="width: 100%;">
+                </div>
+                <button onclick="loadTemplate()" style="white-space: nowrap;">Load Template</button>
+            </div>
+            <p id="templateStatus" style="font-size: 11px; color: #667; margin-top: 4px;"></p>
+        </div>
+
+        <!-- FILE TYPE SELECTOR -->
+        <div class="panel">
+            <label>OUTPUT FILE TYPE</label>
+            <div class="file-type-selector">
+                <button class="file-type-btn active" data-type="armor">Armor</button>
+                <button class="file-type-btn" data-type="weapon">Weapon</button>
+                <button class="file-type-btn" data-type="consumable">Consumable</button>
+                <button class="file-type-btn" data-type="item">General Item</button>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <div class="left-column">
+                <!-- Basic Info -->
+                <div class="panel">
+                    <h2>Basic Information</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Item ID</label>
+                            <input type="number" id="itemId" value="50001" min="1">
+                        </div>
+                        <div class="form-group wide">
+                            <label>Item Name</label>
+                            <input type="text" id="itemName" value="Custom Item" placeholder="Display name">
+                        </div>
+                    </div>
+                    <!-- Hidden type/kind codes - auto-set based on file type -->
+                    <input type="hidden" id="typeCode" value="4">
+                    <input type="hidden" id="kindCode" value="5">
+                    <div class="form-row">
+                        <div class="form-group wide">
+                            <label>Log Name (singular)</label>
+                            <input type="text" id="logNameSingle" value="custom item" placeholder="a custom item">
+                        </div>
+                        <div class="form-group wide">
+                            <label>Log Name (plural)</label>
+                            <input type="text" id="logNamePlural" value="custom items" placeholder="custom items">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label>Description</label>
+                            <textarea id="itemDesc" placeholder="Item description with stats..." style="min-height: 120px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats/Mods - server-side item_mods for SQL output -->
+                <div class="panel" id="statsPanel">
+                    <h2>Stats / Modifiers <span style="font-size:10px; color:#667; font-weight:normal">(server-side SQL)</span></h2>
+                    <div class="stats-input-container">
+                        <input type="text" id="statSearch" placeholder="Search stats (STR, Accuracy, Haste...)" style="width: 100%;">
+                        <div class="stats-suggestions" id="statSuggestions"></div>
+                    </div>
+                    <div class="stat-tags" id="statTags"></div>
+                </div>
+
+                <!-- Equipment Info (armor/weapon only) -->
+                <div class="panel" id="equipmentPanel">
+                    <h2>Equipment Properties</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Level</label>
+                            <input type="number" id="itemLevel" value="75" min="1" max="99">
+                        </div>
+                        <div class="form-group">
+                            <label>iLevel</label>
+                            <input type="number" id="itemIlvl" value="0" min="0" max="150">
+                        </div>
+                        <div class="form-group">
+                            <label>Superior Level</label>
+                            <input type="number" id="slvl" value="0" min="0" max="5">
+                        </div>
+                        <div class="form-group" id="shieldSizeGroup">
+                            <label>Shield Size</label>
+                            <input type="number" id="shieldSize" value="0" min="0" max="5">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group wide" id="armorSlotGroup">
+                            <label>Slot</label>
+                            <select id="itemSlot">
+                                <option value="HEAD">Head</option>
+                                <option value="BODY" selected>Body</option>
+                                <option value="HANDS">Hands</option>
+                                <option value="LEGS">Legs</option>
+                                <option value="FEET">Feet</option>
+                                <option value="NECK">Neck</option>
+                                <option value="WAIST">Waist</option>
+                                <option value="EAR1,EAR2">Ears</option>
+                                <option value="RING1,RING2">Rings</option>
+                                <option value="BACK">Back</option>
+                            </select>
+                        </div>
+                        <div class="form-group wide hidden" id="weaponSlotGroup">
+                            <label>Slot</label>
+                            <select id="weaponSlot">
+                                <option value="MAIN" selected>Main</option>
+                                <option value="SUB">Sub</option>
+                                <option value="MAIN,SUB">Main or Sub</option>
+                                <option value="RANGE">Range</option>
+                                <option value="AMMO">Ammo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weapon Info (weapon only) -->
+                <div class="panel hidden" id="weaponPanel">
+                    <h2>Weapon Properties</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Damage</label>
+                            <input type="number" id="weaponDmg" value="50" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Delay</label>
+                            <input type="number" id="weaponDelay" value="240" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>DPS</label>
+                            <input type="number" id="weaponDps" value="0" min="0">
+                        </div>
+                        <div class="form-group wide">
+                            <label>Skill</label>
+                            <select id="weaponSkill">
+                                <option value="HAND_TO_HAND">Hand-to-Hand</option>
+                                <option value="DAGGER">Dagger</option>
+                                <option value="SWORD" selected>Sword</option>
+                                <option value="GREAT_SWORD">Great Sword</option>
+                                <option value="AXE">Axe</option>
+                                <option value="GREAT_AXE">Great Axe</option>
+                                <option value="SCYTHE">Scythe</option>
+                                <option value="POLEARM">Polearm</option>
+                                <option value="KATANA">Katana</option>
+                                <option value="GREAT_KATANA">Great Katana</option>
+                                <option value="CLUB">Club</option>
+                                <option value="STAFF">Staff</option>
+                                <option value="ARCHERY">Archery</option>
+                                <option value="MARKSMANSHIP">Marksmanship</option>
+                                <option value="THROWING">Throwing</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stack Size (consumable and general items) -->
+                <div class="panel hidden" id="stackPanel">
+                    <h2>Stack Properties</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Stack Size</label>
+                            <input type="number" id="stackSize" value="12" min="1" max="99">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consumable Info (consumable only) -->
+                <div class="panel hidden" id="consumablePanel">
+                    <h2>Consumable Properties</h2>
+                    <div class="form-row">
+                        <div class="form-group wide">
+                            <label>Use Target</label>
+                            <select id="useTarget">
+                                <option value="1">Self</option>
+                                <option value="5">Self or Party Member</option>
+                                <option value="29">Party/Alliance</option>
+                                <option value="32">Enemy</option>
+                                <option value="63">Any</option>
+                                <option value="0">None (Key Item style)</option>
+                            </select>
+                        </div>
+                        <div class="form-group wide">
+                            <label>Cooldown Group (Activation)</label>
+                            <select id="activationGroup">
+                                <option value="0">None (Crystals)</option>
+                                <option value="1" selected>Standard (Potions, Ethers)</option>
+                                <option value="2">Enhanced (Max-Potions, Icarus Wing)</option>
+                                <option value="4">Superior (X-Potions)</option>
+                                <option value="8">Premium (Hi-Ether)</option>
+                                <option value="10">Elite (Super Ether, Elixirs)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group wide">
+                            <label>Effect Type</label>
+                            <select id="effectType">
+                                <option value="1" selected>Normal</option>
+                                <option value="2">Crafted Food</option>
+                                <option value="10">Party Heal (Catholicon)</option>
+                                <option value="13">Enemy Target (Lethe)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jobs -->
+                <div class="panel" id="jobsPanel">
+                    <h2>Jobs</h2>
+                    <div class="quick-presets">
+                        <button class="preset-btn" onclick="selectAllJobs()">All Jobs</button>
+                        <button class="preset-btn" onclick="clearJobs()">None</button>
+                        <button class="preset-btn" onclick="selectMeleeJobs()">Melee</button>
+                        <button class="preset-btn" onclick="selectMageJobs()">Mage</button>
+                    </div>
+                    <div class="checkbox-grid" id="jobsGrid"></div>
+                </div>
+
+                <!-- Races (equipment only) -->
+                <div class="panel" id="racesPanel">
+                    <h2>Races</h2>
+                    <div class="quick-presets">
+                        <button class="preset-btn" onclick="selectAllRaces()">All Races</button>
+                        <button class="preset-btn" onclick="clearRaces()">None</button>
+                    </div>
+                    <div class="checkbox-grid" id="racesGrid"></div>
+                </div>
+
+                <!-- Flags -->
+                <div class="panel flags-section">
+                    <h2>Flags</h2>
+                    <div class="quick-presets">
+                        <button class="preset-btn" onclick="setRareEx()">Rare/Ex</button>
+                        <button class="preset-btn" onclick="setEquippable()">Equippable</button>
+                        <button class="preset-btn" onclick="clearFlags()">None</button>
+                    </div>
+                    <div class="checkbox-grid" id="flagsGrid"></div>
+                </div>
+
+            </div>
+
+            <div class="right-column">
+                <!-- In-Game Preview -->
+                <div class="panel">
+                    <h2>In-Game Preview</h2>
+                    <div class="game-preview" id="gamePreview">
+                        <div class="game-preview-flags" id="previewFlags"></div>
+                        <div class="game-preview-header">
+                            <canvas id="previewIcon" class="game-preview-icon" width="32" height="32"></canvas>
+                            <div class="game-preview-text">
+                                <div class="game-preview-title" id="previewTitle">Custom Item</div>
+                                <div class="game-preview-slot" id="previewSlot">[Body]All Races</div>
+                                <div class="game-preview-stats" id="previewStats">DEF:10</div>
+                                <div class="game-preview-level" id="previewLevel">Lv.75 WAR/MNK</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Icon Editor -->
+                <div class="panel">
+                    <h2>Icon</h2>
+                    <div class="form-row">
+                        <div class="form-group wide">
+                            <label>Upload Custom Icon</label>
+                            <input type="file" id="customIconUpload" accept="image/*" onchange="loadCustomIcon(event)">
+                        </div>
+                    </div>
+                    <div class="icon-preview">
+                        <div class="icon-box">
+                            <label>Original</label>
+                            <div class="icon-container">
+                                <canvas id="originalCanvas" width="32" height="32" style="width: 64px; height: 64px;"></canvas>
+                            </div>
+                        </div>
+                        <div class="icon-box">
+                            <label>Modified</label>
+                            <div class="icon-container">
+                                <canvas id="modifiedCanvas" width="32" height="32" style="width: 64px; height: 64px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>HQ Border</label>
+                        <div class="hq-select">
+                            <div class="hq-option active" data-hq="0" onclick="setHqBorder(0)">NQ</div>
+                            <div class="hq-option" data-hq="1" onclick="setHqBorder(1)">HQ1</div>
+                            <div class="hq-option" data-hq="2" onclick="setHqBorder(2)">HQ2</div>
+                            <div class="hq-option" data-hq="3" onclick="setHqBorder(3)">HQ3</div>
+                            <div class="hq-option" data-hq="4" onclick="setHqBorder(4)">HQ4</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Hue Shift: <span id="hueValue">0</span>°</label>
+                        <div class="color-wheel"></div>
+                        <input type="range" id="hueShift" min="0" max="360" value="0" oninput="updateIcon()">
+                    </div>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>Tint Color & Opacity</label>
+                        <div class="color-controls">
+                            <input type="color" id="tintColor" value="#ff0000">
+                            <input type="range" id="tintOpacity" min="0" max="100" value="0" oninput="updateIcon()">
+                            <span id="tintOpacityValue">0%</span>
+                            <div class="tint-preview-box" id="tintPreview"></div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>Blend Mode</label>
+                        <select id="blendMode" onchange="updateIcon()">
+                            <option value="multiply">Multiply</option>
+                            <option value="overlay">Overlay</option>
+                            <option value="screen">Screen</option>
+                            <option value="color">Color</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Output -->
+                <div class="panel">
+                    <div class="panel-header">
+                        <h2 style="margin: 0;">Output</h2>
+                        <button class="copy-btn secondary" onclick="copyOutput()">Copy</button>
+                    </div>
+                    <div class="output-tabs">
+                        <div class="output-tab active" onclick="showOutput('json')">JSON</div>
+                        <div class="output-tab" onclick="showOutput('sql')">SQL</div>
+                    </div>
+                    <div class="output-box" id="outputBox"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Globals
+        let MOD_MAPPING = null;
+        let STATS = [];
+        let selectedJobs = new Set();
+        let selectedRaces = new Set();
+        let selectedFlags = new Set();
+        let selectedStats = [];
+        let originalImageData = null;
+        let currentOutputTab = 'json';
+        let currentFileType = 'armor';
+        let currentHqBorder = 0;
+
+        const JOBS = ['WAR','MNK','WHM','BLM','RDM','THF','PLD','DRK','BST','BRD','RNG','SAM','NIN','DRG','SMN','BLU','COR','PUP','DNC','SCH','GEO','RUN'];
+        const MELEE_JOBS = ['WAR','MNK','THF','PLD','DRK','BST','SAM','NIN','DRG','DNC','RUN'];
+        const MAGE_JOBS = ['WHM','BLM','RDM','BRD','SMN','BLU','SCH','GEO'];
+        const RACES = ['HUME_M','HUME_F','ELVAAN_M','ELVAAN_F','TARU_M','TARU_F','MITHRA','GALKA'];
+        const FLAGS = ['RARE','EX','NOAUCTION','NOSALE','NODELIVERY','CANEQUIP','CANUSE','INSCRIBABLE','MYSTERY_BOX','MAIL2ACCOUNT','SCROLL','LINKSHELL','CANTRADENPC','MOG_GARDEN','WALLHANGING'];
+
+        // Stat display order for description generation
+        const STAT_ORDER = [
+            1, 2, 3, 5, 6,  // DEF, HP, HPP, MP, MPP
+            8, 9, 10, 11, 12, 13, 14,  // STR, DEX, VIT, AGI, INT, MND, CHR
+            23, 25, 24, 26,  // ATT, ACC, RATT, RACC
+            28, 30, 29, 31,  // MAB, MACC, MDEF, MEVA
+            68, 384, 73,  // EVA, Haste, Store TP
+            288, 302, 430,  // DA, TA, QA
+            165, 421, 259, 289,  // Crit, Crit DMG, DW, Subtle Blow
+            160, 161, 163,  // DT
+            370, 369, 368,  // Regen, Refresh, Regain
+            374, 170, 407, 27, 345, 48, 174, 175
+        ];
+
+        async function init() {
+            await loadModMapping();
+            preloadHqBorders();
+            renderJobs();
+            renderRaces();
+            renderFlags();
+            setupStatSearch();
+            setupFileTypeSelector();
+            setupRealTimeUpdates();
+            loadTemplate();
+        }
+
+        function setupRealTimeUpdates() {
+            // Add input listeners to all form fields for real-time preview updates
+            const fields = ['itemId', 'itemName', 'logNameSingle', 'logNamePlural', 'itemDesc',
+                           'itemLevel', 'itemIlvl', 'slvl', 'shieldSize', 'weaponDmg', 'weaponDelay', 'weaponDps'];
+            fields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('input', updateOutput);
+            });
+
+            // Select fields
+            ['typeCode', 'kindCode', 'itemSlot', 'weaponSkill', 'tintColor'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('change', updateOutput);
+            });
+
+            // Slot and weapon skill changes need to update preview
+            document.getElementById('itemSlot').addEventListener('change', updateGamePreview);
+            document.getElementById('weaponSlot').addEventListener('change', updateGamePreview);
+            document.getElementById('weaponSlot').addEventListener('change', updateOutput);
+            document.getElementById('weaponSkill').addEventListener('change', updateGamePreview);
+
+            // Consumable fields
+            document.getElementById('stackSize').addEventListener('input', updateOutput);
+            document.getElementById('useTarget').addEventListener('change', updateOutput);
+            document.getElementById('activationGroup').addEventListener('change', updateOutput);
+            document.getElementById('effectType').addEventListener('change', updateOutput);
+        }
+
+        async function loadModMapping() {
+            try {
+                const resp = await fetch('mod_mapping.json');
+                MOD_MAPPING = await resp.json();
+                STATS = Object.entries(MOD_MAPPING.mods).map(([id, data]) => ({
+                    id: id,
+                    modId: parseInt(id),
+                    name: data.name,
+                    format: data.format,
+                    category: data.category,
+                    type: data.type,
+                    divisor: data.divisor || 1,
+                    negate: data.negate || false,
+                    example: data.format ? data.format.replace('{value}', '10') : `${data.name}+10`
+                })).sort((a, b) => a.name.localeCompare(b.name));
+                console.log(`Loaded ${STATS.length} mods`);
+            } catch (e) {
+                console.error('Failed to load mod mapping:', e);
+            }
+        }
+
+        function setupFileTypeSelector() {
+            document.querySelectorAll('.file-type-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.file-type-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFileType = btn.dataset.type;
+
+                    // Auto-set type and kind codes based on file type
+                    // Armor: type 4, kind 5
+                    // Weapon: type 5, kind 5
+                    // Consumable: type 1, kind 7
+                    // Item: type 0, kind 1
+                    const typeCodes = { armor: 4, weapon: 5, consumable: 1, item: 0 };
+                    const kindCodes = { armor: 5, weapon: 5, consumable: 7, item: 1 };
+                    document.getElementById('typeCode').value = typeCodes[currentFileType];
+                    document.getElementById('kindCode').value = kindCodes[currentFileType];
+
+                    updateVisiblePanels();
+                    updateOutput();
+                });
+            });
+        }
+
+        function updateVisiblePanels() {
+            const equipPanel = document.getElementById('equipmentPanel');
+            const weaponPanel = document.getElementById('weaponPanel');
+            const stackPanel = document.getElementById('stackPanel');
+            const consumablePanel = document.getElementById('consumablePanel');
+            const statsPanel = document.getElementById('statsPanel');
+            const jobsPanel = document.getElementById('jobsPanel');
+            const racesPanel = document.getElementById('racesPanel');
+            const shieldGroup = document.getElementById('shieldSizeGroup');
+
+            // Hide all optional panels first
+            equipPanel.classList.add('hidden');
+            weaponPanel.classList.add('hidden');
+            stackPanel.classList.add('hidden');
+            consumablePanel.classList.add('hidden');
+            statsPanel.classList.add('hidden');
+            jobsPanel.classList.add('hidden');
+            racesPanel.classList.add('hidden');
+
+            const armorSlotGroup = document.getElementById('armorSlotGroup');
+            const weaponSlotGroup = document.getElementById('weaponSlotGroup');
+
+            // Hide both slot groups by default
+            armorSlotGroup.classList.add('hidden');
+            weaponSlotGroup.classList.add('hidden');
+
+            if (currentFileType === 'armor') {
+                statsPanel.classList.remove('hidden');
+                equipPanel.classList.remove('hidden');
+                jobsPanel.classList.remove('hidden');
+                racesPanel.classList.remove('hidden');
+                shieldGroup.classList.remove('hidden');
+                armorSlotGroup.classList.remove('hidden');
+            } else if (currentFileType === 'weapon') {
+                statsPanel.classList.remove('hidden');
+                equipPanel.classList.remove('hidden');
+                weaponPanel.classList.remove('hidden');
+                jobsPanel.classList.remove('hidden');
+                racesPanel.classList.remove('hidden');
+                shieldGroup.classList.add('hidden');
+                weaponSlotGroup.classList.remove('hidden');
+            } else if (currentFileType === 'consumable') {
+                stackPanel.classList.remove('hidden');
+                consumablePanel.classList.remove('hidden');
+            } else if (currentFileType === 'item') {
+                stackPanel.classList.remove('hidden');
+            }
+        }
+
+        function renderJobs() {
+            const grid = document.getElementById('jobsGrid');
+            grid.innerHTML = JOBS.map(job => `
+                <div class="checkbox-item" id="job_${job}_item" onclick="toggleJob('${job}')">${job}</div>
+            `).join('');
+        }
+
+        function renderRaces() {
+            const grid = document.getElementById('racesGrid');
+            grid.innerHTML = RACES.map(race => `
+                <div class="checkbox-item" id="race_${race}_item" onclick="toggleRace('${race}')">${race.replace('_', ' ')}</div>
+            `).join('');
+        }
+
+        function renderFlags() {
+            const grid = document.getElementById('flagsGrid');
+            grid.innerHTML = FLAGS.map(flag => `
+                <div class="checkbox-item" id="flag_${flag}_item" onclick="toggleFlag('${flag}')">${flag}</div>
+            `).join('');
+        }
+
+        function toggleJob(job) {
+            if (selectedJobs.has(job)) selectedJobs.delete(job);
+            else selectedJobs.add(job);
+            document.getElementById(`job_${job}_item`).classList.toggle('selected', selectedJobs.has(job));
+            updateOutput();
+        }
+
+        function toggleRace(race) {
+            if (selectedRaces.has(race)) selectedRaces.delete(race);
+            else selectedRaces.add(race);
+            document.getElementById(`race_${race}_item`).classList.toggle('selected', selectedRaces.has(race));
+            updateOutput();
+        }
+
+        function toggleFlag(flag) {
+            if (selectedFlags.has(flag)) selectedFlags.delete(flag);
+            else selectedFlags.add(flag);
+            document.getElementById(`flag_${flag}_item`).classList.toggle('selected', selectedFlags.has(flag));
+            updateOutput();
+        }
+
+        function selectAllJobs() { JOBS.forEach(j => { selectedJobs.add(j); document.getElementById(`job_${j}_item`).classList.add('selected'); }); updateOutput(); }
+        function clearJobs() { JOBS.forEach(j => { selectedJobs.delete(j); document.getElementById(`job_${j}_item`).classList.remove('selected'); }); updateOutput(); }
+        function selectMeleeJobs() { clearJobs(); MELEE_JOBS.forEach(j => { selectedJobs.add(j); document.getElementById(`job_${j}_item`).classList.add('selected'); }); updateOutput(); }
+        function selectMageJobs() { clearJobs(); MAGE_JOBS.forEach(j => { selectedJobs.add(j); document.getElementById(`job_${j}_item`).classList.add('selected'); }); updateOutput(); }
+        function selectAllRaces() { RACES.forEach(r => { selectedRaces.add(r); document.getElementById(`race_${r}_item`).classList.add('selected'); }); updateOutput(); }
+        function clearRaces() { RACES.forEach(r => { selectedRaces.delete(r); document.getElementById(`race_${r}_item`).classList.remove('selected'); }); updateOutput(); }
+        function setRareEx() { ['RARE','EX'].forEach(f => { selectedFlags.add(f); document.getElementById(`flag_${f}_item`).classList.add('selected'); }); updateOutput(); }
+        function setEquippable() { selectedFlags.add('CANEQUIP'); document.getElementById('flag_CANEQUIP_item').classList.add('selected'); updateOutput(); }
+        function clearFlags() { FLAGS.forEach(f => { selectedFlags.delete(f); document.getElementById(`flag_${f}_item`).classList.remove('selected'); }); updateOutput(); }
+
+        function setupStatSearch() {
+            const input = document.getElementById('statSearch');
+            const suggestions = document.getElementById('statSuggestions');
+
+            input.addEventListener('input', () => {
+                const query = input.value.toLowerCase();
+                if (query.length < 1) { suggestions.classList.remove('show'); return; }
+
+                const matches = STATS.filter(s =>
+                    s.name.toLowerCase().includes(query) ||
+                    (s.format && s.format.toLowerCase().includes(query))
+                ).slice(0, 15);
+
+                if (matches.length === 0) { suggestions.classList.remove('show'); return; }
+
+                suggestions.innerHTML = matches.map(s => `
+                    <div class="stat-suggestion" onclick="addStat('${s.id}')">
+                        <span class="stat-name">${s.name}</span>
+                        <span class="stat-example">${s.example}</span>
+                        <span class="stat-category">${s.category || ''}</span>
+                    </div>
+                `).join('');
+                suggestions.classList.add('show');
+            });
+
+            input.addEventListener('blur', () => setTimeout(() => suggestions.classList.remove('show'), 200));
+        }
+
+        function addStat(statId) {
+            const stat = STATS.find(s => s.id === statId);
+            if (!stat) return;
+
+            let promptText = `Enter value for ${stat.name}:`;
+            let defaultVal = '10';
+
+            if (stat.divisor && stat.divisor > 1) {
+                promptText = `Enter DISPLAY value for ${stat.name} (e.g., 3 for 3%):`;
+                defaultVal = '3';
+            }
+
+            const inputVal = prompt(promptText, defaultVal);
+            if (inputVal === null) return;
+
+            let value = parseInt(inputVal) || 0;
+            if (stat.divisor && stat.divisor > 1) value = value * stat.divisor;
+
+            selectedStats.push({
+                id: statId,
+                modId: stat.modId,
+                name: stat.name,
+                format: stat.format,
+                value: value,
+                divisor: stat.divisor || 1,
+                negate: stat.negate || false
+            });
+
+            updateStatTags();
+            document.getElementById('statSearch').value = '';
+            updateOutput();
+        }
+
+        function removeStat(index) {
+            selectedStats.splice(index, 1);
+            updateStatTags();
+            updateOutput();
+        }
+
+        function formatStatDisplay(stat) {
+            let displayValue = stat.value;
+            if (stat.divisor && stat.divisor > 1) displayValue = Math.round(stat.value / stat.divisor);
+            if (stat.negate) displayValue = Math.abs(displayValue);
+            if (stat.format) return stat.format.replace('{value}', displayValue);
+            return `${stat.name}${displayValue >= 0 ? '+' : ''}${displayValue}`;
+        }
+
+        function updateStatTags() {
+            const container = document.getElementById('statTags');
+            container.innerHTML = selectedStats.map((s, i) => {
+                const display = formatStatDisplay(s);
+                return `<span class="stat-tag">${display}<span class="remove" onclick="removeStat(${i})">×</span></span>`;
+            }).join('');
+        }
+
+        function generateItemDescription() {
+            const sortedStats = [...selectedStats].sort((a, b) => {
+                const posA = STAT_ORDER.indexOf(a.modId);
+                const posB = STAT_ORDER.indexOf(b.modId);
+                return (posA === -1 ? 9999 : posA) - (posB === -1 ? 9999 : posB);
+            });
+            return sortedStats.map(stat => formatStatDisplay(stat)).join(' ');
+        }
+
+        function autoGenerateDesc() {
+            document.getElementById('itemDesc').value = generateItemDescription();
+            updateOutput();
+        }
+
+        // HQ border colors: {level: [outerRGBA, innerRGBA]}
+        const HQ_BORDER_COLORS = {
+            1: [[183, 183, 183, 255], [159, 159, 159, 255]],  // silver
+            2: [[64, 127, 164, 255],  [69, 112, 141, 255]],   // steel blue
+            3: [[166, 142, 68, 255],  [134, 119, 77, 255]],   // gold
+            4: [[61, 165, 114, 255],  [78, 141, 71, 255]],    // green
+        };
+
+        // Draw HQ border programmatically onto a canvas context
+        function drawHqBorder(ctx, level) {
+            if (!HQ_BORDER_COLORS[level]) return;
+            const [outer, inner] = HQ_BORDER_COLORS[level];
+            const s = 32;
+
+            // Outer ring (2px frame)
+            ctx.fillStyle = `rgba(${outer.join(',')})`;
+            ctx.fillRect(0, 0, s, 2);       // top
+            ctx.fillRect(0, s - 2, s, 2);   // bottom
+            ctx.fillRect(0, 0, 2, s);       // left
+            ctx.fillRect(s - 2, 0, 2, s);   // right
+
+            // Inner ring (1px inset)
+            ctx.fillStyle = `rgba(${inner.join(',')})`;
+            ctx.fillRect(2, 2, s - 4, 1);       // top
+            ctx.fillRect(2, s - 3, s - 4, 1);   // bottom
+            ctx.fillRect(2, 2, 1, s - 4);       // left
+            ctx.fillRect(s - 3, 2, 1, s - 4);   // right
+        }
+
+        function preloadHqBorders() {
+            // No-op: borders are now generated programmatically
+        }
+
+        // Icon functions
+        function setHqBorder(level) {
+            currentHqBorder = level;
+            document.querySelectorAll('.hq-option').forEach(opt => opt.classList.remove('active'));
+            document.querySelector(`.hq-option[data-hq="${level}"]`).classList.add('active');
+            updateIcon();
+        }
+
+        // Item type ranges → DAT paths (ROL5 encrypted)
+        const ITEM_DAT_RANGES = [
+            { min: 0,     max: 4095,  dat: 'game/ROM/118/106.DAT', textOff: 0x18 },
+            { min: 4096,  max: 8191,  dat: 'game/ROM/118/107.DAT', textOff: 0x1C },
+            { min: 8192,  max: 8703,  dat: 'game/ROM/118/110.DAT', textOff: 0x18 },
+            { min: 10240, max: 16383, dat: 'game/ROM/118/109.DAT', textOff: 0x2C },
+            { min: 16384, max: 23039, dat: 'game/ROM/118/108.DAT', textOff: 0x38 },
+            { min: 23040, max: 28671, dat: 'game/ROM/286/73.DAT',  textOff: 0x2C },
+            { min: 28672, max: 65535, dat: 'game/ROM/286/74.DAT',  textOff: 0x18 },
+        ];
+        const ENTRY_SIZE = 0xC00;  // 3072 bytes
+        const ICON_LEN_OFF = 0x280;
+        const ICON_DATA_OFF = 0x284;
+        const ICON_HEADER = 57;
+        const ICON_PAL = 256 * 4;
+
+        // DAT cache (avoid re-fetching)
+        const _datCache = {};
+
+        function ror5(data) {
+            const out = new Uint8Array(data.length);
+            for (let i = 0; i < data.length; i++)
+                out[i] = ((data[i] >> 5) | (data[i] << 3)) & 0xFF;
+            return out;
+        }
+
+        function decodeIconFromEntry(entry) {
+            const iconLen = entry[ICON_LEN_OFF] | (entry[ICON_LEN_OFF+1]<<8) |
+                            (entry[ICON_LEN_OFF+2]<<16) | (entry[ICON_LEN_OFF+3]<<24);
+            if (iconLen === 0) return null;
+
+            const iconData = entry.slice(ICON_DATA_OFF, ICON_DATA_OFF + iconLen);
+            if (iconData.length < ICON_HEADER + ICON_PAL + 1024) return null;
+
+            // Parse BGRA palette (alpha 0-128)
+            const palette = [];
+            for (let i = 0; i < 256; i++) {
+                const off = ICON_HEADER + i * 4;
+                const b = iconData[off], g = iconData[off+1], r = iconData[off+2], a = iconData[off+3];
+                palette.push([r, g, b, a === 0 ? 0 : Math.min(255, a * 2)]);
+            }
+
+            // Build 32x32 RGBA (pixels stored bottom-to-top)
+            const pixels = new Uint8ClampedArray(32 * 32 * 4);
+            const pixStart = ICON_HEADER + ICON_PAL;
+            for (let y = 0; y < 32; y++) {
+                for (let x = 0; x < 32; x++) {
+                    const srcY = 31 - y;
+                    const idx = iconData[pixStart + srcY * 32 + x];
+                    const [r, g, b, a] = palette[idx];
+                    const dst = (y * 32 + x) * 4;
+                    pixels[dst] = r; pixels[dst+1] = g; pixels[dst+2] = b; pixels[dst+3] = a;
+                }
+            }
+            return new ImageData(pixels, 32, 32);
+        }
+
+        function decodeDmsgText(entry, textOffset) {
+            // DMSG format: u32 numElements, then (u32 offset, u32 type) per element
+            // Type 0 = string (28-byte header then null-terminated), type 1 = u32 integer
+            const numElems = entry[textOffset] | (entry[textOffset+1]<<8) |
+                             (entry[textOffset+2]<<16) | (entry[textOffset+3]<<24);
+            if (numElems === 0 || numElems > 20) return [];
+
+            const elems = [];
+            for (let i = 0; i < numElems; i++) {
+                const tableOff = textOffset + 4 + i * 8;
+                const elemOff = entry[tableOff] | (entry[tableOff+1]<<8) |
+                                (entry[tableOff+2]<<16) | (entry[tableOff+3]<<24);
+                const elemType = entry[tableOff+4] | (entry[tableOff+5]<<8) |
+                                 (entry[tableOff+6]<<16) | (entry[tableOff+7]<<24);
+
+                const absOff = textOffset + elemOff;
+                if (elemType === 0) {
+                    // String: skip 28-byte header, read until null
+                    const strStart = absOff + 0x1C;
+                    let strEnd = strStart;
+                    while (strEnd < entry.length && entry[strEnd] !== 0) strEnd++;
+                    const bytes = entry.slice(strStart, strEnd);
+                    elems.push(new TextDecoder('ascii').decode(bytes));
+                } else {
+                    // Integer
+                    const val = entry[absOff] | (entry[absOff+1]<<8) |
+                                (entry[absOff+2]<<16) | (entry[absOff+3]<<24);
+                    elems.push(val);
+                }
+            }
+            return elems;
+        }
+
+        function readU16(entry, off) { return entry[off] | (entry[off+1] << 8); }
+        function readU32(entry, off) { return entry[off] | (entry[off+1]<<8) | (entry[off+2]<<16) | (entry[off+3]<<24); }
+
+        // Reverse lookup: flag value → slot names
+        const SLOT_BITS_REV = {
+            0x0001:'MAIN', 0x0002:'SUB', 0x0004:'RANGE', 0x0008:'AMMO',
+            0x0010:'HEAD', 0x0020:'BODY', 0x0040:'HANDS', 0x0080:'LEGS',
+            0x0100:'FEET', 0x0200:'NECK', 0x0400:'WAIST', 0x0800:'EAR1',
+            0x1000:'EAR2', 0x2000:'RING1', 0x4000:'RING2', 0x8000:'BACK'
+        };
+        const JOB_BITS_REV = {
+            0x00000002:'WAR', 0x00000004:'MNK', 0x00000008:'WHM', 0x00000010:'BLM',
+            0x00000020:'RDM', 0x00000040:'THF', 0x00000080:'PLD', 0x00000100:'DRK',
+            0x00000200:'BST', 0x00000400:'BRD', 0x00000800:'RNG', 0x00001000:'SAM',
+            0x00002000:'NIN', 0x00004000:'DRG', 0x00008000:'SMN', 0x00010000:'BLU',
+            0x00020000:'COR', 0x00040000:'PUP', 0x00080000:'DNC', 0x00100000:'SCH',
+            0x00200000:'GEO', 0x00400000:'RUN'
+        };
+        const RACE_BITS_REV = {
+            0x0002:'HUME_M', 0x0004:'HUME_F', 0x0008:'ELVAAN_M', 0x0010:'ELVAAN_F',
+            0x0020:'TARU_M', 0x0040:'TARU_F', 0x0080:'MITHRA', 0x0100:'GALKA'
+        };
+        const FLAG_BITS_REV = {
+            0x0001:'WALLHANGING', 0x0002:'MYSTERY_BOX', 0x0004:'MOG_GARDEN',
+            0x0008:'MAIL2ACCOUNT', 0x0010:'INSCRIBABLE', 0x0020:'NOAUCTION',
+            0x0040:'SCROLL', 0x0080:'LINKSHELL', 0x0100:'CANUSE',
+            0x0200:'CANTRADENPC', 0x0400:'CANEQUIP', 0x0800:'NOSALE',
+            0x1000:'NODELIVERY', 0x2000:'EX', 0x4000:'RARE'
+        };
+        const SKILL_ID_REV = {
+            1:'HAND_TO_HAND', 2:'DAGGER', 3:'SWORD', 4:'GREAT_SWORD', 5:'AXE',
+            6:'GREAT_AXE', 7:'SCYTHE', 8:'POLEARM', 9:'KATANA', 10:'GREAT_KATANA',
+            11:'CLUB', 12:'STAFF', 25:'ARCHERY', 26:'MARKSMANSHIP', 27:'THROWING'
+        };
+
+        function bitmaskToSet(val, map) {
+            const result = new Set();
+            for (const [bit, name] of Object.entries(map)) {
+                if (val & parseInt(bit)) result.add(name);
+            }
+            return result;
+        }
+
+        function bitmaskToSlotString(val) {
+            const slots = [];
+            for (const [bit, name] of Object.entries(SLOT_BITS_REV)) {
+                if (val & parseInt(bit)) slots.push(name);
+            }
+            return slots.join(',');
+        }
+
+        function parseStatsFromDescription(desc) {
+            // Parse FFXI-style stat strings from description text
+            // Handles: DEF:19, STR+3, "Store TP"+5, Haste+4%, Attack+5, etc.
+            if (!STATS || STATS.length === 0) return;
+
+            // Build a reverse lookup: format pattern → stat
+            // Try matching each known stat's format against the description
+            for (const stat of STATS) {
+                if (!stat.format) continue;
+
+                // Build a regex from the format string
+                // e.g. "STR+{value}" → /STR\+(\d+)/
+                // e.g. "DEF:{value}" → /DEF:(\d+)/
+                // e.g. "Haste+{value}%" → /Haste\+(\d+)%/
+                let pattern = stat.format
+                    .replace(/([+\-:().])/g, '\\$1')  // escape regex chars
+                    .replace(/\\{value\\}|{value}/g, '(-?\\d+)');  // replace {value} with number capture
+
+                // Also handle quoted stat names: "Store TP"+5
+                pattern = pattern.replace(/"/g, '"?');
+
+                try {
+                    const re = new RegExp(pattern);
+                    const match = desc.match(re);
+                    if (match) {
+                        let displayVal = parseInt(match[1]);
+                        let value = displayVal;
+                        if (stat.divisor && stat.divisor > 1) value = displayVal * stat.divisor;
+
+                        selectedStats.push({
+                            id: stat.id,
+                            modId: stat.modId,
+                            name: stat.name,
+                            format: stat.format,
+                            value: value,
+                            divisor: stat.divisor || 1,
+                            negate: stat.negate || false
+                        });
+                    }
+                } catch (e) {
+                    // Skip invalid regex
+                }
+            }
+        }
+
+        async function loadTemplate() {
+            const itemId = parseInt(document.getElementById('templateId').value);
+            const range = ITEM_DAT_RANGES.find(r => itemId >= r.min && itemId <= r.max);
+            const status = document.getElementById('templateStatus');
+            if (!range) { status.textContent = `No DAT range for item ${itemId}`; return; }
+
+            try {
+                // Fetch and cache the DAT
+                if (!_datCache[range.dat]) {
+                    status.textContent = 'Loading DAT...';
+                    const resp = await fetch(range.dat);
+                    if (!resp.ok) throw new Error(`${range.dat}: ${resp.status}`);
+                    const encrypted = new Uint8Array(await resp.arrayBuffer());
+                    _datCache[range.dat] = ror5(encrypted);
+                }
+                const data = _datCache[range.dat];
+
+                const entryIdx = itemId - range.min;
+                const entryStart = entryIdx * ENTRY_SIZE;
+                if (entryStart + ENTRY_SIZE > data.length) {
+                    status.textContent = `Item ${itemId} out of range`; return;
+                }
+                const entry = data.slice(entryStart, entryStart + ENTRY_SIZE);
+
+                // Decode text: [name, article, singular, plural, description]
+                const text = decodeDmsgText(entry, range.textOff);
+                const name = text[0] || '';
+                const singular = text[2] || '';
+                const plural = text[3] || '';
+                const desc = text[4] || '';
+
+                // Populate basic fields
+                document.getElementById('itemName').value = name;
+                document.getElementById('logNameSingle').value = singular;
+                document.getElementById('logNamePlural').value = plural;
+                document.getElementById('itemDesc').value = desc;
+
+                // Read common fields
+                const flags = readU16(entry, 0x04);
+
+                // Detect item type and populate accordingly
+                const isArmor = range.textOff === 0x2C;
+                const isWeapon = range.textOff === 0x38;
+                const isUsable = range.textOff === 0x1C;
+
+                if (isArmor || isWeapon) {
+                    const level = readU16(entry, 0x0E);
+                    const slotMask = readU16(entry, 0x10);
+                    const raceMask = readU16(entry, 0x12);
+                    const jobMask = readU32(entry, 0x14);
+
+                    document.getElementById('itemLevel').value = level;
+
+                    // Set file type
+                    if (isWeapon) {
+                        document.querySelectorAll('.file-type-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelector('.file-type-btn[data-type="weapon"]').classList.add('active');
+                        currentFileType = 'weapon';
+                        updateVisiblePanels();
+
+                        const dmg = readU16(entry, 0x1C);
+                        const delay = readU16(entry, 0x1E);
+                        const dps = readU16(entry, 0x20);
+                        const skillId = readU16(entry, 0x22);
+
+                        document.getElementById('weaponDmg').value = dmg;
+                        document.getElementById('weaponDelay').value = delay;
+                        document.getElementById('weaponDps').value = dps;
+
+                        const skillName = SKILL_ID_REV[skillId];
+                        if (skillName) document.getElementById('weaponSkill').value = skillName;
+
+                        // Set weapon slot
+                        const slotStr = bitmaskToSlotString(slotMask);
+                        const weaponSlotEl = document.getElementById('weaponSlot');
+                        for (const opt of weaponSlotEl.options) {
+                            if (opt.value === slotStr) { weaponSlotEl.value = slotStr; break; }
+                        }
+                    } else {
+                        document.querySelectorAll('.file-type-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelector('.file-type-btn[data-type="armor"]').classList.add('active');
+                        currentFileType = 'armor';
+                        updateVisiblePanels();
+
+                        const shieldSize = readU16(entry, 0x1A);
+                        document.getElementById('shieldSize').value = shieldSize;
+
+                        // Set armor slot
+                        const slotStr = bitmaskToSlotString(slotMask);
+                        const armorSlotEl = document.getElementById('itemSlot');
+                        for (const opt of armorSlotEl.options) {
+                            if (opt.value === slotStr) { armorSlotEl.value = slotStr; break; }
+                        }
+                    }
+
+                    // Set jobs
+                    clearJobs();
+                    const jobs = bitmaskToSet(jobMask, JOB_BITS_REV);
+                    jobs.forEach(j => { selectedJobs.add(j); document.getElementById(`job_${j}_item`)?.classList.add('selected'); });
+
+                    // Set races
+                    clearRaces();
+                    const races = bitmaskToSet(raceMask, RACE_BITS_REV);
+                    races.forEach(r => { selectedRaces.add(r); document.getElementById(`race_${r}_item`)?.classList.add('selected'); });
+                } else if (isUsable) {
+                    document.querySelectorAll('.file-type-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelector('.file-type-btn[data-type="consumable"]').classList.add('active');
+                    currentFileType = 'consumable';
+                    updateVisiblePanels();
+                } else {
+                    document.querySelectorAll('.file-type-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelector('.file-type-btn[data-type="item"]').classList.add('active');
+                    currentFileType = 'item';
+                    updateVisiblePanels();
+                }
+
+                // Set flags
+                clearFlags();
+                const itemFlags = bitmaskToSet(flags, FLAG_BITS_REV);
+                itemFlags.forEach(f => { selectedFlags.add(f); document.getElementById(`flag_${f}_item`)?.classList.add('selected'); });
+
+                // Load icon
+                const imageData = decodeIconFromEntry(entry);
+                if (imageData) {
+                    const canvas = document.getElementById('originalCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, 32, 32);
+                    ctx.putImageData(imageData, 0, 0);
+                    originalImageData = imageData;
+                    updateIcon();
+                }
+
+                // Parse stats from description text
+                selectedStats = [];
+                if (desc && STATS.length > 0) {
+                    parseStatsFromDescription(desc);
+                    updateStatTags();
+                }
+
+                status.textContent = `Loaded: ${name} (${itemId})`;
+                updateOutput();
+            } catch (e) {
+                status.textContent = `Error: ${e.message}`;
+                console.error(e);
+            }
+        }
+
+        async function loadIcon() {
+            // Icon-only load is now handled by loadTemplate
+            await loadTemplate();
+        }
+
+        function loadCustomIcon(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // High-quality downscaling using step-down approach
+                    const TARGET = 32;
+                    let currentWidth = img.width;
+                    let currentHeight = img.height;
+
+                    // Create temp canvas for step-down scaling
+                    let tempCanvas = document.createElement('canvas');
+                    let tempCtx = tempCanvas.getContext('2d');
+                    tempCanvas.width = currentWidth;
+                    tempCanvas.height = currentHeight;
+                    tempCtx.drawImage(img, 0, 0);
+
+                    // Step down by halves until close to target size
+                    while (currentWidth > TARGET * 2 || currentHeight > TARGET * 2) {
+                        const newWidth = Math.max(TARGET, Math.floor(currentWidth / 2));
+                        const newHeight = Math.max(TARGET, Math.floor(currentHeight / 2));
+
+                        const stepCanvas = document.createElement('canvas');
+                        stepCanvas.width = newWidth;
+                        stepCanvas.height = newHeight;
+                        const stepCtx = stepCanvas.getContext('2d');
+                        stepCtx.imageSmoothingEnabled = true;
+                        stepCtx.imageSmoothingQuality = 'high';
+                        stepCtx.drawImage(tempCanvas, 0, 0, newWidth, newHeight);
+
+                        tempCanvas = stepCanvas;
+                        tempCtx = stepCtx;
+                        currentWidth = newWidth;
+                        currentHeight = newHeight;
+                    }
+
+                    // Final resize to exactly 32x32
+                    const canvas = document.getElementById('originalCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, 32, 32);
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
+                    ctx.drawImage(tempCanvas, 0, 0, TARGET, TARGET);
+                    originalImageData = ctx.getImageData(0, 0, 32, 32);
+                    updateIcon();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function rgbToHsv(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            const d = max - min;
+            let h, s, v = max;
+            s = max === 0 ? 0 : d / max;
+            if (max === min) h = 0;
+            else {
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+            return [h * 360, s, v];
+        }
+
+        function hsvToRgb(h, s, v) {
+            h = ((h % 360) + 360) % 360 / 360;
+            const i = Math.floor(h * 6);
+            const f = h * 6 - i;
+            const p = v * (1 - s);
+            const q = v * (1 - f * s);
+            const t = v * (1 - (1 - f) * s);
+            let r, g, b;
+            switch (i % 6) {
+                case 0: r = v; g = t; b = p; break;
+                case 1: r = q; g = v; b = p; break;
+                case 2: r = p; g = v; b = t; break;
+                case 3: r = p; g = q; b = v; break;
+                case 4: r = t; g = p; b = v; break;
+                case 5: r = v; g = p; b = q; break;
+            }
+            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+        }
+
+        function updateIcon() {
+            if (!originalImageData) return;
+            const hue = parseInt(document.getElementById('hueShift').value);
+            const tintColor = document.getElementById('tintColor').value;
+            const tintOpacity = parseInt(document.getElementById('tintOpacity').value) / 100;
+            const blendMode = document.getElementById('blendMode').value;
+
+            document.getElementById('hueValue').textContent = hue;
+            document.getElementById('tintOpacityValue').textContent = `${Math.round(tintOpacity * 100)}%`;
+            document.getElementById('tintPreview').style.backgroundColor = tintColor;
+
+            const data = new Uint8ClampedArray(originalImageData.data);
+            const tintR = parseInt(tintColor.substr(1, 2), 16);
+            const tintG = parseInt(tintColor.substr(3, 2), 16);
+            const tintB = parseInt(tintColor.substr(5, 2), 16);
+
+            for (let i = 0; i < data.length; i += 4) {
+                if (data[i + 3] === 0) continue;
+                let r = data[i], g = data[i + 1], b = data[i + 2];
+
+                // Hue shift
+                if (hue !== 0) {
+                    const [h, s, v] = rgbToHsv(r, g, b);
+                    [r, g, b] = hsvToRgb(h + hue, s, v);
+                }
+
+                // Tint
+                if (tintOpacity > 0) {
+                    if (blendMode === 'multiply') {
+                        r = Math.round(r * (1 - tintOpacity) + (r * tintR / 255) * tintOpacity);
+                        g = Math.round(g * (1 - tintOpacity) + (g * tintG / 255) * tintOpacity);
+                        b = Math.round(b * (1 - tintOpacity) + (b * tintB / 255) * tintOpacity);
+                    } else if (blendMode === 'screen') {
+                        r = Math.round(r * (1 - tintOpacity) + (255 - (255 - r) * (255 - tintR) / 255) * tintOpacity);
+                        g = Math.round(g * (1 - tintOpacity) + (255 - (255 - g) * (255 - tintG) / 255) * tintOpacity);
+                        b = Math.round(b * (1 - tintOpacity) + (255 - (255 - b) * (255 - tintB) / 255) * tintOpacity);
+                    } else {
+                        r = Math.round(r * (1 - tintOpacity) + tintR * tintOpacity);
+                        g = Math.round(g * (1 - tintOpacity) + tintG * tintOpacity);
+                        b = Math.round(b * (1 - tintOpacity) + tintB * tintOpacity);
+                    }
+                }
+
+                data[i] = Math.max(0, Math.min(255, r));
+                data[i + 1] = Math.max(0, Math.min(255, g));
+                data[i + 2] = Math.max(0, Math.min(255, b));
+            }
+
+            const modCtx = document.getElementById('modifiedCanvas').getContext('2d');
+            modCtx.clearRect(0, 0, 32, 32);
+
+            // Draw HQ border FIRST (underneath)
+            if (currentHqBorder > 0) {
+                drawHqBorder(modCtx, currentHqBorder);
+            }
+
+            // Draw the modified icon on top
+            const modified = new ImageData(data, 32, 32);
+            // Use a temp canvas to composite properly
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = 32;
+            tempCanvas.height = 32;
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCtx.putImageData(modified, 0, 0);
+            modCtx.drawImage(tempCanvas, 0, 0);
+
+            updateOutput();
+        }
+
+        function showOutput(tab) {
+            currentOutputTab = tab;
+            document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.output-tab:nth-child(${tab === 'json' ? 1 : 2})`).classList.add('active');
+            updateOutput();
+        }
+
+        /**
+         * Encode the current icon to BMP2 format (FFXI icon texture)
+         * Format: 57-byte header + 1024-byte BGRA palette + 1024-byte pixel indices
+         */
+        function encodeIconToBase64() {
+            const canvas = document.getElementById('modifiedCanvas');
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(0, 0, 32, 32);
+            const pixels = imageData.data;
+
+            // Constants
+            const ICON_SIZE = 32;
+            const HEADER_SIZE = 57;
+            const PALETTE_SIZE = 256 * 4;  // 1024 bytes
+            const PIXEL_COUNT = ICON_SIZE * ICON_SIZE;  // 1024 bytes
+
+            // Quantize to 256 colors using simple approach
+            // Build color map from all pixels
+            const colorMap = new Map();
+            const pixelColors = [];
+
+            for (let y = 0; y < ICON_SIZE; y++) {
+                for (let x = 0; x < ICON_SIZE; x++) {
+                    const idx = (y * ICON_SIZE + x) * 4;
+                    const r = pixels[idx];
+                    const g = pixels[idx + 1];
+                    const b = pixels[idx + 2];
+                    const a = pixels[idx + 3];
+
+                    // Key for color lookup (quantize slightly to reduce unique colors)
+                    const key = `${r},${g},${b},${a < 128 ? 0 : 1}`;
+                    pixelColors.push({ r, g, b, a, key });
+
+                    if (!colorMap.has(key)) {
+                        colorMap.set(key, { r, g, b, a, count: 0 });
+                    }
+                    colorMap.get(key).count++;
+                }
+            }
+
+            // Sort colors by frequency and take top 256
+            const sortedColors = Array.from(colorMap.values())
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 256);
+
+            // Build palette (BGRA format, alpha 0-128)
+            const palette = new Uint8Array(PALETTE_SIZE);
+            const paletteMap = new Map();
+
+            sortedColors.forEach((color, i) => {
+                palette[i * 4 + 0] = color.b;  // Blue
+                palette[i * 4 + 1] = color.g;  // Green
+                palette[i * 4 + 2] = color.r;  // Red
+                // Alpha: 0-255 -> 0-128, transparent = 0
+                palette[i * 4 + 3] = color.a < 128 ? 0 : Math.min(128, Math.round(color.a / 2));
+                paletteMap.set(`${color.r},${color.g},${color.b},${color.a < 128 ? 0 : 1}`, i);
+            });
+
+            // Fill remaining palette slots with black transparent
+            for (let i = sortedColors.length; i < 256; i++) {
+                palette[i * 4 + 0] = 0;
+                palette[i * 4 + 1] = 0;
+                palette[i * 4 + 2] = 0;
+                palette[i * 4 + 3] = 0;
+            }
+
+            // Build pixel indices (bottom-to-top rows for FFXI format)
+            const pixelIndices = new Uint8Array(PIXEL_COUNT);
+            for (let y = 0; y < ICON_SIZE; y++) {
+                for (let x = 0; x < ICON_SIZE; x++) {
+                    // Source is top-to-bottom, destination is bottom-to-top
+                    const srcY = y;
+                    const dstY = ICON_SIZE - 1 - y;
+                    const srcIdx = srcY * ICON_SIZE + x;
+                    const dstIdx = dstY * ICON_SIZE + x;
+
+                    const color = pixelColors[srcIdx];
+                    let paletteIdx = paletteMap.get(color.key);
+
+                    // If exact color not found, find closest
+                    if (paletteIdx === undefined) {
+                        let minDist = Infinity;
+                        paletteIdx = 0;
+                        sortedColors.forEach((palColor, i) => {
+                            const dist = Math.abs(color.r - palColor.r) +
+                                        Math.abs(color.g - palColor.g) +
+                                        Math.abs(color.b - palColor.b);
+                            if (dist < minDist) {
+                                minDist = dist;
+                                paletteIdx = i;
+                            }
+                        });
+                    }
+
+                    pixelIndices[dstIdx] = paletteIdx;
+                }
+            }
+
+            // Build header (57 bytes)
+            const header = new Uint8Array(HEADER_SIZE);
+            header[0] = 0x91;  // Magic byte
+
+            // Type field (8 bytes) - "item" padded with spaces
+            const typeStr = "item    ";
+            for (let i = 0; i < 8; i++) {
+                header[1 + i] = typeStr.charCodeAt(i);
+            }
+
+            // Name field (8 bytes) - "custom" padded with spaces
+            const nameStr = "custom  ";
+            for (let i = 0; i < 8; i++) {
+                header[9 + i] = nameStr.charCodeAt(i);
+            }
+
+            // Header size offset at byte 17 (uint32 LE) = 0x28 (40)
+            header[17] = 0x28;
+            header[18] = 0x00;
+            header[19] = 0x00;
+            header[20] = 0x00;
+
+            // Width at byte 21 (uint32 LE) = 32
+            header[21] = ICON_SIZE;
+            header[22] = 0x00;
+            header[23] = 0x00;
+            header[24] = 0x00;
+
+            // Height at byte 25 (uint32 LE) = 32
+            header[25] = ICON_SIZE;
+            header[26] = 0x00;
+            header[27] = 0x00;
+            header[28] = 0x00;
+
+            // Planes at byte 29 (uint16 LE) = 1
+            header[29] = 0x01;
+            header[30] = 0x00;
+
+            // Bits per pixel at byte 31 (uint16 LE) = 8
+            header[31] = 0x08;
+            header[32] = 0x00;
+
+            // Row size at byte 53 = 32
+            header[53] = ICON_SIZE;
+
+            // Combine all parts
+            const totalSize = HEADER_SIZE + PALETTE_SIZE + PIXEL_COUNT;
+            const result = new Uint8Array(totalSize);
+            result.set(header, 0);
+            result.set(palette, HEADER_SIZE);
+            result.set(pixelIndices, HEADER_SIZE + PALETTE_SIZE);
+
+            // Convert to base64
+            let binary = '';
+            for (let i = 0; i < result.length; i++) {
+                binary += String.fromCharCode(result[i]);
+            }
+            return btoa(binary);
+        }
+
+        function updateGamePreview() {
+            const name = document.getElementById('itemName').value || 'Custom Item';
+            const level = document.getElementById('itemLevel').value || '1';
+            const ilvl = parseInt(document.getElementById('itemIlvl').value) || 0;
+            const desc = document.getElementById('itemDesc').value;
+            const slot = currentFileType === 'weapon'
+                ? document.getElementById('weaponSlot').value
+                : document.getElementById('itemSlot').value;
+
+            // Update title
+            document.getElementById('previewTitle').textContent = name;
+
+            // Update slot/type and races (only for armor/weapons)
+            if (currentFileType === 'armor' || currentFileType === 'weapon') {
+                let typeDisplay;
+
+                if (currentFileType === 'weapon') {
+                    // Show weapon handling type for weapons
+                    const skill = document.getElementById('weaponSkill').value;
+                    const weaponSlot = document.getElementById('weaponSlot').value;
+
+                    // Categorize by handling type
+                    const oneHanded = ['SWORD', 'DAGGER', 'AXE', 'CLUB', 'KATANA'];
+                    const twoHanded = ['GREAT_SWORD', 'GREAT_AXE', 'GREAT_KATANA', 'SCYTHE', 'POLEARM', 'STAFF'];
+                    const ranged = ['ARCHERY', 'MARKSMANSHIP'];
+
+                    if (skill === 'HAND_TO_HAND') {
+                        typeDisplay = 'Hand-to-Hand';
+                    } else if (twoHanded.includes(skill)) {
+                        typeDisplay = 'Two-Handed';
+                    } else if (ranged.includes(skill)) {
+                        typeDisplay = 'Ranged';
+                    } else if (skill === 'THROWING') {
+                        typeDisplay = 'Ammo';
+                    } else if (oneHanded.includes(skill)) {
+                        typeDisplay = 'One-Handed';
+                    } else {
+                        typeDisplay = 'Weapon';
+                    }
+                } else {
+                    // Show slot for armor
+                    const slotNames = {
+                        'MAIN': 'Main', 'SUB': 'Sub', 'MAIN,SUB': 'Main/Sub', 'RANGE': 'Range',
+                        'AMMO': 'Ammo', 'HEAD': 'Head', 'BODY': 'Body', 'HANDS': 'Hands',
+                        'LEGS': 'Legs', 'FEET': 'Feet', 'NECK': 'Neck', 'WAIST': 'Waist',
+                        'EAR1,EAR2': 'Ear', 'RING1,RING2': 'Ring', 'BACK': 'Back'
+                    };
+                    typeDisplay = slotNames[slot] || slot;
+                }
+
+                // Format races
+                let racesDisplay = 'All Races';
+                if (selectedRaces.size > 0 && selectedRaces.size < RACES.length) {
+                    racesDisplay = Array.from(selectedRaces).map(r => r.split('_')[0]).join('/');
+                }
+                document.getElementById('previewSlot').textContent = `[${typeDisplay}]${racesDisplay}`;
+            } else {
+                document.getElementById('previewSlot').textContent = '';
+            }
+
+            // Update stats from description or generated
+            const statsText = desc || generateItemDescription();
+            document.getElementById('previewStats').textContent = statsText;
+
+            // Update level and jobs (only for armor/weapons)
+            if (currentFileType === 'armor' || currentFileType === 'weapon') {
+                let levelText = `Lv.${level}`;
+                if (ilvl > 0) levelText += ` (iLv.${ilvl})`;
+
+                // Add jobs
+                if (selectedJobs.size > 0) {
+                    if (selectedJobs.size === JOBS.length) {
+                        levelText += ' All Jobs';
+                    } else {
+                        levelText += ' ' + Array.from(selectedJobs).join('/');
+                    }
+                }
+                document.getElementById('previewLevel').textContent = levelText;
+            } else {
+                document.getElementById('previewLevel').textContent = '';
+            }
+
+            // Update flags as circular badges
+            let flagsHtml = '';
+            if (selectedFlags.has('RARE')) flagsHtml += '<div class="flag-badge rare">Rare</div>';
+            if (selectedFlags.has('EX')) flagsHtml += '<div class="flag-badge ex">Ex</div>';
+            document.getElementById('previewFlags').innerHTML = flagsHtml;
+
+            // Update icon preview
+            const previewCanvas = document.getElementById('previewIcon');
+            const modifiedCanvas = document.getElementById('modifiedCanvas');
+            if (modifiedCanvas) {
+                const ctx = previewCanvas.getContext('2d');
+                ctx.clearRect(0, 0, 32, 32);
+                ctx.drawImage(modifiedCanvas, 0, 0);
+            }
+        }
+
+        function updateOutput() {
+            const itemId = parseInt(document.getElementById('itemId').value);
+            const typeCode = parseInt(document.getElementById('typeCode').value);
+            const kindCode = parseInt(document.getElementById('kindCode').value);
+            const name = document.getElementById('itemName').value;
+            const logSingle = document.getElementById('logNameSingle').value;
+            const logPlural = document.getElementById('logNamePlural').value;
+            const desc = document.getElementById('itemDesc').value || generateItemDescription();
+            const level = parseInt(document.getElementById('itemLevel').value);
+            const ilvl = parseInt(document.getElementById('itemIlvl').value);
+            const slvl = parseInt(document.getElementById('slvl').value);
+            const slot = currentFileType === 'weapon'
+                ? document.getElementById('weaponSlot').value
+                : document.getElementById('itemSlot').value;
+            const shieldSize = parseInt(document.getElementById('shieldSize').value);
+            const dmg = parseInt(document.getElementById('weaponDmg').value);
+            const delay = parseInt(document.getElementById('weaponDelay').value);
+            const dps = parseInt(document.getElementById('weaponDps').value);
+            const skill = document.getElementById('weaponSkill').value;
+            const templateId = document.getElementById('templateId').value;
+            const hue = parseInt(document.getElementById('hueShift').value);
+            const tintColor = document.getElementById('tintColor').value;
+            const tintOpacity = parseInt(document.getElementById('tintOpacity').value);
+            const blendMode = document.getElementById('blendMode').value;
+
+            let output;
+
+            // Get consumable fields
+            const stackSize = parseInt(document.getElementById('stackSize').value) || 1;
+            const useTarget = parseInt(document.getElementById('useTarget').value) || 0;
+
+            if (currentOutputTab === 'json') {
+                // LPS config format
+                const item = {
+                    name: name,
+                    singular: logSingle,
+                    plural: logPlural,
+                    description: desc.replace(/\n/g, '\\n'),
+                    template: parseInt(templateId),
+                };
+
+                // HQ border
+                if (currentHqBorder > 0) item.hq = currentHqBorder;
+
+                // Icon modifications
+                if (hue) item.hue_shift = hue;
+                if (tintOpacity > 0) {
+                    const alpha = Math.round(tintOpacity * 2.55).toString(16).padStart(2, '0');
+                    item.tint = tintColor + alpha;
+                    item.blend_mode = blendMode;
+                }
+
+                // Equipment fields
+                if (currentFileType === 'armor' || currentFileType === 'weapon') {
+                    const fields = {};
+                    if (currentFileType === 'weapon') {
+                        fields.dmg = dmg;
+                        fields.delay = delay;
+                    }
+                    if (Object.keys(fields).length > 0) item.fields = fields;
+                }
+
+                // Wrap in LPS config structure
+                const config = {
+                    custom: {
+                        item: {
+                            items: {
+                                [itemId]: item,
+                            }
+                        }
+                    }
+                };
+
+                output = JSON.stringify(config, null, 2);
+            } else {
+                // SQL output
+                const flagValue = calculateFlagValue();
+                const jobMask = calculateJobMask();
+                const slotMask = calculateSlotMask(slot);
+
+                output = `-- Item: ${name} (ID: ${itemId})\n`;
+                output += `-- Type: ${currentFileType}\n\n`;
+
+                output += `-- item_basic\n`;
+                output += `INSERT INTO item_basic (itemid, subid, name, sortname, stackSize, flags, aH, BaseSell)\n`;
+                output += `VALUES (${itemId}, 0, '${name}', '${name.toLowerCase()}', 1, ${flagValue}, 0, 0)\n`;
+                output += `ON DUPLICATE KEY UPDATE name='${name}', sortname='${name.toLowerCase()}', flags=${flagValue};\n\n`;
+
+                if (currentFileType !== 'item') {
+                    output += `-- item_equipment\n`;
+                    output += `INSERT INTO item_equipment (itemId, name, level, ilevel, jobs, slot, rslot)\n`;
+                    output += `VALUES (${itemId}, '${name}', ${level}, ${ilvl}, ${jobMask}, ${slotMask}, 0)\n`;
+                    output += `ON DUPLICATE KEY UPDATE level=${level}, ilevel=${ilvl}, jobs=${jobMask}, slot=${slotMask};\n\n`;
+
+                    if (currentFileType === 'weapon') {
+                        const skillId = getSkillId(skill);
+                        output += `-- item_weapon\n`;
+                        output += `INSERT INTO item_weapon (itemId, name, dmg, delay, skill)\n`;
+                        output += `VALUES (${itemId}, '${name}', ${dmg}, ${delay}, ${skillId})\n`;
+                        output += `ON DUPLICATE KEY UPDATE dmg=${dmg}, delay=${delay}, skill=${skillId};\n\n`;
+                    }
+                }
+
+                if (selectedStats.length > 0) {
+                    output += `-- item_mods\n`;
+                    selectedStats.forEach(s => {
+                        const displayVal = s.divisor > 1 ? Math.round(s.value / s.divisor) : s.value;
+                        const suffix = s.divisor > 1 ? '%' : '';
+                        output += `INSERT INTO item_mods (itemId, modId, value) VALUES (${itemId}, ${s.modId}, ${s.value}) ON DUPLICATE KEY UPDATE value=${s.value}; -- ${s.name}: ${displayVal}${suffix}\n`;
+                    });
+                }
+            }
+
+            document.getElementById('outputBox').textContent = output;
+            updateGamePreview();
+        }
+
+        function calculateFlagValue() {
+            const flagBits = {
+                'WALLHANGING': 0x0001, 'MYSTERY_BOX': 0x0002, 'MOG_GARDEN': 0x0004,
+                'MAIL2ACCOUNT': 0x0008, 'INSCRIBABLE': 0x0010, 'NOAUCTION': 0x0020,
+                'SCROLL': 0x0040, 'LINKSHELL': 0x0080, 'CANUSE': 0x0100,
+                'CANTRADENPC': 0x0200, 'CANEQUIP': 0x0400, 'NOSALE': 0x0800,
+                'NODELIVERY': 0x1000, 'EX': 0x2000, 'RARE': 0x4000
+            };
+            let val = 0;
+            selectedFlags.forEach(f => { if (flagBits[f]) val |= flagBits[f]; });
+            return val;
+        }
+
+        function calculateJobMask() {
+            const jobBits = {
+                'WAR':0x00000002,'MNK':0x00000004,'WHM':0x00000008,'BLM':0x00000010,
+                'RDM':0x00000020,'THF':0x00000040,'PLD':0x00000080,'DRK':0x00000100,
+                'BST':0x00000200,'BRD':0x00000400,'RNG':0x00000800,'SAM':0x00001000,
+                'NIN':0x00002000,'DRG':0x00004000,'SMN':0x00008000,'BLU':0x00010000,
+                'COR':0x00020000,'PUP':0x00040000,'DNC':0x00080000,'SCH':0x00100000,
+                'GEO':0x00200000,'RUN':0x00400000
+            };
+            let val = 0;
+            selectedJobs.forEach(j => { if (jobBits[j]) val |= jobBits[j]; });
+            return val;
+        }
+
+        function calculateSlotMask(slot) {
+            const slotBits = {
+                'MAIN':0x0001,'SUB':0x0002,'RANGE':0x0004,'AMMO':0x0008,
+                'HEAD':0x0010,'BODY':0x0020,'HANDS':0x0040,'LEGS':0x0080,
+                'FEET':0x0100,'NECK':0x0200,'WAIST':0x0400,'EAR1':0x0800,
+                'EAR2':0x1000,'RING1':0x2000,'RING2':0x4000,'BACK':0x8000
+            };
+            let val = 0;
+            slot.split(',').forEach(s => { if (slotBits[s]) val |= slotBits[s]; });
+            return val;
+        }
+
+        function getSkillId(skill) {
+            const skills = {
+                'HAND_TO_HAND':1,'DAGGER':2,'SWORD':3,'GREAT_SWORD':4,'AXE':5,
+                'GREAT_AXE':6,'SCYTHE':7,'POLEARM':8,'KATANA':9,'GREAT_KATANA':10,
+                'CLUB':11,'STAFF':12,'ARCHERY':25,'MARKSMANSHIP':26,'THROWING':27
+            };
+            return skills[skill] || 0;
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('outputBox').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 1500);
+            });
+        }
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html>

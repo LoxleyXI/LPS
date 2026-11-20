@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Architecture workbench</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #16181c; color: #d8dce2; font: 13px system-ui, sans-serif; overflow: hidden; }
+  #ui { position: absolute; top: 10px; left: 10px; background: rgba(20, 22, 26, 0.88); padding: 10px 12px; border-radius: 6px; width: 250px; }
+  #ui h1 { font-size: 14px; margin: 0 0 8px; }
+  #ui label { display: block; margin: 4px 0; }
+  #ui select, #ui input[type=text] { width: 100%; box-sizing: border-box; background: #22252b; color: #d8dce2; border: 1px solid #3a3f47; padding: 3px; }
+  #ui button { margin-top: 6px; background: #2d323a; color: #d8dce2; border: 1px solid #3a3f47; padding: 4px 8px; cursor: pointer; }
+  #info { margin-top: 8px; color: #9aa3ad; white-space: pre-wrap; }
+  #err { color: #ff8a80; white-space: pre-wrap; margin-top: 6px; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+</script>
+</head>
+<body>
+<div id="ui">
+  <h1>Architecture workbench</h1>
+  <label>View
+    <select id="view">
+      <option value="compound">Compound (walls, towers, gate)</option>
+      <option value="rock">Rock: a city map's crag and arch (#map=NAME)</option>
+    </select>
+  </label>
+  <label><input type="checkbox" id="backs"> One-sided faces in red</label>
+  <label><input type="checkbox" id="wire"> Wireframe</label>
+  <label>Reference model (zone/model)
+    <input type="text" id="ref" placeholder="100/san_kabe_st2_m">
+  </label>
+  <button id="loadref">Show beside</button>
+  <div id="info"></div>
+  <div id="err"></div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x6f8fa8);
+scene.fog = new THREE.Fog(0x6f8fa8, 300, 900);
+const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.5, 3000);
+camera.position.set(-90, 60, -110);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 8, 0);
+controls.update();
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+// ground and the 40-yalm grid
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(1200, 1200), new THREE.MeshBasicMaterial({ color: 0x4d5a3c }));
+ground.rotation.x = -Math.PI / 2; ground.position.y = -0.05; scene.add(ground);
+const grid = new THREE.GridHelper(1200, 30, 0x2c3325, 0x3a4430); scene.add(grid);
+
+const texCache = {};
+function texture(zone, name) {
+  const key = zone + '/' + name;
+  if (!texCache[key]) {
+    const t = new THREE.TextureLoader().load(`/tex/${zone}/${name}.png`);
+    t.flipY = false;                                   // FFXI's v runs down the image
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = 8;
+    texCache[key] = t;
+  }
+  return texCache[key];
+}
+
+const ui = { backs: document.getElementById('backs'), wire: document.getElementById('wire') };
+let root = new THREE.Group(); scene.add(root);
+
+function build(json) {
+  // one object per piece: a mesh per texture, plus (optionally) its back faces in red
+  const g = new THREE.Group();
+  for (const p of json.parts) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(p.pos, 3));
+    geo.setAttribute('normal', new THREE.Float32BufferAttribute(p.nrm, 3));
+    geo.setAttribute('uv', new THREE.Float32BufferAttribute(p.uv, 2));
+    const col = new Float32Array(p.col.length * 3);
+    p.col.forEach((c, i) => { col[i * 3] = col[i * 3 + 1] = col[i * 3 + 2] = c; });
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    geo.setIndex(p.idx);
+    // opaque, as the game draws a part without its blend flag: FFXI's alpha channel is not
+    // transparency on an opaque part (ron_kab0 is 95% alpha 0)
+    const mat = new THREE.MeshBasicMaterial({ map: texture(p.zone, p.texture), vertexColors: true,
+                                              wireframe: ui.wire.checked, side: THREE.FrontSide });
+    g.add(new THREE.Mesh(geo, mat));
+    if (ui.backs.checked) g.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0xff2020, side: THREE.BackSide })));
+  }
+  return g;
+}
+
+async function get(url) {
+  const r = await fetch(url);
+  const j = await r.json();
+  if (j.error) throw new Error(j.error + '\n' + (j.trace || ''));
+  return j;
+}
+
+// the compound: a walled square 160 x 120 (4 x 3 cells) with corner towers, a gatehouse in the
+// middle of the south wall, a wall tower on the east wall
+async function compound() {
+  const [wall, tower, gate] = await Promise.all(['wall', 'tower', 'gatehouse'].map(n => get('/api/piece/' + n)));
+  const g = new THREE.Group();
+  const W = 4, D = 3, T = 40;
+  const x0 = -W * T / 2, z0 = -D * T / 2;
+  function put(json, x, z, yaw) { const o = build(json); o.position.set(x, 0, z); o.rotation.y = yaw; g.add(o); }
+  // a side's pieces run along it with their fronts (-z) facing out
+  for (let i = 0; i < W; i++) {
+    const x = x0 + (i + 0.5) * T;
+    if (i === 1) put(gate, x, z0, 0); else put(wall, x, z0, 0);                        // south, with the gate
+    put(wall, x, z0 + D * T, Math.PI);                                                // north
+  }
+  for (let j = 0; j < D; j++) {
+    const z = z0 + (j + 0.5) * T;
+    put(wall, x0, z, Math.PI / 2);                                                     // west
+    put(wall, x0 + W * T, z, -Math.PI / 2);                                            // east
+    if (j === 1) put(tower, x0 + W * T + 4, z, -Math.PI / 2);                          // a wall tower
+  }
+  for (const [cx, cz] of [[x0, z0], [x0 + W * T, z0], [x0, z0 + D * T], [x0 + W * T, z0 + D * T]]) put(tower, cx, cz, 0);
+  const tris = [wall, tower, gate].map(j => `${j.name} ${j.triangles}`).join(', ');
+  return { g, info: `triangles: ${tris}` };
+}
+
+async function rockView() {
+  const map = new URLSearchParams(location.hash.slice(1)).get('map') || 'my_city';
+  const j = await get('/api/rock?map=' + encodeURIComponent(map) + '&voxel=6');
+  const g = new THREE.Group(); g.add(build(j));
+  return { g, info: `rock: ${j.triangles} triangles` };
+}
+
+async function refresh() {
+  document.getElementById('err').textContent = '';
+  try {
+    const { g, info } = document.getElementById('view').value === 'rock' ? await rockView() : await compound();
+    scene.remove(root); root = g; scene.add(root);
+    document.getElementById('info').textContent = info;
+  } catch (e) { document.getElementById('err').textContent = String(e); }
+  window.__ready = true;
+}
+
+let refObj = null;
+document.getElementById('loadref').onclick = async () => {
+  const v = document.getElementById('ref').value.trim();
+  if (!v) return;
+  const [zone, name] = v.split('/');
+  try {
+    const j = await get(`/api/model/${zone}/${name}`);
+    if (refObj) scene.remove(refObj);
+    refObj = build(j); refObj.position.set(0, 0, -160); scene.add(refObj);
+    window.__refReady = true;
+    document.getElementById('info').textContent += `\n${name}: ${j.triangles} triangles`;
+  } catch (e) { document.getElementById('err').textContent = String(e); }
+};
+ui.backs.onchange = ui.wire.onchange = refresh;
+document.getElementById('view').onchange = refresh;
+
+// reload the pieces when architecture.py changes
+let version = null;
+setInterval(async () => {
+  try { const v = (await get('/api/version')).version; if (version !== null && v !== version) refresh(); version = v; } catch (e) {}
+}, 1500);
+
+// a view from the URL (for screenshots): #cam=x,y,z,tx,ty,tz
+function fromHash() {
+  const m = location.hash.match(/cam=([-\d.,]+)/);
+  if (m) { const v = m[1].split(',').map(Number); camera.position.set(v[0], v[1], v[2]); controls.target.set(v[3], v[4], v[5]); controls.update(); }
+  if (/backs/.test(location.hash)) ui.backs.checked = true;
+  const v = location.hash.match(/view=(\w+)/);
+  if (v) document.getElementById('view').value = v[1];
+  const r = location.hash.match(/ref=([\w/]+)/);
+  if (r) { document.getElementById('ref').value = r[1]; setTimeout(() => document.getElementById('loadref').click(), 0); }
+}
+fromHash();
+refresh();
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+</script>
+</body>
+</html>

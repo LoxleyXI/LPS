@@ -1,0 +1,19 @@
+{
+  "clone": 308,
+  "texture": "tim     tiger",
+  "parts": {
+    "body": [3, 4, 37],
+    "neck": [5],
+    "head": [6, 7, 9],
+    "front legs": [11, 14],
+    "hind legs": [40, 41, 44],
+    "lower legs": [15, 45],
+    "paws": [18, 19, 48, 49],
+    "tail": [62, 63, 64],
+    "tail tip": [65, 66],
+    "fangs": {"islands": [7, 9, 10]},
+    "claws": {"islands": [13]},
+    "eyes": {"islands": [11]},
+    "mouth": {"islands": [2, 5, 12]}
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "base": "original",
+  "shade": 0.5,
+  "occlusion": 0.45,
+  "curvature": 0.35,
+  "masks": {
+    "body": { "sat_max": 0.4, "val_min": 0.03 }
+  },
+  "layers": [
+    { "colorize": "#4f8a3c", "gain": 1.6, "mask": "body" },
+    { "color": "#a8c860", "opacity": 0.35, "mask": "body", "facing": "up", "soft": [0.2, 0.8] }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "shade": 0.75,
+  "occlusion": 0.6,
+  "curvature": 0.35,
+  "layers": [
+    {
+      "fur": {},
+      "tint": "#3a3434",
+      "contrast": 0.45,
+      "parts": [
+        "body",
+        "neck",
+        "head",
+        "front legs",
+        "hind legs",
+        "lower legs",
+        "paws",
+        "tail",
+        "tail tip",
+        "other"
+      ]
+    },
+    {
+      "fur": {
+        "length": 0.02,
+        "stroke": 0.003,
+        "seed": 1
+      },
+      "tint": "#3a3434",
+      "contrast": 0.35,
+      "parts": [
+        "head",
+        "lower legs",
+        "paws"
+      ]
+    },
+    {
+      "fur": {
+        "length": 0.06,
+        "stroke": 0.006,
+        "seed": 2
+      },
+      "tint": "#4a4040",
+      "contrast": 0.5,
+      "parts": [
+        "neck",
+        "tail tip"
+      ]
+    },
+    {
+      "color": "#8a7a70",
+      "facing": "down",
+      "soft": [
+        0.0,
+        0.6
+      ],
+      "opacity": 0.6,
+      "parts": [
+        "body",
+        "neck",
+        "head",
+        "front legs",
+        "hind legs",
+        "lower legs",
+        "tail",
+        "other"
+      ]
+    },
+    {
+      "color": "#a01818",
+      "opacity": 0.92,
+      "parts": [
+        "body",
+        "neck",
+        "head",
+        "tail",
+        "other"
+      ],
+      "stripes": {
+        "axis": "x",
+        "every": 0.26,
+        "width": 0.42,
+        "warp": 0.2,
+        "taper": true,
+        "seed": 3,
+        "rough": 0.12,
+        "soft": 0.12
+      }
+    },
+    {
+      "color": "#a01818",
+      "opacity": 0.85,
+      "parts": [
+        "front legs",
+        "hind legs",
+        "lower legs"
+      ],
+      "stripes": {
+        "axis": "y",
+        "every": 0.4,
+        "width": 0.24,
+        "warp": 0.1,
+        "taper": true,
+        "seed": 5,
+        "rough": 0.12,
+        "soft": 0.12
+      }
+    },
+    {
+      "color": "#8a1414",
+      "opacity": 0.7,
+      "parts": [
+        "tail tip"
+      ]
+    },
+    {
+      "tint": "#2a2424",
+      "contrast": 0.6,
+      "parts": [
+        "paws"
+      ],
+      "facing": "down",
+      "soft": [
+        0.5,
+        0.9
+      ],
+      "scales": {
+        "size": 0.012,
+        "seed": 7
+      }
+    },
+    {
+      "color": "#ece4d0",
+      "parts": [
+        "fangs"
+      ]
+    },
+    {
+      "color": "#3a3632",
+      "parts": [
+        "claws"
+      ]
+    },
+    {
+      "color": "#ffb43c",
+      "parts": [
+        "eyes"
+      ]
+    },
+    {
+      "color": "#4a2428",
+      "parts": [
+        "mouth"
+      ]
+    }
+  ]
+}

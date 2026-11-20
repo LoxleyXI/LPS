@@ -1,0 +1,25 @@
+{
+  "clone": 497,
+  "texture": "tim     gob00",
+  "parts": {
+    "helmet": {
+      "islands": [
+        4
+      ]
+    },
+    "ears": {
+      "islands": [
+        10
+      ]
+    },
+    "backpack": {
+      "islands": [
+        7,
+        14,
+        15,
+        20,
+        21
+      ]
+    }
+  }
+}

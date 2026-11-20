@@ -1,0 +1,12 @@
+{
+  "base": "original",
+  "shade": 0.5,
+  "occlusion": 0.4,
+  "curvature": 0.3,
+  "masks": {
+    "cap": { "hue": [345, 45], "sat_min": 0.45, "sat_max": 1.0, "val_min": 0.15 }
+  },
+  "layers": [
+    { "colorize": "#c41a1a", "gain": 1.15, "mask": "cap" }
+  ]
+}

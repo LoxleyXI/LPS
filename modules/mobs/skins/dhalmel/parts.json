@@ -1,0 +1,46 @@
+{
+  "clone": 332,
+  "_note": "joints from the bind pose (+x forward, -y up); the mesh is mirrored, so one side's joints cover both",
+  "parts": {
+    "body": [
+      3,
+      28
+    ],
+    "tail": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      12
+    ],
+    "hind legs": [
+      14,
+      17,
+      18,
+      19
+    ],
+    "neck": [
+      29,
+      32,
+      33,
+      34,
+      35
+    ],
+    "head": [
+      36,
+      38,
+      39,
+      42,
+      43,
+      44
+    ],
+    "front legs": [
+      47,
+      48,
+      51,
+      52,
+      53
+    ]
+  }
+}

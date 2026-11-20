@@ -1,0 +1,128 @@
+"""
+LPS Constants - Cross-domain constants used by core and modules
+
+Module-specific constants (field definitions, item types, model ranges)
+belong in their respective modules.
+"""
+
+import os
+from pathlib import Path
+
+# === Paths ===
+
+FFXI_PATH = Path(os.environ.get('FFXI_DIR', os.path.expanduser(
+    "~/FINAL FANTASY XI"
+)))
+
+OVERLAY_PATH = Path(os.environ.get('LPS_OVERLAY_DIR', os.path.expanduser(
+    "~/Ashita/polplugins/DATs/LPS"
+)))
+
+# Icons directory (relative to lps package)
+ICONS_PATH = Path(__file__).parent.parent / "icons"
+
+
+# === Entry Sizes ===
+
+ENTRY_SIZE = 0xC00  # 3072 bytes per item entry
+
+
+# === Item Flags ===
+
+FLAG_RARE = 0x8000
+FLAG_EX = 0x4000
+FLAG_NOAUCTION = 0x2000
+FLAG_NOSALE = 0x1000
+FLAG_CANEQUIP = 0x0800
+FLAG_CANUSE = 0x0400
+FLAG_INSCRIBABLE = 0x0020
+
+
+# === Equipment Slots ===
+
+SLOT_MAIN = 0x0001
+SLOT_SUB = 0x0002
+SLOT_RANGE = 0x0004
+SLOT_AMMO = 0x0008
+SLOT_HEAD = 0x0010
+SLOT_BODY = 0x0020
+SLOT_HANDS = 0x0040
+SLOT_LEGS = 0x0080
+SLOT_FEET = 0x0100
+SLOT_NECK = 0x0200
+SLOT_WAIST = 0x0400
+SLOT_EAR1 = 0x0800
+SLOT_EAR2 = 0x1000
+SLOT_RING1 = 0x2000
+SLOT_RING2 = 0x4000
+SLOT_BACK = 0x8000
+
+
+# === Race Flags ===
+
+RACE_HUME_M = 0x0002
+RACE_HUME_F = 0x0004
+RACE_ELVAAN_M = 0x0008
+RACE_ELVAAN_F = 0x0010
+RACE_TARU_M = 0x0020
+RACE_TARU_F = 0x0040
+RACE_MITHRA = 0x0080
+RACE_GALKA = 0x0100
+ALL_RACES = 0x01FE
+
+
+# === Job Flags ===
+
+JOB_NONE = 0x00000001
+JOB_WAR = 0x00000002
+JOB_MNK = 0x00000004
+JOB_WHM = 0x00000008
+JOB_BLM = 0x00000010
+JOB_RDM = 0x00000020
+JOB_THF = 0x00000040
+JOB_PLD = 0x00000080
+JOB_DRK = 0x00000100
+JOB_BST = 0x00000200
+JOB_BRD = 0x00000400
+JOB_RNG = 0x00000800
+JOB_SAM = 0x00001000
+JOB_NIN = 0x00002000
+JOB_DRG = 0x00004000
+JOB_SMN = 0x00008000
+JOB_BLU = 0x00010000
+JOB_COR = 0x00020000
+JOB_PUP = 0x00040000
+JOB_DNC = 0x00080000
+JOB_SCH = 0x00100000
+JOB_GEO = 0x00200000
+JOB_RUN = 0x00400000
+ALL_JOBS = 0x007FFFFE
+
+
+# === Weapon Skill Types ===
+
+SKILL_NONE = 0
+SKILL_H2H = 1
+SKILL_DAGGER = 2
+SKILL_SWORD = 3
+SKILL_GSWORD = 4
+SKILL_AXE = 5
+SKILL_GAXE = 6
+SKILL_SCYTHE = 7
+SKILL_POLEARM = 8
+SKILL_KATANA = 9
+SKILL_GKATANA = 10
+SKILL_CLUB = 11
+SKILL_STAFF = 12
+SKILL_ARCHERY = 25
+SKILL_MARKSMANSHIP = 26
+SKILL_THROWING = 27
+
+
+# === Icon Constants ===
+
+ICON_HEADER_SIZE = 57
+ICON_PALETTE_SIZE = 256 * 4  # 256 BGRA colors
+ICON_SIZE = 32  # 32x32 pixels
+ICON_LEN_OFFSET = 0x280
+ICON_DATA_OFFSET = 0x284

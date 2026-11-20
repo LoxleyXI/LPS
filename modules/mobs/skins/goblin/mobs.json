@@ -1,0 +1,11 @@
+{
+  "mobs": [
+    {
+      "name": "Verdigris Smithy",
+      "clone": 497,
+      "model_id": 15176,
+      "parts": "parts.json",
+      "materials": { "tim     gob00": "verdigris.json" }
+    }
+  ]
+}

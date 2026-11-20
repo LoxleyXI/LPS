@@ -1,0 +1,88 @@
+{
+  "name": "Ronfaure stone",
+  "from": 100,
+  "texture": "ron_kab0",
+  "yalms": 16.0,
+  "regions": {
+    "ashlar": [
+      0.0,
+      0.0,
+      0.625,
+      0.5
+    ],
+    "plinth": [
+      0.0,
+      0.5,
+      0.625,
+      0.75
+    ],
+    "coping": [
+      0.0,
+      0.75,
+      0.25,
+      1.0
+    ],
+    "smooth": [
+      0.25,
+      0.75,
+      0.625,
+      1.0
+    ],
+    "window": [
+      0.765,
+      0.125,
+      0.86,
+      0.25
+    ],
+    "arcade": [
+      0.75,
+      0.375,
+      1.0,
+      0.5
+    ],
+    "narrow": [
+      0.625,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "banner": {
+    "from": 26,
+    "texture": "tb_hata0",
+    "cloth": [
+      0.008,
+      0.0,
+      0.43,
+      1.0
+    ],
+    "rod": [
+      0.44,
+      0.19,
+      0.5,
+      0.68
+    ]
+  },
+  "notes": {
+    "regions": "u0, v0, u1, v1 in ron_kab0 (West Ronfaure, 100): ashlar = coursed wall, plinth = dark heavy blocks, coping = slabs, smooth = dressed blocks, window = one slit window, arcade = a band of arched loopholes, narrow = small ashlar for voussoirs and reveals",
+    "yalms": "how many yalms the whole texture spans on San d'Oria's own walls",
+    "banner": "The banner from Tavnazian Safehold (26). The cloth is half the design: its left edge (u 0.008) at both edges of the banner, its right (u 0.43) down the middle, as tb_hata01 mirrors it",
+    "door": "a closed gate's leaves: the iron-strapped planks of tab_has1 (Misareaux 25), mapped once across the opening",
+    "paving": "streets and squares: shita1 cobbles (Misareaux 25), repeating every 5.7 yalms as Misareaux lays them"
+  },
+  "door": {
+    "from": 25,
+    "texture": "tab_has1",
+    "region": [
+      0.0,
+      0.0,
+      0.45,
+      1.0
+    ]
+  },
+  "paving": {
+    "from": 25,
+    "texture": "shita1",
+    "yalms": 5.7
+  }
+}

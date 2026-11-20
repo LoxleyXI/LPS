@@ -1,0 +1,3849 @@
+{
+  "version": "3.0",
+  "description": "Complete FFXI mod ID to display text mapping",
+  "total_mods": 613,
+  "mods": {
+    "1": {
+      "name": "Avatar",
+      "format": "DEF:{value}",
+      "category": "defense",
+      "type": "base"
+    },
+    "2": {
+      "name": "Wyvern",
+      "format": "HP+{value}",
+      "category": "resource",
+      "type": "flat"
+    },
+    "3": {
+      "name": "Automaton",
+      "format": "HP+{value}%",
+      "category": "resource",
+      "type": "percent"
+    },
+    "4": {
+      "name": "Harlequin",
+      "format": "\"Harlequin\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "5": {
+      "name": "Valoredge",
+      "format": "MP+{value}",
+      "category": "resource",
+      "type": "flat"
+    },
+    "6": {
+      "name": "Sharpshot",
+      "format": "MP+{value}%",
+      "category": "resource",
+      "type": "percent"
+    },
+    "7": {
+      "name": "Stormwaker",
+      "format": "\"Stormwaker\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "8": {
+      "name": "STR",
+      "format": "STR+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "9": {
+      "name": "DEX",
+      "format": "DEX+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "10": {
+      "name": "VIT",
+      "format": "VIT+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "11": {
+      "name": "AGI",
+      "format": "AGI+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "12": {
+      "name": "INT",
+      "format": "INT+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "13": {
+      "name": "MND",
+      "format": "MND+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "14": {
+      "name": "CHR",
+      "format": "CHR+{value}",
+      "category": "attribute",
+      "type": "stat"
+    },
+    "15": {
+      "name": "FIRE_MEVA",
+      "format": "Fire Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "16": {
+      "name": "ICE_MEVA",
+      "format": "Ice Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "17": {
+      "name": "WIND_MEVA",
+      "format": "Wind Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "18": {
+      "name": "EARTH_MEVA",
+      "format": "Earth Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "19": {
+      "name": "THUNDER_MEVA",
+      "format": "Thunder Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "20": {
+      "name": "WATER_MEVA",
+      "format": "Water Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "21": {
+      "name": "LIGHT_MEVA",
+      "format": "Light Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "22": {
+      "name": "DARK_MEVA",
+      "format": "Dark Magic Evasion+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "23": {
+      "name": "ATT",
+      "format": "Attack+{value}",
+      "category": "offense",
+      "type": "flat"
+    },
+    "24": {
+      "name": "RATT",
+      "format": "Ranged Attack+{value}",
+      "category": "offense",
+      "type": "flat"
+    },
+    "25": {
+      "name": "ACC",
+      "format": "Accuracy+{value}",
+      "category": "offense",
+      "type": "flat"
+    },
+    "26": {
+      "name": "RACC",
+      "format": "Ranged Accuracy+{value}",
+      "category": "offense",
+      "type": "flat"
+    },
+    "27": {
+      "name": "ENMITY",
+      "format": "Enmity+{value}",
+      "category": "enmity",
+      "type": "flat"
+    },
+    "28": {
+      "name": "MATT",
+      "format": "\"Magic Atk. Bonus\"+{value}",
+      "category": "magic",
+      "type": "flat"
+    },
+    "29": {
+      "name": "MDEF",
+      "format": "\"Magic Def. Bonus\"+{value}",
+      "category": "magic",
+      "type": "flat"
+    },
+    "30": {
+      "name": "MACC",
+      "format": "Magic Accuracy+{value}",
+      "category": "magic",
+      "type": "flat"
+    },
+    "31": {
+      "name": "MEVA",
+      "format": "Magic Evasion+{value}",
+      "category": "magic",
+      "type": "flat"
+    },
+    "32": {
+      "name": "FIRE_MAB",
+      "format": "Elemental \"Magic Attack Bonus\" aka \"Affinity\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "34": {
+      "name": "WIND_MAB",
+      "format": "Elemental \"Magic Attack Bonus\" aka \"Affinity\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "35": {
+      "name": "EARTH_MAB",
+      "format": "Elemental \"Magic Attack Bonus\" aka \"Affinity\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "36": {
+      "name": "THUNDER_MAB",
+      "format": "Elemental \"Magic Attack Bonus\" aka \"Affinity\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "37": {
+      "name": "WATER_MAB",
+      "format": "Elemental \"Magic Attack Bonus\" aka \"Affinity\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "38": {
+      "name": "LIGHT_MAB",
+      "format": "Elemental \"Magic Attack Bonus\" aka \"Affinity\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "40": {
+      "name": "FIRE_MACC",
+      "format": "Fire Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "41": {
+      "name": "ICE_MACC",
+      "format": "Ice Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "42": {
+      "name": "WIND_MACC",
+      "format": "Wind Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "43": {
+      "name": "EARTH_MACC",
+      "format": "Earth Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "44": {
+      "name": "THUNDER_MACC",
+      "format": "Thunder Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "45": {
+      "name": "WATER_MACC",
+      "format": "Water Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "46": {
+      "name": "LIGHT_MACC",
+      "format": "Light Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "47": {
+      "name": "DARK_MACC",
+      "format": "Dark Accuracy+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "48": {
+      "name": "WSACC",
+      "format": "Weapon skill accuracy+{value}",
+      "category": "offense",
+      "type": "flat"
+    },
+    "62": {
+      "name": "ATTP",
+      "format": "Attack+{value}%",
+      "category": "offense",
+      "type": "percent"
+    },
+    "64": {
+      "name": "COMBAT_SKILLUP_RATE",
+      "format": "% increase in skillup combat rate+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "65": {
+      "name": "MAGIC_SKILLUP_RATE",
+      "format": "% increase in skillup magic rate+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "67": {
+      "name": "ENHANCES_CURSNA_RCVD",
+      "format": "Potency of \"Cursna\" effects received+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "68": {
+      "name": "EVA",
+      "format": "Evasion+{value}",
+      "category": "defense",
+      "type": "flat"
+    },
+    "71": {
+      "name": "MPHEAL",
+      "format": "MP recovered while healing +{value}",
+      "category": "recovery",
+      "type": "flat"
+    },
+    "72": {
+      "name": "HPHEAL",
+      "format": "HP recovered while healing +{value}",
+      "category": "recovery",
+      "type": "flat"
+    },
+    "73": {
+      "name": "STORETP",
+      "format": "\"Store TP\"+{value}",
+      "category": "tp",
+      "type": "flat"
+    },
+    "74": {
+      "name": "ENHANCES_MANA_CEDE",
+      "format": "Bonus % to Mana Cede effect, +{value}1 = 1%",
+      "category": "other",
+      "type": "flat"
+    },
+    "75": {
+      "name": "MOVE_SPEED_STACKABLE",
+      "format": "\"Move Speed Stackable\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "76": {
+      "name": "MOVE_SPEED_GEAR_BONUS",
+      "format": "\"Move Speed Gear Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "80": {
+      "name": "HTH",
+      "format": "Hand-to-Hand skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "81": {
+      "name": "DAGGER",
+      "format": "Dagger skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "82": {
+      "name": "SWORD",
+      "format": "Sword skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "83": {
+      "name": "GSWORD",
+      "format": "Great Sword skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "84": {
+      "name": "AXE",
+      "format": "Axe skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "85": {
+      "name": "GAXE",
+      "format": "Great Axe skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "86": {
+      "name": "SCYTHE",
+      "format": "Scythe skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "87": {
+      "name": "POLEARM",
+      "format": "Polearm skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "88": {
+      "name": "KATANA",
+      "format": "Katana skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "89": {
+      "name": "GKATANA",
+      "format": "Great Katana skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "90": {
+      "name": "CLUB",
+      "format": "Club skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "91": {
+      "name": "STAFF",
+      "format": "Staff skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "92": {
+      "name": "RAMPART_DURATION",
+      "format": "Rampart duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "93": {
+      "name": "FLEE_DURATION",
+      "format": "Flee duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "94": {
+      "name": "MEDITATE_DURATION",
+      "format": "Meditate duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "95": {
+      "name": "WARDING_CIRCLE_DURATION",
+      "format": "Warding Circle extended duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "96": {
+      "name": "SOULEATER_EFFECT",
+      "format": "Souleater power in percents+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "97": {
+      "name": "BOOST_EFFECT",
+      "format": "Boost power in tenths+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "98": {
+      "name": "CAMOUFLAGE_DURATION",
+      "format": "Camouflage duration in percents+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "101": {
+      "name": "AUTO_MELEE_SKILL",
+      "format": "Automaton Melee Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "102": {
+      "name": "AUTO_RANGED_SKILL",
+      "format": "Automaton Range Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "103": {
+      "name": "AUTO_MAGIC_SKILL",
+      "format": "Automaton Magic Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "104": {
+      "name": "ARCHERY",
+      "format": "Archery skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "105": {
+      "name": "MARKSMAN",
+      "format": "Marksmanship skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "106": {
+      "name": "THROW",
+      "format": "Throwing skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "107": {
+      "name": "GUARD",
+      "format": "Guard skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "108": {
+      "name": "EVASION",
+      "format": "Evasion skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "109": {
+      "name": "SHIELD",
+      "format": "Shield skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "110": {
+      "name": "PARRY",
+      "format": "Parrying skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "111": {
+      "name": "DIVINE",
+      "format": "Divine magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "112": {
+      "name": "HEALING",
+      "format": "Healing magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "113": {
+      "name": "ENHANCE",
+      "format": "Enhancing magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "114": {
+      "name": "ENFEEBLE",
+      "format": "Enfeebling magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "115": {
+      "name": "ELEM",
+      "format": "Elemental magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "116": {
+      "name": "DARK",
+      "format": "Dark magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "117": {
+      "name": "SUMMONING",
+      "format": "Summoning magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "118": {
+      "name": "NINJUTSU",
+      "format": "Ninjutsu skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "119": {
+      "name": "SINGING",
+      "format": "Singing skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "120": {
+      "name": "STRING",
+      "format": "String instrument skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "121": {
+      "name": "WIND",
+      "format": "Wind instrument skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "122": {
+      "name": "BLUE",
+      "format": "Blue magic skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "123": {
+      "name": "GEOMANCY",
+      "format": "Geomancy skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "124": {
+      "name": "HANDBELL",
+      "format": "Handbell skill +{value}",
+      "category": "skill",
+      "type": "flat"
+    },
+    "125": {
+      "name": "SUPPRESS_OVERLOAD",
+      "format": "\"Suppress Overload\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "126": {
+      "name": "BP_DAMAGE",
+      "format": "Blood Pact: Rage Damage increase percentage",
+      "category": "other",
+      "type": "flat"
+    },
+    "127": {
+      "name": "FISH",
+      "format": "Fishing Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "128": {
+      "name": "WOOD",
+      "format": "Woodworking Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "129": {
+      "name": "SMITH",
+      "format": "Smithing Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "130": {
+      "name": "GOLDSMITH",
+      "format": "Goldsmithing Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "131": {
+      "name": "CLOTH",
+      "format": "Clothcraft Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "132": {
+      "name": "LEATHER",
+      "format": "Leathercraft Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "133": {
+      "name": "BONE",
+      "format": "Bonecraft Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "134": {
+      "name": "ALCHEMY",
+      "format": "Alchemy Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "135": {
+      "name": "COOK",
+      "format": "Cooking Skill+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "140": {
+      "name": "SPIRIT_CAST_REDUCTION",
+      "format": "Spirit Pact casting time reduction in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "141": {
+      "name": "CRITHITRATE_ONLY_WEP",
+      "format": "Raises chance to crit+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "144": {
+      "name": "SYNTH_ANTI_HQ_WOODWORKING",
+      "format": "\"Synth Anti Hq Woodworking\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "145": {
+      "name": "SYNTH_ANTI_HQ_SMITHING",
+      "format": "\"Synth Anti Hq Smithing\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "146": {
+      "name": "SYNTH_ANTI_HQ_GOLDSMITHING",
+      "format": "\"Synth Anti Hq Goldsmithing\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "147": {
+      "name": "SYNTH_ANTI_HQ_CLOTHCRAFT",
+      "format": "\"Synth Anti Hq Clothcraft\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "148": {
+      "name": "SYNTH_ANTI_HQ_LEATHERCRAFT",
+      "format": "\"Synth Anti Hq Leathercraft\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "149": {
+      "name": "SYNTH_ANTI_HQ_BONECRAFT",
+      "format": "\"Synth Anti Hq Bonecraft\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "150": {
+      "name": "SYNTH_ANTI_HQ_ALCHEMY",
+      "format": "\"Synth Anti Hq Alchemy\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "151": {
+      "name": "SYNTH_ANTI_HQ_COOKING",
+      "format": "\"Synth Anti Hq Cooking\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "156": {
+      "name": "APPRECIATE_GYSAHL_GREENS",
+      "format": "Enhances food effect of Gysahl Greens+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "159": {
+      "name": "DRINK_DISTILLED",
+      "format": "Without this, Distilled Water cannot be consumed+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "160": {
+      "name": "DMG",
+      "format": "Damage taken -{value}%",
+      "category": "defense",
+      "type": "percent",
+      "negate": true
+    },
+    "161": {
+      "name": "DMGPHYS",
+      "format": "Physical damage taken -{value}%",
+      "category": "defense",
+      "type": "percent",
+      "negate": true
+    },
+    "162": {
+      "name": "DMGBREATH",
+      "format": "Breath damage taken -{value}%",
+      "category": "defense",
+      "type": "percent",
+      "negate": true
+    },
+    "163": {
+      "name": "DMGMAGIC",
+      "format": "Magic damage taken -{value}%",
+      "category": "defense",
+      "type": "percent",
+      "negate": true
+    },
+    "164": {
+      "name": "DMGRANGE",
+      "format": "Ranged damage taken -{value}%",
+      "category": "defense",
+      "type": "percent",
+      "negate": true
+    },
+    "165": {
+      "name": "CRITHITRATE",
+      "format": "Critical hit rate +{value}%",
+      "category": "crit",
+      "type": "percent"
+    },
+    "166": {
+      "name": "CRITICAL_HIT_EVASION",
+      "format": "Modifies chance enemy will crit+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "168": {
+      "name": "SPELLINTERRUPT",
+      "format": "Spell interruption rate down {value}%",
+      "category": "casting",
+      "type": "percent"
+    },
+    "170": {
+      "name": "FASTCAST",
+      "format": "\"Fast Cast\"+{value}%",
+      "category": "casting",
+      "type": "percent"
+    },
+    "173": {
+      "name": "MARTIAL_ARTS",
+      "format": "\"Martial Arts\"+{value}",
+      "category": "combat",
+      "type": "flat"
+    },
+    "174": {
+      "name": "SKILLCHAINBONUS",
+      "format": "Skillchain bonus+{value}%",
+      "category": "offense",
+      "type": "percent"
+    },
+    "175": {
+      "name": "SKILLCHAINDMG",
+      "format": "\"Skillchaindmg\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "190": {
+      "name": "DMGPHYS_II",
+      "format": "Physical Damage Taken II %+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "191": {
+      "name": "QUICK_DRAW_MACC",
+      "format": "Quick draw magic accuracy+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "220": {
+      "name": "RANDOM_DEAL_BONUS",
+      "format": "% chance to reset 2 abilities+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "224": {
+      "name": "VERMIN_KILLER",
+      "format": "Enhances \"Vermin Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "225": {
+      "name": "BIRD_KILLER",
+      "format": "Enhances \"Bird Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "226": {
+      "name": "AMORPH_KILLER",
+      "format": "Enhances \"Amorph Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "227": {
+      "name": "LIZARD_KILLER",
+      "format": "Enhances \"Lizard Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "228": {
+      "name": "AQUAN_KILLER",
+      "format": "Enhances \"Aquan Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "229": {
+      "name": "PLANTOID_KILLER",
+      "format": "Enhances \"Plantiod Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "230": {
+      "name": "BEAST_KILLER",
+      "format": "Enhances \"Beast Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "231": {
+      "name": "UNDEAD_KILLER",
+      "format": "Enhances \"Undead Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "232": {
+      "name": "ARCANA_KILLER",
+      "format": "Enhances \"Arcana Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "233": {
+      "name": "DRAGON_KILLER",
+      "format": "Enhances \"Dragon Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "234": {
+      "name": "DEMON_KILLER",
+      "format": "Enhances \"Demon Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "235": {
+      "name": "EMPTY_KILLER",
+      "format": "Enhances \"Empty Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "236": {
+      "name": "HUMANOID_KILLER",
+      "format": "Enhances \"Humanoid Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "237": {
+      "name": "LUMINIAN_KILLER",
+      "format": "Enhances \"Luminian Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "238": {
+      "name": "LUMINION_KILLER",
+      "format": "Enhances \"Luminion Killer\" effect+{value}",
+      "category": "killer",
+      "type": "flat"
+    },
+    "239": {
+      "name": "NULL_RANGED_DAMAGE",
+      "format": "Occasionally annuls ranged damage.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "240": {
+      "name": "SLEEPRES",
+      "format": "Enhances \"Resist Sleep\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "241": {
+      "name": "POISONRES",
+      "format": "Enhances \"Resist Poison\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "242": {
+      "name": "PARALYZERES",
+      "format": "Enhances \"Resist Paralyze\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "243": {
+      "name": "BLINDRES",
+      "format": "Enhances \"Resist Blind\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "244": {
+      "name": "SILENCERES",
+      "format": "Enhances \"Resist Silence\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "245": {
+      "name": "VIRUSRES",
+      "format": "Enhances \"Resist Virus\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "246": {
+      "name": "PETRIFYRES",
+      "format": "Enhances \"Resist Petrify\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "247": {
+      "name": "BINDRES",
+      "format": "Enhances \"Resist Bind\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "248": {
+      "name": "CURSERES",
+      "format": "Enhances \"Resist Curse\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "249": {
+      "name": "GRAVITYRES",
+      "format": "Enhances \"Resist Gravity\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "250": {
+      "name": "SLOWRES",
+      "format": "Enhances \"Resist Slow\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "251": {
+      "name": "STUNRES",
+      "format": "Enhances \"Resist Stun\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "252": {
+      "name": "CHARMRES",
+      "format": "Enhances \"Resist Charm\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "253": {
+      "name": "AMNESIARES",
+      "format": "Enhances \"Resist Amnesia\" effect+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "255": {
+      "name": "DEATHRES",
+      "format": "\"Deathres\"+{value}",
+      "category": "resist",
+      "type": "flat"
+    },
+    "256": {
+      "name": "AFTERMATH",
+      "format": "Aftermath ID+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "258": {
+      "name": "MIJIN_RERAISE",
+      "format": "Augments Mijin Gakure+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "259": {
+      "name": "DUAL_WIELD",
+      "format": "Dual Wield+{value}",
+      "category": "combat",
+      "type": "flat"
+    },
+    "260": {
+      "name": "CURE_POTENCY_II",
+      "format": "\"Cure Potency Ii\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "271": {
+      "name": "TANDEM_STRIKE_POWER",
+      "format": "\"Tandem Strike Power\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "272": {
+      "name": "TANDEM_BLOW_POWER",
+      "format": "\"Tandem Blow Power\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "276": {
+      "name": "EQUIPMENT_ONLY_RACE",
+      "format": "\"Equipment Only Race\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "278": {
+      "name": "ITEM_ADDEFFECT_LVADJUST",
+      "format": "level correction factor to use, if any+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "280": {
+      "name": "ITEM_ADDEFFECT_DSTAT",
+      "format": "value = attacker modifier to use as bonus dmg+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "281": {
+      "name": "ENHANCES_SPIRIT_LINK",
+      "format": "Adds erase/-{value}na to Spirit Link",
+      "category": "other",
+      "type": "flat"
+    },
+    "285": {
+      "name": "JUMP_SPIRIT_TP_BONUS",
+      "format": "\"Jump Spirit Tp Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "286": {
+      "name": "JUMP_SOUL_SPIRIT_ATT_BONUS",
+      "format": "ATT% bonus for Soul & Spirit jump only+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "288": {
+      "name": "DOUBLE_ATTACK",
+      "format": "\"Double Attack\"+{value}%",
+      "category": "multiattack",
+      "type": "percent"
+    },
+    "289": {
+      "name": "SUBTLE_BLOW",
+      "format": "\"Subtle Blow\"+{value}",
+      "category": "tp",
+      "type": "flat"
+    },
+    "290": {
+      "name": "ENF_MAG_POTENCY",
+      "format": "Increases Enfeebling magic potency %+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "291": {
+      "name": "COUNTER",
+      "format": "\"Counter\"+{value}",
+      "category": "combat",
+      "type": "flat"
+    },
+    "292": {
+      "name": "KICK_ATTACK_RATE",
+      "format": "Percent chance to kick+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "293": {
+      "name": "AFFLATUS_SOLACE",
+      "format": "Pool of HP accumulated during Afflatus Solace+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "296": {
+      "name": "CONSERVE_MP",
+      "format": "\"Conserve MP\"+{value}",
+      "category": "casting",
+      "type": "flat"
+    },
+    "297": {
+      "name": "ENHANCES_SABOTEUR",
+      "format": "Increases Saboteur Potency %+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "298": {
+      "name": "STEAL",
+      "format": "Increase/Decrease THF Steal chance+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "302": {
+      "name": "TRIPLE_ATTACK",
+      "format": "\"Triple Attack\"+{value}%",
+      "category": "multiattack",
+      "type": "percent"
+    },
+    "303": {
+      "name": "TREASURE_HUNTER",
+      "format": "\"Treasure Hunter\"+{value}",
+      "category": "combat",
+      "type": "flat"
+    },
+    "304": {
+      "name": "TAME",
+      "format": "Additional percent chance to charm+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "305": {
+      "name": "RECYCLE",
+      "format": "\"Recycle\"+{value}",
+      "category": "ranged",
+      "type": "flat"
+    },
+    "306": {
+      "name": "ZANSHIN",
+      "format": "\"Zanshin\"+{value}",
+      "category": "combat",
+      "type": "flat"
+    },
+    "308": {
+      "name": "NINJA_TOOL",
+      "format": "Percent chance to not use a tool.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "310": {
+      "name": "ENHANCES_CURSNA",
+      "format": "\"Enhances Cursna\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "311": {
+      "name": "MAGIC_DAMAGE",
+      "format": "Magic damage+{value}",
+      "category": "magic",
+      "type": "flat"
+    },
+    "312": {
+      "name": "SCAVENGE_EFFECT",
+      "format": "SHARPSHOT               = 314,  //+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "313": {
+      "name": "DIA_DOT",
+      "format": "Increases the DoT damage of Dia+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "314": {
+      "name": "MOD_314",
+      "format": "\"Mod 314\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "315": {
+      "name": "ENH_DRAIN_ASPIR",
+      "format": "% damage boost to Drain and Aspir+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "334": {
+      "name": "LIGHT_ARTS_EFFECT",
+      "format": "DARK_ARTS_EFFECT         = 335,  //+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "335": {
+      "name": "MOD_335",
+      "format": "\"Mod 335\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "336": {
+      "name": "LIGHT_ARTS_SKILL",
+      "format": "DARK_ARTS_SKILL          = 337,  //+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "337": {
+      "name": "MOD_337",
+      "format": "\"Mod 337\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "339": {
+      "name": "REGEN_DURATION",
+      "format": "HELIX_EFFECT             = 478,  //+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "344": {
+      "name": "SPIKES_DMG",
+      "format": "\"Spikes Dmg\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "345": {
+      "name": "TP_BONUS",
+      "format": "\"TP Bonus\"+{value}",
+      "category": "tp",
+      "type": "flat"
+    },
+    "346": {
+      "name": "PERPETUATION_REDUCTION",
+      "format": "Avatar perpetuation cost -{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "347": {
+      "name": "FIRE_STAFF_BONUS",
+      "format": "\"Fire Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "348": {
+      "name": "ICE_STAFF_BONUS",
+      "format": "\"Ice Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "349": {
+      "name": "WIND_STAFF_BONUS",
+      "format": "\"Wind Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "350": {
+      "name": "EARTH_STAFF_BONUS",
+      "format": "\"Earth Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "351": {
+      "name": "THUNDER_STAFF_BONUS",
+      "format": "\"Thunder Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "352": {
+      "name": "WATER_STAFF_BONUS",
+      "format": "\"Water Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "353": {
+      "name": "LIGHT_STAFF_BONUS",
+      "format": "\"Light Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "354": {
+      "name": "DARK_STAFF_BONUS",
+      "format": "\"Dark Staff Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "355": {
+      "name": "ADDS_WEAPONSKILL",
+      "format": "STEALTH            = 358, //+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "356": {
+      "name": "HALF_PERPETUATION_CARBUNCLE",
+      "format": "\"Half Perpetuation Carbuncle\"+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "357": {
+      "name": "BP_DELAY",
+      "format": "\"Blood Pact\" ability delay -{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "358": {
+      "name": "MOD_358",
+      "format": "\"Mod 358\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "359": {
+      "name": "RAPID_SHOT",
+      "format": "\"Rapid Shot\"+{value}%",
+      "category": "ranged",
+      "type": "percent"
+    },
+    "360": {
+      "name": "CHARM_TIME",
+      "format": "\"Charm Time\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "361": {
+      "name": "JUMP_TP_BONUS",
+      "format": "bonus tp player receives when using jump+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "362": {
+      "name": "JUMP_ATT_BONUS",
+      "format": "ATT% bonus for all jumps+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "363": {
+      "name": "HIGH_JUMP_ENMITY_REDUCTION",
+      "format": "for gear that reduces more enmity from high jump+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "364": {
+      "name": "REWARD_HP_BONUS",
+      "format": "Percent to add to reward HP healed.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "365": {
+      "name": "SNAPSHOT",
+      "format": "\"Snapshot\"+{value}",
+      "category": "ranged",
+      "type": "flat"
+    },
+    "366": {
+      "name": "MAIN_DMG_RATING",
+      "format": "adds damage rating to mainhand weapon+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "368": {
+      "name": "REGAIN",
+      "format": "\"Regain\"+{value}",
+      "category": "recovery",
+      "type": "flat"
+    },
+    "369": {
+      "name": "REFRESH",
+      "format": "\"Refresh\"+{value}",
+      "category": "recovery",
+      "type": "flat"
+    },
+    "370": {
+      "name": "REGEN",
+      "format": "\"Regen\"+{value}",
+      "category": "recovery",
+      "type": "flat"
+    },
+    "372": {
+      "name": "WEATHER_REDUCTION",
+      "format": "\"Weather Reduction\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "373": {
+      "name": "DAY_REDUCTION",
+      "format": "stores perpetuation reduction depending on day+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "374": {
+      "name": "CURE_POTENCY",
+      "format": "\"Cure\" potency +{value}%",
+      "category": "healing",
+      "type": "percent"
+    },
+    "375": {
+      "name": "CURE_POTENCY_RCVD",
+      "format": "\"Cure Potency Rcvd\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "377": {
+      "name": "MAIN_DMG_RANK",
+      "format": "\"Main Dmg Rank\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "379": {
+      "name": "RANGED_DMG_RANK",
+      "format": "adds weapon rank to ranged weapon+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "380": {
+      "name": "DELAYP",
+      "format": "delay addition percent+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "382": {
+      "name": "EXP_BONUS",
+      "format": "EXP bonus+{value}%",
+      "category": "misc",
+      "type": "percent"
+    },
+    "384": {
+      "name": "HASTE_GEAR",
+      "format": "Haste+{value}%",
+      "category": "haste",
+      "type": "percent",
+      "divisor": 100
+    },
+    "385": {
+      "name": "SHIELD_BASH",
+      "format": "\"Shield Bash\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "386": {
+      "name": "MOD_386",
+      "format": "\"Mod 386\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "387": {
+      "name": "UDMGPHYS",
+      "format": "Uncapped Damage Multipliers+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "388": {
+      "name": "UDMGBREATH",
+      "format": "Used in sentinel, invincible, physical shield etc+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "389": {
+      "name": "UDMGMAGIC",
+      "format": "\"Udmgmagic\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "390": {
+      "name": "UDMGRANGE",
+      "format": "\"Udmgrange\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "391": {
+      "name": "CHARM_CHANCE",
+      "format": "extra chance to charm+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "392": {
+      "name": "WEAPON_BASH",
+      "format": "WYVERN_BREATH = 402, //+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "394": {
+      "name": "WHITE_MAGIC_COST",
+      "format": "MP cost for white magic+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "395": {
+      "name": "BLACK_MAGIC_CAST",
+      "format": "Cast time for black magic+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "396": {
+      "name": "WHITE_MAGIC_CAST",
+      "format": "Cast time for black magic+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "399": {
+      "name": "ALACRITY_CELERITY_EFFECT",
+      "format": "Bonus for celerity/alacrity effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "401": {
+      "name": "SUBLIMATION_BONUS",
+      "format": "\"Sublimation Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "402": {
+      "name": "MOD_402",
+      "format": "\"Mod 402\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "403": {
+      "name": "STEP_ACCURACY",
+      "format": "Bonus accuracy for Dancer's steps+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "404": {
+      "name": "REGEN_DOWN",
+      "format": "poison+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "405": {
+      "name": "REFRESH_DOWN",
+      "format": "plague, reduce mp+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "407": {
+      "name": "UFASTCAST",
+      "format": "\"Fast Cast\"+{value}%",
+      "category": "casting",
+      "type": "percent"
+    },
+    "411": {
+      "name": "QUICK_DRAW_DMG",
+      "format": "Flat damage increase to base QD damage+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "412": {
+      "name": "EAT_RAW_FISH",
+      "format": "Without this, only Mithra can eat raw fish+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "413": {
+      "name": "EAT_RAW_MEAT",
+      "format": "Without this, only Galka can eat raw meat+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "414": {
+      "name": "RETALIATION",
+      "format": "Increases damage of Retaliation hits+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "416": {
+      "name": "NULL_PHYSICAL_DAMAGE",
+      "format": "Occasionally annuls physical damage.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "420": {
+      "name": "MOD_420",
+      "format": "\"Mod 420\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "421": {
+      "name": "CRIT_DMG_INCREASE",
+      "format": "Critical hit damage +{value}%",
+      "category": "crit",
+      "type": "percent"
+    },
+    "422": {
+      "name": "DOUBLE_SHOT_RATE",
+      "format": "\"Double Shot Rate\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "423": {
+      "name": "VELOCITY_SNAPSHOT_BONUS",
+      "format": "Increases Snapshot whilst Velocity Shot is up.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "424": {
+      "name": "VELOCITY_RATT_BONUS",
+      "format": "\"Velocity Ratt Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "425": {
+      "name": "SHADOW_BIND_EXT",
+      "format": "Extends the time of shadowbind+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "426": {
+      "name": "ABSORB_PHYSDMG_TO_MP",
+      "format": "\"Absorb Physdmg To Mp\"+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "427": {
+      "name": "ENMITY_LOSS_REDUCTION",
+      "format": "Reduces Enmity lost when taking damage+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "428": {
+      "name": "PERFECT_COUNTER_ATT",
+      "format": "\"Perfect Counter Att\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "429": {
+      "name": "FOOTWORK_ATT_BONUS",
+      "format": "Raises the attack bonus of Footwork.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "430": {
+      "name": "QUAD_ATTACK",
+      "format": "\"Quadruple Attack\"+{value}%",
+      "category": "multiattack",
+      "type": "percent"
+    },
+    "431": {
+      "name": "ITEM_ADDEFFECT_TYPE",
+      "format": "\"Item Addeffect Type\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "432": {
+      "name": "ENSPELL_DMG_BONUS",
+      "format": "\"Enspell Dmg Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "433": {
+      "name": "MINNE_EFFECT",
+      "format": "MINUET_EFFECT          = 434,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "434": {
+      "name": "MOD_434",
+      "format": "\"Mod 434\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "435": {
+      "name": "PAEON_EFFECT",
+      "format": "REQUIEM_EFFECT         = 436,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "436": {
+      "name": "MOD_436",
+      "format": "\"Mod 436\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "437": {
+      "name": "THRENODY_EFFECT",
+      "format": "MADRIGAL_EFFECT        = 438,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "438": {
+      "name": "MOD_438",
+      "format": "\"Mod 438\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "439": {
+      "name": "MAMBO_EFFECT",
+      "format": "LULLABY_EFFECT         = 440,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "440": {
+      "name": "MOD_440",
+      "format": "\"Mod 440\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "441": {
+      "name": "ETUDE_EFFECT",
+      "format": "BALLAD_EFFECT          = 442,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "442": {
+      "name": "MOD_442",
+      "format": "\"Mod 442\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "443": {
+      "name": "MARCH_EFFECT",
+      "format": "FINALE_EFFECT          = 444,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "444": {
+      "name": "MOD_444",
+      "format": "\"Mod 444\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "445": {
+      "name": "CAROL_EFFECT",
+      "format": "MAZURKA_EFFECT         = 446,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "446": {
+      "name": "MOD_446",
+      "format": "\"Mod 446\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "447": {
+      "name": "ELEGY_EFFECT",
+      "format": "PRELUDE_EFFECT         = 448,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "448": {
+      "name": "MOD_448",
+      "format": "\"Mod 448\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "449": {
+      "name": "HYMNUS_EFFECT",
+      "format": "VIRELAI_EFFECT         = 450,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "450": {
+      "name": "MOD_450",
+      "format": "\"Mod 450\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "451": {
+      "name": "SCHERZO_EFFECT",
+      "format": "ALL_SONGS_EFFECT       = 452,  //+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "452": {
+      "name": "MOD_452",
+      "format": "\"Mod 452\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "453": {
+      "name": "MAXIMUM_SONGS_BONUS",
+      "format": "SONG_DURATION_BONUS    = 454,  //+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "454": {
+      "name": "MOD_454",
+      "format": "\"Mod 454\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "455": {
+      "name": "SONG_SPELLCASTING_TIME",
+      "format": "\"Song Spellcasting Time\"+{value}",
+      "category": "song",
+      "type": "flat"
+    },
+    "459": {
+      "name": "FIRE_ABSORB",
+      "format": "Occasionally absorbs fire elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "460": {
+      "name": "ICE_ABSORB",
+      "format": "Occasionally absorbs ice elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "461": {
+      "name": "WIND_ABSORB",
+      "format": "Occasionally absorbs wind elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "462": {
+      "name": "EARTH_ABSORB",
+      "format": "Occasionally absorbs earth elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "463": {
+      "name": "LTNG_ABSORB",
+      "format": "Occasionally absorbs thunder elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "464": {
+      "name": "WATER_ABSORB",
+      "format": "Occasionally absorbs water elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "465": {
+      "name": "LIGHT_ABSORB",
+      "format": "Occasionally absorbs light elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "466": {
+      "name": "DARK_ABSORB",
+      "format": "Occasionally absorbs dark elemental damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "467": {
+      "name": "FIRE_NULL",
+      "format": "Occasionally annuls fire elemental damage.+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "475": {
+      "name": "MAGIC_ABSORB",
+      "format": "Occasionally absorbs magical damage.+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "476": {
+      "name": "NULL_MAGICAL_DAMAGE",
+      "format": "Occasionally annuls magical damage.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "482": {
+      "name": "EXTRA_KICK_ATTACK",
+      "format": "\"Extra Kick Attack\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "483": {
+      "name": "WARCRY_DURATION",
+      "format": "Warcy duration bonus from gear+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "484": {
+      "name": "AUSPICE_EFFECT",
+      "format": "Bonus to Auspice Subtle Blow Effect.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "485": {
+      "name": "SHIELD_MASTERY_TP",
+      "format": "\"Shield Mastery Tp\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "486": {
+      "name": "TACTICAL_PARRY",
+      "format": "Tactical Parry Tp Bonus+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "487": {
+      "name": "MAGIC_BURST_BONUS_CAPPED",
+      "format": "Magic burst damage +{value}%",
+      "category": "magic",
+      "type": "percent"
+    },
+    "489": {
+      "name": "MOD_489",
+      "format": "\"Mod 489\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "490": {
+      "name": "SAMBA_DURATION",
+      "format": "Samba duration bonus+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "491": {
+      "name": "WALTZ_POTENCY",
+      "format": "Waltz Potency Bonus+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "492": {
+      "name": "JIG_DURATION",
+      "format": "Jig duration bonus in percents+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "493": {
+      "name": "VFLOURISH_MACC",
+      "format": "Violent Flourish accuracy bonus+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "494": {
+      "name": "STEP_FINISH",
+      "format": "Bonus finishing moves from steps+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "497": {
+      "name": "WALTZ_DELAY",
+      "format": "Waltz Ability Delay modifier+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "498": {
+      "name": "SAMBA_PDURATION",
+      "format": "Samba percent duration bonus+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "499": {
+      "name": "ITEM_SUBEFFECT",
+      "format": "Animation ID of Spikes and Additional Effects+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "500": {
+      "name": "ITEM_ADDEFFECT_DMG",
+      "format": "Damage of an items Additional Effect or Spikes+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "501": {
+      "name": "ITEM_ADDEFFECT_CHANCE",
+      "format": "Chance of an items Additional Effect or Spikes+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "504": {
+      "name": "MANEUVER_BONUS",
+      "format": "Maneuver Stat Bonus+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "505": {
+      "name": "OVERLOAD_THRESH",
+      "format": "Overload Threshold Bonus+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "506": {
+      "name": "EXTRA_DMG_CHANCE",
+      "format": "Proc rate of OCC_DO_EXTRA_DMG. 111 would be 11.1%+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "507": {
+      "name": "OCC_DO_EXTRA_DMG",
+      "format": "\"Occ Do Extra Dmg\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "508": {
+      "name": "THIRD_EYE_COUNTER_RATE",
+      "format": "\"Third Eye Counter Rate\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "509": {
+      "name": "CLAMMING_IMPROVED_RESULTS",
+      "format": "CLAMMING_REDUCED_INCIDENTS = 510, //+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "510": {
+      "name": "MOD_510",
+      "format": "\"Mod 510\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "511": {
+      "name": "CHOCOBO_RIDING_TIME",
+      "format": "Increases chocobo riding time+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "512": {
+      "name": "PHYS_ABSORB",
+      "format": "\"Phys Absorb\"+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "513": {
+      "name": "HARVESTING_RESULT",
+      "format": "Improves harvesting results+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "514": {
+      "name": "LOGGING_RESULT",
+      "format": "Improves logging results+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "515": {
+      "name": "MINING_RESULT",
+      "format": "Improves mining results+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "516": {
+      "name": "ABSORB_DMG_TO_MP",
+      "format": "Unlike PLD gear mod, works on all damage types+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "517": {
+      "name": "EGGHELM",
+      "format": "\"Egghelm\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "518": {
+      "name": "SHIELDBLOCKRATE",
+      "format": "Shield block rate+{value}",
+      "category": "defense",
+      "type": "flat"
+    },
+    "519": {
+      "name": "CURE_CAST_TIME",
+      "format": "cure cast time reduction+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "520": {
+      "name": "TRICK_ATK_AGI",
+      "format": "% AGI boost to Trick Attack+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "521": {
+      "name": "AUGMENTS_ABSORB_LIBERATOR",
+      "format": "\"Augments Absorb Liberator\"+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "522": {
+      "name": "NIN_NUKE_BONUS_GEAR",
+      "format": "Ninjutsu damage multiplier from gear.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "523": {
+      "name": "AMMO_SWING",
+      "format": "\"Ammo Swing\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "524": {
+      "name": "AOE_NA",
+      "format": "\"Aoe Na\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "525": {
+      "name": "AUGMENTS_CONVERT",
+      "format": "\"Augments Convert\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "526": {
+      "name": "AUGMENTS_SA",
+      "format": "\"Augments Sa\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "527": {
+      "name": "AUGMENTS_TA",
+      "format": "\"Augments Ta\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "528": {
+      "name": "MOD_528",
+      "format": "\"Mod 528\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "529": {
+      "name": "ENHANCES_REFRESH",
+      "format": "\"Enhances Refresh\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "530": {
+      "name": "NO_SPELL_MP_DEPLETION",
+      "format": "% to not deplete MP on spellcast.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "531": {
+      "name": "FORCE_FIRE_DWBONUS",
+      "format": "\"Force Fire Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "532": {
+      "name": "FORCE_ICE_DWBONUS",
+      "format": "\"Force Ice Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "533": {
+      "name": "FORCE_WIND_DWBONUS",
+      "format": "\"Force Wind Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "534": {
+      "name": "FORCE_EARTH_DWBONUS",
+      "format": "\"Force Earth Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "535": {
+      "name": "FORCE_LIGHTNING_DWBONUS",
+      "format": "\"Force Lightning Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "536": {
+      "name": "FORCE_WATER_DWBONUS",
+      "format": "\"Force Water Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "537": {
+      "name": "FORCE_LIGHT_DWBONUS",
+      "format": "\"Force Light Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "538": {
+      "name": "FORCE_DARK_DWBONUS",
+      "format": "\"Force Dark Dwbonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "539": {
+      "name": "STONESKIN_BONUS_HP",
+      "format": "Bonus \"HP\" granted to Stoneskin spell.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "540": {
+      "name": "ENHANCES_ELEMENTAL_SIPHON",
+      "format": "Bonus Base MP added to Elemental Siphon skill.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "541": {
+      "name": "BP_DELAY_II",
+      "format": "Blood Pact Delay Reduction II+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "542": {
+      "name": "JOB_BONUS_CHANCE",
+      "format": "\"Job Bonus Chance\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "543": {
+      "name": "COUNTERSTANCE_EFFECT",
+      "format": "Counterstance effect in percents+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "544": {
+      "name": "FIRE_FTP_BONUS",
+      "format": "\"Fire Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "545": {
+      "name": "ICE_FTP_BONUS",
+      "format": "\"Ice Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "546": {
+      "name": "WIND_FTP_BONUS",
+      "format": "\"Wind Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "547": {
+      "name": "EARTH_FTP_BONUS",
+      "format": "\"Earth Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "548": {
+      "name": "THUNDER_FTP_BONUS",
+      "format": "\"Thunder Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "549": {
+      "name": "WATER_FTP_BONUS",
+      "format": "\"Water Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "550": {
+      "name": "LIGHT_FTP_BONUS",
+      "format": "\"Light Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "551": {
+      "name": "DARK_FTP_BONUS",
+      "format": "\"Dark Ftp Bonus\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "552": {
+      "name": "DODGE_EFFECT",
+      "format": "Dodge effect in percents+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "553": {
+      "name": "FIRE_AFFINITY_PERP",
+      "format": "\"Fire Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "554": {
+      "name": "ICE_AFFINITY_PERP",
+      "format": "\"Ice Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "555": {
+      "name": "WIND_AFFINITY_PERP",
+      "format": "\"Wind Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "556": {
+      "name": "EARTH_AFFINITY_PERP",
+      "format": "\"Earth Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "557": {
+      "name": "THUNDER_AFFINITY_PERP",
+      "format": "\"Thunder Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "558": {
+      "name": "WATER_AFFINITY_PERP",
+      "format": "\"Water Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "559": {
+      "name": "LIGHT_AFFINITY_PERP",
+      "format": "\"Light Affinity Perp\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "560": {
+      "name": "DARK_AFFINITY_PERP",
+      "format": "Special Modifier+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "561": {
+      "name": "FOCUS_EFFECT",
+      "format": "Focus effect in percents+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "562": {
+      "name": "MAGIC_CRITHITRATE",
+      "format": "Raises chance to magic crit+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "563": {
+      "name": "MAGIC_CRIT_DMG_INCREASE",
+      "format": "Raises damage done when criting with magic+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "564": {
+      "name": "JUG_LEVEL_RANGE",
+      "format": "\"Jug Level Range\"+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "565": {
+      "name": "DAY_NUKE_BONUS",
+      "format": "\"Day Nuke Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "566": {
+      "name": "IRIDESCENCE",
+      "format": "Iridescence trait+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "567": {
+      "name": "BARSPELL_AMOUNT",
+      "format": "\"Barspell Amount\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "568": {
+      "name": "RAPTURE_AMOUNT",
+      "format": "Bonus amount added to Rapture effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "569": {
+      "name": "EBULLIENCE_AMOUNT",
+      "format": "Bonus amount added to Ebullience effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "579": {
+      "name": "MOD_579",
+      "format": "\"Mod 579\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "580": {
+      "name": "MOD_580",
+      "format": "\"Mod 580\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "581": {
+      "name": "MOD_581",
+      "format": "\"Mod 581\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "582": {
+      "name": "MOD_582",
+      "format": "\"Mod 582\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "595": {
+      "name": "MOD_595",
+      "format": "\"Mod 595\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "596": {
+      "name": "MOD_596",
+      "format": "\"Mod 596\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "597": {
+      "name": "MOD_597",
+      "format": "\"Mod 597\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "598": {
+      "name": "MOD_598",
+      "format": "\"Mod 598\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "599": {
+      "name": "MOD_599",
+      "format": "\"Mod 599\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "613": {
+      "name": "MOD_613",
+      "format": "\"Mod 613\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "614": {
+      "name": "MOD_614",
+      "format": "\"Mod 614\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "615": {
+      "name": "MOD_615",
+      "format": "\"Mod 615\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "616": {
+      "name": "MOD_616",
+      "format": "\"Mod 616\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "626": {
+      "name": "MOD_626",
+      "format": "\"Mod 626\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "627": {
+      "name": "MOD_627",
+      "format": "\"Mod 627\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "642": {
+      "name": "MOD_642",
+      "format": "\"Mod 642\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "643": {
+      "name": "MOD_643",
+      "format": "\"Mod 643\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "644": {
+      "name": "MOD_644",
+      "format": "\"Mod 644\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "658": {
+      "name": "MOD_658",
+      "format": "\"Mod 658\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "659": {
+      "name": "MOD_659",
+      "format": "\"Mod 659\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "660": {
+      "name": "MOD_660",
+      "format": "\"Mod 660\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "674": {
+      "name": "MOD_674",
+      "format": "\"Mod 674\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "675": {
+      "name": "MOD_675",
+      "format": "\"Mod 675\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "676": {
+      "name": "MOD_676",
+      "format": "\"Mod 676\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "690": {
+      "name": "MOD_690",
+      "format": "\"Mod 690\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "691": {
+      "name": "MOD_691",
+      "format": "\"Mod 691\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "692": {
+      "name": "MOD_692",
+      "format": "\"Mod 692\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "706": {
+      "name": "MOD_706",
+      "format": "\"Mod 706\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "707": {
+      "name": "MOD_707",
+      "format": "\"Mod 707\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "708": {
+      "name": "MOD_708",
+      "format": "\"Mod 708\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "722": {
+      "name": "MOD_722",
+      "format": "\"Mod 722\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "723": {
+      "name": "MOD_723",
+      "format": "\"Mod 723\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "724": {
+      "name": "MOD_724",
+      "format": "\"Mod 724\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "739": {
+      "name": "MOD_739",
+      "format": "\"Mod 739\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "740": {
+      "name": "MOD_740",
+      "format": "\"Mod 740\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "741": {
+      "name": "MOD_741",
+      "format": "\"Mod 741\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "754": {
+      "name": "MOD_754",
+      "format": "\"Mod 754\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "755": {
+      "name": "MOD_755",
+      "format": "\"Mod 755\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "756": {
+      "name": "MOD_756",
+      "format": "\"Mod 756\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "757": {
+      "name": "MOD_757",
+      "format": "\"Mod 757\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "758": {
+      "name": "MOD_758",
+      "format": "\"Mod 758\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "769": {
+      "name": "MOD_769",
+      "format": "\"Mod 769\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "770": {
+      "name": "MOD_770",
+      "format": "\"Mod 770\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "786": {
+      "name": "MOD_786",
+      "format": "\"Mod 786\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "787": {
+      "name": "MOD_787",
+      "format": "\"Mod 787\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "788": {
+      "name": "MOD_788",
+      "format": "\"Mod 788\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "826": {
+      "name": "BOUNTY_SHOT_TH_BONUS",
+      "format": "Boosts base TH level of bounty shot+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "827": {
+      "name": "BARSPELL_MDEF_BONUS",
+      "format": "\"Barspell Mdef Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "828": {
+      "name": "FORCE_JUMP_CRIT",
+      "format": "Force critical hit for all jumps+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "829": {
+      "name": "WYVERN_EFFECTIVE_BREATH",
+      "format": "\"Wyvern Effective Breath\"+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "830": {
+      "name": "SNEAK_ATK_DEX",
+      "format": "% DEX boost to Sneak Attack+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "831": {
+      "name": "DMGMAGIC_II",
+      "format": "Magic Damage Taken II %+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "832": {
+      "name": "AQUAVEIL_COUNT",
+      "format": "\"Aquaveil Count\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "833": {
+      "name": "MOD_833",
+      "format": "\"Mod 833\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "834": {
+      "name": "QUICK_DRAW_DMG_PERCENT",
+      "format": "Percentage increase to QD damage+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "835": {
+      "name": "MUG_EFFECT",
+      "format": "Mug effect as multiplier+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "836": {
+      "name": "REVERSE_FLOURISH_EFFECT",
+      "format": "\"Reverse Flourish Effect\"+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "837": {
+      "name": "SENTINEL_EFFECT",
+      "format": "Sentinel effect in percents+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "838": {
+      "name": "REGEN_MULTIPLIER",
+      "format": "Multiplier to base regen rate+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "839": {
+      "name": "THIRD_EYE_RETENTION_RATE",
+      "format": "\"Third Eye Retention Rate\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "840": {
+      "name": "ALL_WSDMG_ALL_HITS",
+      "format": "Generic (all Weaponskills) damage, on all hits.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "841": {
+      "name": "ALL_WSDMG_FIRST_HIT",
+      "format": "\"All Wsdmg First Hit\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "851": {
+      "name": "SYNTH_SUCCESS_RATE",
+      "format": "\"Synth Success Rate\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "852": {
+      "name": "SYNTH_SKILL_GAIN",
+      "format": "Synthesis skill gain rate+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "853": {
+      "name": "REPAIR_EFFECT",
+      "format": "Removes # of status effects from the Automaton+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "854": {
+      "name": "REPAIR_POTENCY",
+      "format": "\"Repair Potency\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "857": {
+      "name": "HOLY_CIRCLE_DURATION",
+      "format": "Holy Circle extended duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "858": {
+      "name": "ARCANE_CIRCLE_DURATION",
+      "format": "Arcane Circle extended duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "859": {
+      "name": "ANCIENT_CIRCLE_DURATION",
+      "format": "Ancient Circle extended duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "860": {
+      "name": "CURE2MP_PERCENT",
+      "format": "Converts % of \"Cure\" amount to MP+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "861": {
+      "name": "SYNTH_MATERIAL_LOSS",
+      "format": "Material loss rate (percent) for all synths.+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "862": {
+      "name": "SYNTH_HQ_RATE",
+      "format": "High-{value}quality success rate",
+      "category": "synth",
+      "type": "flat"
+    },
+    "874": {
+      "name": "ROLL_ALLIES",
+      "format": "Tracks totals+{value}",
+      "category": "roll",
+      "type": "flat"
+    },
+    "881": {
+      "name": "PHANTOM_ROLL",
+      "format": "Phantom Roll+{value} Effect from SOA Rings.",
+      "category": "roll",
+      "type": "flat"
+    },
+    "882": {
+      "name": "PHANTOM_DURATION",
+      "format": "Phantom Roll Duration +{value}.",
+      "category": "roll",
+      "type": "flat"
+    },
+    "884": {
+      "name": "ACC_COLLAB_EFFECT",
+      "format": "\"Acc Collab Effect\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "885": {
+      "name": "HIDE_DURATION",
+      "format": "Hide duration increase+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "890": {
+      "name": "ENH_MAGIC_DURATION",
+      "format": "Enhancing Magic Duration increase %+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "891": {
+      "name": "ENHANCES_COURSERS_ROLL",
+      "format": "Courser's Roll Bonus % chance+{value}",
+      "category": "roll",
+      "type": "flat"
+    },
+    "892": {
+      "name": "ENHANCES_CASTERS_ROLL",
+      "format": "Caster's Roll Bonus % chance+{value}",
+      "category": "roll",
+      "type": "flat"
+    },
+    "893": {
+      "name": "ENHANCES_BLITZERS_ROLL",
+      "format": "Blitzer's Roll Bonus % chance+{value}",
+      "category": "roll",
+      "type": "flat"
+    },
+    "894": {
+      "name": "ENHANCES_ALLIES_ROLL",
+      "format": "Allies' Roll Bonus % chance+{value}",
+      "category": "roll",
+      "type": "flat"
+    },
+    "895": {
+      "name": "ENHANCES_TACTICIANS_ROLL",
+      "format": "Tactician's Roll Bonus % chance+{value}",
+      "category": "roll",
+      "type": "flat"
+    },
+    "896": {
+      "name": "DESPOIL",
+      "format": "Increases THF Despoil chance+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "897": {
+      "name": "GILFINDER",
+      "format": "Gilfinder, duh+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "899": {
+      "name": "TACTICAL_GUARD",
+      "format": "Tp increase when guarding+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "900": {
+      "name": "UTSUSEMI_BONUS",
+      "format": "Extra shadows from gear+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "901": {
+      "name": "ELEMENTAL_CELERITY",
+      "format": "Quickens Elemental Magic Casting+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "902": {
+      "name": "OCCULT_ACUMEN",
+      "format": "\"Occult Acumen\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "903": {
+      "name": "FENCER_TP_BONUS",
+      "format": "TP Bonus to weapon skills from Fencer Trait+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "904": {
+      "name": "FENCER_CRITHITRATE",
+      "format": "Increased Crit chance from Fencer Trait+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "905": {
+      "name": "SHIELD_DEF_BONUS",
+      "format": "Shield Defense Bonus+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "907": {
+      "name": "STALWART_SOUL",
+      "format": "Reduces damage taken from Souleater+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "909": {
+      "name": "QUICK_MAGIC",
+      "format": "Percent chance spells cast instantly+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "910": {
+      "name": "DIVINE_BENISON",
+      "format": "\"Divine Benison\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "911": {
+      "name": "DAKEN",
+      "format": "chance to throw a shuriken without consuming it+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "912": {
+      "name": "AUGMENTS_CONSPIRATOR",
+      "format": "\"Augments Conspirator\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "913": {
+      "name": "BLOOD_BOON",
+      "format": "\"Blood Boon\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "915": {
+      "name": "CAPACITY_BONUS",
+      "format": "Capacity point bonus granted+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "944": {
+      "name": "CONSERVE_TP",
+      "format": "\"Conserve Tp\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "945": {
+      "name": "BLUE_LEARN_CHANCE",
+      "format": "Additional chance to learn blue magic+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "946": {
+      "name": "SNEAK_DURATION",
+      "format": "Additional duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "947": {
+      "name": "INVISIBLE_DURATION",
+      "format": "Additional duration in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "948": {
+      "name": "BERSERK_POTENCY",
+      "format": "Augments \"Berserk\"/Enhances \"Berserk\" effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "949": {
+      "name": "WS_NO_DEPLETE",
+      "format": "% chance a Weaponskill depletes no TP.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "950": {
+      "name": "ITEM_ADDEFFECT_ELEMENT",
+      "format": "\"Item Addeffect Element\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "951": {
+      "name": "ITEM_ADDEFFECT_STATUS",
+      "format": "\"Item Addeffect Status\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "952": {
+      "name": "ITEM_ADDEFFECT_POWER",
+      "format": "\"Item Addeffect Power\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "953": {
+      "name": "ITEM_ADDEFFECT_DURATION",
+      "format": "\"Item Addeffect Duration\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "954": {
+      "name": "BERSERK_DURATION",
+      "format": "Berserk Duration+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "955": {
+      "name": "AGGRESSOR_DURATION",
+      "format": "Aggressor Duration+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "956": {
+      "name": "DEFENDER_DURATION",
+      "format": "Defender Duration+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "957": {
+      "name": "WS_DEX_BONUS",
+      "format": "% bonus to dex_wsc.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "958": {
+      "name": "STATUSRES",
+      "format": "\"Resistance to All Status Ailments\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "960": {
+      "name": "INDI_DURATION",
+      "format": "\"Indi Duration\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "961": {
+      "name": "GEOMANCY_BONUS",
+      "format": "Used to increase potency of \"Geomancy +{value}\" items",
+      "category": "other",
+      "type": "flat"
+    },
+    "963": {
+      "name": "INQUARTATA",
+      "format": "Increases parry rate by a flat %.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "965": {
+      "name": "COVER_TO_MP",
+      "format": "\"Cover To Mp\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "966": {
+      "name": "COVER_MAGIC_AND_RANGED",
+      "format": "\"Cover Magic And Ranged\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "967": {
+      "name": "COVER_DURATION",
+      "format": "Increases Cover Duration+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "973": {
+      "name": "SUBTLE_BLOW_II",
+      "format": "Subtle Blow II Effect (Cap 50%) Total Effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "974": {
+      "name": "WYVERN_SUBJOB_TRAITS",
+      "format": "Adds subjob traits to wyvern on spawn+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "976": {
+      "name": "GUARD_PERCENT",
+      "format": "Guard Percent+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "977": {
+      "name": "ENHANCES_PROT_SHELL_RCVD",
+      "format": "Enhances Protect and Shell Effects Received+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "980": {
+      "name": "WS_STR_BONUS",
+      "format": "% bonus to str_wsc.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "982": {
+      "name": "WS_AGI_BONUS",
+      "format": "% bonus to agi_wsc.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "983": {
+      "name": "WS_INT_BONUS",
+      "format": "% bonus to int_wsc.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "985": {
+      "name": "WS_CHR_BONUS",
+      "format": "% bonus to chr_wsc.+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "986": {
+      "name": "WYVERN_BREATH_MACC",
+      "format": "\"Wyvern Breath Macc\"+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "988": {
+      "name": "MAX_FINISHING_MOVE_BONUS",
+      "format": "\"Max Finishing Move Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "990": {
+      "name": "PET_ATK_DEF",
+      "format": "\"Pet Atk Def\"+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "995": {
+      "name": "PET_TP_BONUS",
+      "format": "Increases pet TP bonus+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "998": {
+      "name": "DREAD_SPIKES_EFFECT",
+      "format": "\"Dread Spikes Effect\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1004": {
+      "name": "ENHANCES_BATTUTA",
+      "format": "\"Enhances Battuta\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1006": {
+      "name": "ENHANCES_SLEIGHT_OF_SWORD",
+      "format": "\"Enhances Sleight Of Sword\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1008": {
+      "name": "SWORDPLAY",
+      "format": "Adds bonus starting ticks to Swordplay+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1009": {
+      "name": "LIEMENT",
+      "format": "Adds bonus duration as +{value}N seconds",
+      "category": "other",
+      "type": "flat"
+    },
+    "1010": {
+      "name": "VALIANCE_VALLATION_DURATION",
+      "format": "Adds bonus duration as +{value}N seconds",
+      "category": "other",
+      "type": "flat"
+    },
+    "1011": {
+      "name": "PFLUG",
+      "format": "Adds flat additional all-{value}resist rate in +{value}N%",
+      "category": "other",
+      "type": "flat"
+    },
+    "1012": {
+      "name": "VIVACIOUS_PULSE_POTENCY",
+      "format": "\"Vivacious Pulse Potency\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1013": {
+      "name": "AUGMENTS_VIVACIOUS_PULSE",
+      "format": "Adds random erase/-{value}na to Vivacious Pulse",
+      "category": "other",
+      "type": "flat"
+    },
+    "1018": {
+      "name": "GAMBIT_DURATION",
+      "format": "Adds bonus duration as +{value}N seconds",
+      "category": "other",
+      "type": "flat"
+    },
+    "1020": {
+      "name": "LIEMENT_EXTENDS_TO_AREA",
+      "format": "\"Liement Extends To Area\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1025": {
+      "name": "FULL_CIRCLE",
+      "format": "\"Full Circle\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1026": {
+      "name": "CHAKRA_MULT",
+      "format": "Chakra multiplier increase+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1027": {
+      "name": "CHAKRA_REMOVAL",
+      "format": "Extra statuses removed by Chakra+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1029": {
+      "name": "LIFE_CYCLE_EFFECT",
+      "format": "\"Life Cycle Effect\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1038": {
+      "name": "DOUBLE_ATTACK_DMG",
+      "format": "\"Double Attack Dmg\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1039": {
+      "name": "TRIPLE_ATTACK_DMG",
+      "format": "\"Triple Attack Dmg\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1040": {
+      "name": "AVATAR_LVL_BONUS",
+      "format": "Avatar: Lv.+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "1041": {
+      "name": "CARBUNCLE_LVL_BONUS",
+      "format": "Carbuncle: Lv.+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "1042": {
+      "name": "CAIT_SITH_LVL_BONUS",
+      "format": "Cait Sith: Lv.+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "1043": {
+      "name": "WYVERN_LVL_BONUS",
+      "format": "Wyvern: Lv.+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "1044": {
+      "name": "AUTOMATON_LVL_BONUS",
+      "format": "Automaton: Lv.",
+      "category": "pet",
+      "type": "flat"
+    },
+    "1045": {
+      "name": "ENHANCES_RESTRAINT",
+      "format": "Enhances \"Restraint\" effect/\"Restraint\" +{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1046": {
+      "name": "ENHANCES_BLOOD_RAGE",
+      "format": "\"Enhances Blood Rage\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1047": {
+      "name": "COUNTER_DAMAGE",
+      "format": "Increases Damage from Counter Attacks+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1053": {
+      "name": "TRUE_SHOT_EFFECT",
+      "format": "TODO: True Shot Ranged Damage increase",
+      "category": "other",
+      "type": "flat"
+    },
+    "1062": {
+      "name": "ENHANCES_DIVINE_EMBLEM",
+      "format": "Enhances \"Divine Emblem\" effect/\"Divine Emblem\" +{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1067": {
+      "name": "REPRISAL_BLOCK_BONUS",
+      "format": "\"Reprisal Block Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1068": {
+      "name": "REPRISAL_SPIKES_BONUS",
+      "format": "Increases Reprisal spikes damage by percentage+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1069": {
+      "name": "ARCANE_CIRCLE_POTENCY",
+      "format": "Increases the potency of the Arcane Circle effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1070": {
+      "name": "ENHANCES_BLOOD_WEAPON",
+      "format": "Enhances \"Blood Weapon\" effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1071": {
+      "name": "DARK_MAGIC_CAST",
+      "format": "Reduces Dark Magic Casting Time by percentage+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "1072": {
+      "name": "DARK_MAGIC_DURATION",
+      "format": "\"Dark Magic Duration\"+{value}",
+      "category": "elemental",
+      "type": "flat"
+    },
+    "1074": {
+      "name": "DIG_BYPASS_FATIGUE",
+      "format": "\"Dig Bypass Fatigue\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1075": {
+      "name": "BREATH_DMG_DEALT",
+      "format": "Breath damage dealt+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1077": {
+      "name": "STEP_TP_CONSUMED",
+      "format": "\"Step Tp Consumed\"+{value}",
+      "category": "waltz",
+      "type": "flat"
+    },
+    "1078": {
+      "name": "SUMMONING_MAGIC_CAST",
+      "format": "Summoning magic casting time reduction in seconds+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1079": {
+      "name": "SPIKES_DMG_BONUS",
+      "format": "\"Spikes Dmg Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1081": {
+      "name": "DAMAGE_LIMITP",
+      "format": "\"Damage Limitp\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1090": {
+      "name": "SENGIKORI_BONUS",
+      "format": "additive % increase to Sengikori+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1097": {
+      "name": "AUGMENTS_IMPETUS",
+      "format": "\"Augments Impetus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1098": {
+      "name": "SYNTH_SUCCESS_RATE_WOODWORKING",
+      "format": "\"Synth Success Rate Woodworking\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1099": {
+      "name": "SYNTH_SUCCESS_RATE_SMITHING",
+      "format": "\"Synth Success Rate Smithing\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1100": {
+      "name": "SYNTH_SUCCESS_RATE_GOLDSMITHING",
+      "format": "\"Synth Success Rate Goldsmithing\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1101": {
+      "name": "SYNTH_SUCCESS_RATE_CLOTHCRAFT",
+      "format": "\"Synth Success Rate Clothcraft\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1102": {
+      "name": "SYNTH_SUCCESS_RATE_LEATHERCRAFT",
+      "format": "\"Synth Success Rate Leathercraft\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1103": {
+      "name": "SYNTH_SUCCESS_RATE_BONECRAFT",
+      "format": "\"Synth Success Rate Bonecraft\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1104": {
+      "name": "SYNTH_SUCCESS_RATE_ALCHEMY",
+      "format": "\"Synth Success Rate Alchemy\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1105": {
+      "name": "SYNTH_SUCCESS_RATE_COOKING",
+      "format": "\"Synth Success Rate Cooking\"+{value}",
+      "category": "synth",
+      "type": "flat"
+    },
+    "1132": {
+      "name": "CARDINAL_CHANT_BONUS",
+      "format": "Geomancy galero+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1133": {
+      "name": "DIG_RARE_ABILITY",
+      "format": "\"Dig Rare Ability\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1136": {
+      "name": "ENHANCES_ABSORB_EFFECTS",
+      "format": "Absorb Spell duration +{value}x seconds",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "1137": {
+      "name": "AUGMENTS_ABSORB",
+      "format": "Non-{value}Liberator Absorb Spell potency +{value}x%",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "1139": {
+      "name": "ENHANCES_BURST_AFFINITY",
+      "format": "\"Enhances Burst Affinity\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1140": {
+      "name": "ENHANCES_CHAIN_AFFINITY",
+      "format": "\"Enhances Chain Affinity\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1141": {
+      "name": "HOLY_CIRCLE_POTENCY",
+      "format": "Increases the potency of the Holy Circle effect+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1142": {
+      "name": "ANCIENT_CIRCLE_POTENCY",
+      "format": "\"Ancient Circle Potency\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1143": {
+      "name": "WARDING_CIRCLE_POTENCY",
+      "format": "\"Warding Circle Potency\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1144": {
+      "name": "ANY_FTP_BONUS",
+      "format": "\"Any Ftp Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1145": {
+      "name": "DAY_FTP_BONUS",
+      "format": "\"Day Ftp Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1146": {
+      "name": "ELEMENTAL_MAGIC_RECAST",
+      "format": "Recast time for elemental magic spells+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1147": {
+      "name": "BLUE_MAGIC_RECAST",
+      "format": "Recast time for blue magic spells+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1148": {
+      "name": "ENHANCES_FUTAE",
+      "format": "\"Enhances Futae\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1149": {
+      "name": "ENHANCES_ELEMENTAL_SEAL",
+      "format": "Bonus magic damage when using Elemental Seal+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1150": {
+      "name": "ELEMENTAL_DEBUFF_EFFECT",
+      "format": "\"Elemental Debuff Effect\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1151": {
+      "name": "ENF_MAG_DURATION",
+      "format": "Increases enfeebling magic duration %+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1152": {
+      "name": "REWARD_RECAST",
+      "format": "TODO: Reward recast time reduction",
+      "category": "other",
+      "type": "flat"
+    },
+    "1153": {
+      "name": "AUGMENTS_ABSORB_TP",
+      "format": "\"Augments Absorb Tp\"+{value}",
+      "category": "absorb",
+      "type": "flat"
+    },
+    "1154": {
+      "name": "AVATARS_FAVOR_ENHANCE",
+      "format": "Enhances Avatars Favor Effect by 1 tier per point+{value}",
+      "category": "pet",
+      "type": "flat"
+    },
+    "1156": {
+      "name": "FORCE_DW_BONUS_PENALTY",
+      "format": "\"Force Dw Bonus Penalty\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1157": {
+      "name": "ENHANCES_SPUR",
+      "format": "\"Enhances Spur\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1168": {
+      "name": "MAGIC_CRITHITRATE_II",
+      "format": "\"Magic Crithitrate Ii\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1169": {
+      "name": "FAMILIAR_BONUS",
+      "format": "\"Familiar Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1170": {
+      "name": "HALF_PERPETUATION_DAY",
+      "format": "\"Half Perpetuation Day\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1171": {
+      "name": "HALF_PERPETUATION_WEATHER",
+      "format": "\"Half Perpetuation Weather\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1172": {
+      "name": "KNOCKBACK_REDUCTION",
+      "format": "\"Knockback Reduction\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1180": {
+      "name": "ITEM_ADDEFFECT_PRIORITY",
+      "format": "\"Item Addeffect Priority\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1181": {
+      "name": "ITEM_ADDEFFECT_SCRIPTED",
+      "format": "\"Item Addeffect Scripted\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "1182": {
+      "name": "PHALANX_RECEIVED",
+      "format": "Phalanx +{value}N when Phalanx is received",
+      "category": "other",
+      "type": "flat"
+    },
+    "1787": {
+      "name": "DAY_WEATHER_PROC_BONUS",
+      "format": "\"Day Weather Proc Bonus\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "2000": {
+      "name": "MOD_2000",
+      "format": "\"Mod 2000\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "2004": {
+      "name": "MOD_2004",
+      "format": "\"Mod 2004\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "2005": {
+      "name": "MOD_2005",
+      "format": "\"Mod 2005\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "2006": {
+      "name": "MOD_2006",
+      "format": "\"Mod 2006\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "2007": {
+      "name": "MOD_2007",
+      "format": "\"Mod 2007\"+{value}",
+      "category": "other",
+      "type": "flat"
+    },
+    "2008": {
+      "name": "MOD_2008",
+      "format": "\"Mod 2008\"+{value}",
+      "category": "other",
+      "type": "flat"
+    }
+  },
+  "categories": {
+    "defense": {
+      "label": "Defense",
+      "order": 1
+    },
+    "resource": {
+      "label": "HP/MP",
+      "order": 2
+    },
+    "attribute": {
+      "label": "Attributes",
+      "order": 3
+    },
+    "offense": {
+      "label": "Offense",
+      "order": 4
+    },
+    "magic": {
+      "label": "Magic",
+      "order": 5
+    },
+    "haste": {
+      "label": "Haste/Speed",
+      "order": 6
+    },
+    "multiattack": {
+      "label": "Multi-Attack",
+      "order": 7
+    },
+    "tp": {
+      "label": "TP",
+      "order": 8
+    },
+    "crit": {
+      "label": "Critical",
+      "order": 9
+    },
+    "recovery": {
+      "label": "Recovery",
+      "order": 10
+    },
+    "healing": {
+      "label": "Healing",
+      "order": 11
+    },
+    "casting": {
+      "label": "Casting",
+      "order": 12
+    },
+    "enmity": {
+      "label": "Enmity",
+      "order": 13
+    },
+    "ranged": {
+      "label": "Ranged",
+      "order": 14
+    },
+    "skill": {
+      "label": "Skills",
+      "order": 15
+    },
+    "combat": {
+      "label": "Combat",
+      "order": 16
+    },
+    "resist": {
+      "label": "Resistance",
+      "order": 17
+    },
+    "killer": {
+      "label": "Killer Effects",
+      "order": 18
+    },
+    "elemental": {
+      "label": "Elemental",
+      "order": 19
+    },
+    "pet": {
+      "label": "Pet",
+      "order": 20
+    },
+    "song": {
+      "label": "Songs",
+      "order": 21
+    },
+    "roll": {
+      "label": "Corsair Rolls",
+      "order": 22
+    },
+    "waltz": {
+      "label": "Dancer",
+      "order": 23
+    },
+    "synth": {
+      "label": "Synthesis",
+      "order": 24
+    },
+    "absorb": {
+      "label": "Absorb",
+      "order": 25
+    },
+    "misc": {
+      "label": "Miscellaneous",
+      "order": 26
+    },
+    "other": {
+      "label": "Other",
+      "order": 99
+    }
+  },
+  "custom_compounds": {},
+  "value_ranges": {
+    "stat": {
+      "min": -50,
+      "max": 50,
+      "common": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ]
+    },
+    "percent": {
+      "min": -50,
+      "max": 50,
+      "common": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        10
+      ]
+    },
+    "flat": {
+      "min": -100,
+      "max": 100,
+      "common": [
+        5,
+        10,
+        15,
+        20,
+        25
+      ]
+    },
+    "haste_internal": {
+      "min": 100,
+      "max": 1000,
+      "common": [
+        300,
+        400,
+        500
+      ],
+      "display_divisor": 100
+    }
+  }
+}

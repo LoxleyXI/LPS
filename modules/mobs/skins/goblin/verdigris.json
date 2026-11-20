@@ -1,0 +1,59 @@
+{
+  "base": "original",
+  "shade": 0.6,
+  "occlusion": 0.5,
+  "curvature": 0.45,
+  "masks": {
+    "metal": {
+      "sat_max": 0.3,
+      "val_min": 0.1,
+      "exclude": [
+        "ears",
+        "backpack"
+      ],
+      "include": [
+        "helmet"
+      ]
+    }
+  },
+  "layers": [
+    {
+      "scales": {
+        "size": 0.02,
+        "seed": 2
+      },
+      "tint": "#3f5a48",
+      "contrast": 0.08,
+      "gloss": 0.35,
+      "power": 10,
+      "mask": "metal"
+    },
+    {
+      "color": "#141e18",
+      "opacity": 0.85,
+      "mask": "metal",
+      "edge": [
+        0.0,
+        0.004
+      ]
+    },
+    {
+      "color": "#9cc0a4",
+      "opacity": 0.5,
+      "mask": "metal",
+      "edge": [
+        0.005,
+        0.009
+      ]
+    },
+    {
+      "color": "#c8d8c0",
+      "mask": "metal",
+      "rivets": {
+        "inset": 0.014,
+        "spacing": 0.07,
+        "radius": 0.012
+      }
+    }
+  ]
+}

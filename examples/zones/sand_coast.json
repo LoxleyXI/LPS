@@ -1,0 +1,17 @@
+{
+  "zones": [
+    {
+      "name": "Sand Coast",
+      "clone": 103,
+      "zone_id": 411,
+      "outdoor": {
+        "kit": "valkurm_dunes",
+        "seed": 411,
+        "size": [20, 16],
+        "basins": 5,
+        "draw": 400,
+        "overlay": "ffxi-hd"
+      }
+    }
+  ]
+}

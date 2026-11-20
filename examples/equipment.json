@@ -1,0 +1,31 @@
+{
+  "custom": {
+    "item": {
+      "items": {
+        "22503": {
+          "name": "Sapphire Ridill",
+          "description": "DMG:62 Delay:190 STR+5\\nAccuracy+10 Attack+8",
+          "template": 16555,
+          "hue_shift": 120,
+          "fields": { "dmg": 62, "delay": 190 },
+          "model": {
+            "source_model_id": 259,
+            "color_ranges": [
+              { "hue_min": 200, "hue_max": 270, "hue": 120 }
+            ]
+          }
+        },
+        "22504": {
+          "name": "Verdant Club",
+          "description": "DMG:45 Delay:264",
+          "template": 17040,
+          "model": {
+            "source_model_id": 100,
+            "tint": "#20c020aa",
+            "blend_mode": "multiply"
+          }
+        }
+      }
+    }
+  }
+}

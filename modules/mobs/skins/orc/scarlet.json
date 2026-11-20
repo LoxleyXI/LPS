@@ -1,0 +1,15 @@
+{
+  "base": "original",
+  "shade": 0.5,
+  "occlusion": 0.45,
+  "curvature": 0.35,
+  "masks": {
+    "cloth": { "hue": [25, 70], "sat_min": 0.3, "sat_max": 1.0, "val_min": 0.2 },
+    "metal": { "sat_max": 0.14, "val_min": 0.45 }
+  },
+  "layers": [
+    { "colorize": "#c01818", "gain": 1.1, "mask": "cloth" },
+    { "colorize": "#4a4248", "gain": 1.0, "mask": "metal", "gloss": 0.3, "power": 10 },
+    { "color": "#1a0c0c", "opacity": 0.8, "mask": "cloth", "edge": [0.0, 0.003] }
+  ]
+}

@@ -1,0 +1,27 @@
+# Icons (user-provided at runtime, borders are generated programmatically)
+icons/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Test configs
+test_*.json
+!examples/test_items.json
+
+# Private modules (server-specific, not shipped)
+modules.local/
+
+# Studio game data + generated indexes (user-specific)
+studio/game
+studio/items_index.json
+studio/item_basic.sql
+studio/weapons.json
+
+# Old/generated files
+dist/
+examples/*.sql
+!examples/example.sql
+examples/custom_*.json
+examples/test_*.json

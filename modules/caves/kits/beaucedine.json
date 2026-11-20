@@ -1,0 +1,22 @@
+{
+  "name": "Beaucedine Glacier",
+  "from": 111,
+  "surfaces": {
+    "floor":   {"texture": "gar_frs1", "repeat": 40, "note": "snowfield; has rocks in it, so it reads as a grid under 30ish: keep the repeat large and the overlay on"},
+    "wall":    {"texture": "gar_wll1", "repeat": 24, "note": "cliff face"},
+    "ceiling": {"texture": "gar_wll1", "repeat": 24},
+    "shore":   {"texture": "gar_frs1", "repeat": 16, "note": "floor near a frozen pit"},
+    "bed":     {"texture": "mzsmk", "note": "floor of a frozen pit (not under water: beds under water keep the floor texture)"},
+    "foot":    {"texture": "gar_ykk1", "height": 7.7, "repeat": 16, "u_max": 0.86, "v": [0.5, 1.0],
+                "note": "cliff-foot atlas: v 1 is snow at the ground, rock towards 0.5, snow again towards 0; u tiles; the last 1/8 of u is a separate brighter strip, so stay under 0.86. Measured from 7,903 of Beaucedine's own triangles"},
+    "overlay": {"texture": "mzsmk", "alpha": 100, "scale": 20, "patch": 18, "note": "noise-faded snow pass that breaks up the floor repeat"},
+    "water":   {"texture": "nagare01", "alpha": 110, "note": "borrowed from Dragon's Aery's look; static here (Aery animates its water with effect generators)"}
+  },
+  "props": {
+    "rock":    {"models": ["gar_iwa01_m", "gar_iwa02_m", "gar_iwa03_m"], "where": "edge", "per_lobe": [1, 2], "scale": [0.8, 1.2], "solid": true, "sink": 0.05},
+    "crystal": {"models": ["gar_c03_m", "gar_c02_m", "gar_c01_m"], "where": "floor", "per_lobe": [2, 4], "scale": [3, 6], "solid": true, "sink": 0.1},
+    "log":     {"models": ["gar_w01_m", "gar_w02_m"], "where": "floor", "per_lobe": [0, 1], "scale": [0.9, 1.2], "solid": true, "sink": 0.35, "note": "snowy roots: made to be half buried"},
+    "sapling": {"models": ["gar_w03_m", "gar_w05_m", "gar_w08_m", "gar_w09_m", "_gar_w06_h"], "where": "edge", "per_lobe": [2, 4], "scale": [1.0, 1.6]},
+    "flower":  {"models": ["_gar_w10_h", "_gar_w12_h"], "where": "floor", "per_lobe": [4, 8], "scale": [1.2, 2.2], "sink": 0.1}
+  }
+}

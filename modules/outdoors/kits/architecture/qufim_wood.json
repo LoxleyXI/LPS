@@ -1,0 +1,13 @@
+{
+  "name": "Qufim wood",
+  "from": 126,
+  "texture": "kuf_w01c",
+  "yalms": 8.0,
+  "regions": {
+    "board": [0.5, 0.0, 0.5625, 1.0],
+    "post": [0.25, 0.0, 0.375, 1.0],
+    "end": [0.125, 0.25, 0.25, 0.375]
+  },
+  "rock": {"texture": "quf_wll1", "region": [0.0, 0.0, 1.0, 1.0], "yalms": 6.0},
+  "notes": "kuf_w01c is Qufim's dead-tree bark atlas: its right half is grey vertical grain (boards, cut in narrow strips), the ring at (0.125, 0.25) is end grain (post tops). quf_wll1 is its dark cliff rock (the cribs)."
+}

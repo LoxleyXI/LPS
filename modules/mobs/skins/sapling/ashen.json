@@ -1,0 +1,15 @@
+{
+  "base": "original",
+  "shade": 0.5,
+  "occlusion": 0.45,
+  "curvature": 0.35,
+  "masks": {
+    "bark":   { "hue": [10, 55], "sat_min": 0.2, "sat_max": 1.0, "val_min": 0.1 },
+    "leaves": { "hue": [55, 160], "sat_min": 0.2, "sat_max": 1.0, "val_min": 0.1 }
+  },
+  "layers": [
+    { "colorize": "#9a948e", "gain": 0.95, "mask": "bark" },
+    { "colorize": "#b0281a", "gain": 1.1, "mask": "leaves" },
+    { "color": "#ff7a2a", "opacity": 0.6, "mask": "leaves", "edge": [0.0, 0.004] }
+  ]
+}

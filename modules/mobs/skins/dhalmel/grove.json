@@ -1,0 +1,155 @@
+{
+  "base": "original",
+  "shade": 0.75,
+  "occlusion": 0.6,
+  "curvature": 0.35,
+  "layers": [
+    {
+      "fur": {},
+      "tint": "#7d7a4a",
+      "contrast": 0.45,
+      "parts": [
+        "body",
+        "tail",
+        "hind legs",
+        "neck",
+        "front legs",
+        "other"
+      ]
+    },
+    {
+      "colorize": "#7d7a4a",
+      "gain": 1.0,
+      "opacity": 0.85,
+      "parts": [
+        "head"
+      ]
+    },
+    {
+      "color": "#6f8f3a",
+      "opacity": 0.25,
+      "parts": [
+        "head"
+      ],
+      "facing": "up",
+      "soft": [
+        0.3,
+        0.9
+      ]
+    },
+    {
+      "fur": {
+        "length": 0.03,
+        "stroke": 0.004,
+        "seed": 3
+      },
+      "tint": "#8a8656",
+      "contrast": 0.3,
+      "opacity": 0.5,
+      "parts": [
+        "body",
+        "tail",
+        "hind legs",
+        "neck",
+        "front legs",
+        "other"
+      ]
+    },
+    {
+      "scales": {
+        "size": 0.035,
+        "seed": 5
+      },
+      "tint": "#4a5a2c",
+      "contrast": 0.5,
+      "opacity": 0.55,
+      "facing": "up",
+      "soft": [
+        -0.2,
+        0.4
+      ],
+      "parts": [
+        "body",
+        "tail",
+        "hind legs",
+        "neck",
+        "front legs",
+        "other"
+      ]
+    },
+    {
+      "color": "#e2dcc0",
+      "opacity": 0.7,
+      "facing": "down",
+      "soft": [
+        0.0,
+        0.6
+      ],
+      "parts": [
+        "body",
+        "tail",
+        "hind legs",
+        "neck",
+        "front legs",
+        "other"
+      ]
+    },
+    {
+      "color": "#6f8f3a",
+      "opacity": 0.35,
+      "facing": "up",
+      "soft": [
+        0.3,
+        0.9
+      ],
+      "parts": [
+        "body",
+        "tail",
+        "hind legs",
+        "neck",
+        "front legs",
+        "other"
+      ]
+    },
+    {
+      "color": "#2c3618",
+      "opacity": 0.85,
+      "parts": [
+        "body",
+        "tail"
+      ],
+      "facing": "up",
+      "soft": [
+        -0.3,
+        0.2
+      ],
+      "stripes": {
+        "axis": "x",
+        "every": 0.22,
+        "width": 0.38,
+        "warp": 0.15,
+        "taper": true,
+        "seed": 4,
+        "rough": 0.1,
+        "soft": 0.1
+      }
+    },
+    {
+      "color": "#2c3618",
+      "opacity": 0.8,
+      "parts": [
+        "hind legs"
+      ],
+      "stripes": {
+        "axis": "y",
+        "every": 0.3,
+        "width": 0.3,
+        "warp": 0.1,
+        "seed": 6,
+        "rough": 0.1,
+        "soft": 0.1
+      }
+    }
+  ],
+  "_note": "the head keeps the dhalmel's own face, recoloured into the body's fur (its light and dark kept) so it doesn't look stuck on"
+}

@@ -1,0 +1,13 @@
+{
+  "clone": 445,
+  "texture": "tim     tori",
+  "parts": {
+    "body": {"islands": [13]},
+    "head": {"islands": [5]},
+    "beak": {"islands": [2, 6, 11]},
+    "thighs": {"islands": [10]},
+    "feet": {"islands": [3, 4, 7, 8]},
+    "wings": {"islands": [19]},
+    "plumes": {"islands": [1, 9, 12, 14, 15, 16, 17, 18]}
+  }
+}

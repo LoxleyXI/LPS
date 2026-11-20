@@ -1,0 +1,59 @@
+{
+  "zones": [
+    {
+      "name": "Ice Cave",
+      "clone": 154,
+      "zone_id": 410,
+      "hue": 160,
+      "saturation": -20,
+      "lightness": 15,
+      "tint": "#aaddff66",
+      "blend_mode": "screen",
+      "textures": {
+        "environment": {
+          "lightness": -20,
+          "fog_tint": "#c8dff0",
+          "fog_end": 120
+        }
+      },
+      "generate": {
+        "kit": "beaucedine",
+        "seed": 1336,
+        "rooms": 6,
+        "extent": 150,
+        "voxel": 3.0,
+        "noise": 4,
+        "draw": 300,
+        "water": {
+          "features": [
+            "lake",
+            "river",
+            "moat"
+          ]
+        },
+        "props": {
+          "rock": [
+            1,
+            2
+          ],
+          "crystal": [
+            2,
+            4
+          ],
+          "log": [
+            0,
+            1
+          ],
+          "sapling": [
+            2,
+            4
+          ],
+          "flower": [
+            4,
+            8
+          ]
+        }
+      }
+    }
+  ]
+}

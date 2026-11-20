@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Camp editor</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #16181c; color: #d8dce2; font: 13px system-ui, sans-serif; overflow: hidden; }
+  #ui { position: absolute; top: 10px; left: 10px; background: rgba(20, 22, 26, 0.9); padding: 10px 12px; border-radius: 6px; width: 270px; }
+  #ui h1 { font-size: 14px; margin: 0 0 8px; }
+  #ui label { display: block; margin: 5px 0; }
+  #ui select, #ui input[type=text] { width: 100%; box-sizing: border-box; background: #22252b; color: #d8dce2; border: 1px solid #3a3f47; padding: 3px; }
+  #ui button { margin: 6px 4px 0 0; background: #2d323a; color: #d8dce2; border: 1px solid #3a3f47; padding: 4px 8px; cursor: pointer; }
+  #ui button.main { background: #2f5a3a; border-color: #3f7a4e; }
+  #sel, #status { margin-top: 8px; color: #b8c0ca; white-space: pre-wrap; }
+  #err { color: #ff8a80; white-space: pre-wrap; margin-top: 6px; }
+  #help { position: absolute; bottom: 10px; left: 10px; background: rgba(20, 22, 26, 0.85); padding: 8px 10px; border-radius: 6px; color: #9aa3ad; line-height: 1.5; }
+  .tag { position: absolute; transform: translate(-50%, -130%); background: rgba(10, 12, 14, 0.75); color: #fff; padding: 1px 5px; border-radius: 3px; font-size: 11px; pointer-events: none; white-space: nowrap; }
+  .tag.selected { background: #b5651d; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+</script>
+</head>
+<body>
+<div id="ui">
+  <h1>Camp editor</h1>
+  <label>Zone file <input type="text" id="zone" value="" placeholder="zone file name"></label>
+  <label>Land <select id="land"></select></label>
+  <button id="load">Load</button>
+  <label>Add a building <select id="tpl"></select></label>
+  <button id="add">Add</button>
+  <div>
+    <button id="save" class="main">Save camp</button>
+    <button id="reset">Back to generated</button>
+  </div>
+  <div id="sel"></div>
+  <div id="status"></div>
+  <div id="err"></div>
+</div>
+<div id="help">
+  Click a building, the fire or a place to select it; drag it over the ground to move it.<br>
+  Q / E: turn the selected building (shift: finer). Delete: remove it.<br>
+  Red outline: a building on a road or touching another. Mouse: orbit (left on empty ground), pan (right), zoom (wheel).<br>
+  Save writes the camp into the zone file; rebuild the zone (build.py) to see it in game.
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const $ = id => document.getElementById(id);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x6f8fa8);
+const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.5, 4000);
+const controls = new OrbitControls(camera, renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x445533, 1.1));
+const sun = new THREE.DirectionalLight(0xffffff, 1.2); sun.position.set(80, 160, 60); scene.add(sun);
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+// ---- the source models, textured from the player's own files (as the workbench draws them) ----
+const texCache = {}, modelCache = {};
+function texture(zone, name) {
+  const key = zone + '/' + name;
+  if (!texCache[key]) {
+    const t = new THREE.TextureLoader().load(`/tex/${zone}/${name}.png`);
+    t.flipY = false; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace;
+    texCache[key] = t;
+  }
+  return texCache[key];
+}
+async function get(url, opts) {
+  const r = await fetch(url, opts);
+  const j = await r.json();
+  if (j.error) throw new Error(j.error + '\n' + (j.trace || ''));
+  return j;
+}
+function model(zone, short) {
+  const key = zone + '/' + short;
+  if (!modelCache[key]) modelCache[key] = get(`/api/model/${zone}/${short}`).catch(() => null);
+  return modelCache[key];
+}
+function meshOf(json) {
+  const g = new THREE.Group();
+  for (const p of json.parts) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(p.pos, 3));
+    geo.setAttribute('normal', new THREE.Float32BufferAttribute(p.nrm, 3));
+    geo.setAttribute('uv', new THREE.Float32BufferAttribute(p.uv, 2));
+    const col = new Float32Array(p.col.length * 3);
+    p.col.forEach((c, i) => { col[i * 3] = col[i * 3 + 1] = col[i * 3 + 2] = c; });
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    geo.setIndex(p.idx);
+    g.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: texture(p.zone, p.texture), vertexColors: true,
+                                                                alphaTest: 0.3, side: THREE.DoubleSide })));
+  }
+  return g;
+}
+
+// ---- state ----
+let D = null;                 // the land's data from the server
+let root = new THREE.Group(); scene.add(root);
+let terrain = null;
+const objects = [];           // { kind: 'house'|'fire'|'spot', index, obj, tag }
+let selected = null;
+const tagLayer = document.body;
+
+function heightAt(x, z) {
+  const t = D.terrain;
+  const fx = (x - t.x0) / t.step, fz = (z - t.z0) / t.step;
+  const i = Math.max(0, Math.min(t.nx - 2, Math.floor(fx))), j = Math.max(0, Math.min(t.nz - 2, Math.floor(fz)));
+  const u = Math.min(1, Math.max(0, fx - i)), v = Math.min(1, Math.max(0, fz - j));
+  const h = (a, b) => t.h[b * t.nx + a];
+  return (h(i, j) * (1 - u) + h(i + 1, j) * u) * (1 - v) + (h(i, j + 1) * (1 - u) + h(i + 1, j + 1) * u) * v;
+}
+const isRoad = (x, z) => D.roads.some(([i, j]) => Math.floor(x / D.tile) === i && Math.floor(z / D.tile) === j);
+
+// FFXI x, z are the page's x, z; heights are up (y). A placed piece turns by its yaw about y.
+function footprint(tpl, yaw, x, z) {
+  const [bx0, bz0, bx1, bz1] = tpl.box;
+  const c = Math.cos(yaw), s = Math.sin(yaw);
+  return [[bx0, bz0], [bx1, bz0], [bx1, bz1], [bx0, bz1]].map(([a, b]) => [x + c * a + s * b, z - s * a + c * b]);
+}
+function overlaps(a, b) {
+  for (const poly of [a, b]) for (let k = 0; k < 4; k++) {
+    const [ax, az] = poly[k], [bx, bz] = poly[(k + 1) % 4];
+    const nx = az - bz, nz = bx - ax;
+    const pa = a.map(p => p[0] * nx + p[1] * nz), pb = b.map(p => p[0] * nx + p[1] * nz);
+    if (Math.max(...pa) < Math.min(...pb) || Math.max(...pb) < Math.min(...pa)) return false;
+  }
+  return true;
+}
+const tplOf = h => D.templates.find(t => t.anchor === h.anchor && t.variant === h.variant) || D.templates.find(t => t.anchor === h.anchor);
+
+function makeTag(text) {
+  const el = document.createElement('div'); el.className = 'tag'; el.textContent = text; tagLayer.appendChild(el); return el;
+}
+
+async function houseObject(h) {
+  const tpl = tplOf(h);
+  const g = new THREE.Group();
+  for (const [short, dyaw, scale, off] of tpl.parts) {
+    const m = await model(tpl.zone, short);
+    if (!m) continue;
+    const p = meshOf(m);
+    p.rotation.y = dyaw; p.scale.set(scale[0], scale[1], scale[2]); p.position.set(off[0], -off[1], off[2]);
+    g.add(p);
+  }
+  const fp = new THREE.LineLoop(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0xffffff }));
+  g.userData.fp = fp; root.add(fp);
+  return g;
+}
+
+function placeHouse(o) {
+  const h = D.camp.houses[o.index], tpl = tplOf(h);
+  const pts = footprint(tpl, h.yaw, h.x, h.z);
+  // on the lowest ground under it, as the build lays it
+  let lo = Infinity, hi = -Infinity;
+  for (let a = 0; a <= 4; a++) for (let b = 0; b <= 4; b++) {
+    const x = pts[0][0] + (pts[1][0] - pts[0][0]) * a / 4 + (pts[3][0] - pts[0][0]) * b / 4;
+    const z = pts[0][1] + (pts[1][1] - pts[0][1]) * a / 4 + (pts[3][1] - pts[0][1]) * b / 4;
+    const y = heightAt(x, z); lo = Math.min(lo, y); hi = Math.max(hi, y);
+  }
+  o.obj.position.set(h.x, lo - tpl.sink, h.z);
+  o.obj.rotation.y = h.yaw;
+  const bad = pts.some(([x, z]) => isRoad(x, z)) || isRoad(h.x, h.z) ||
+              D.camp.houses.some((q, k) => k !== o.index && overlaps(pts, footprint(tplOf(q), q.yaw, q.x, q.z)));
+  const fp = o.obj.userData.fp;
+  fp.geometry.setFromPoints(pts.map(([x, z]) => new THREE.Vector3(x, heightAt(x, z) + 0.3, z)));
+  fp.material.color.set(bad ? 0xff3030 : (selected === o ? 0xffb030 : 0xffffff));
+  o.rise = hi - lo; o.bad = bad;
+}
+
+function placeMarker(o) {
+  const [x, z] = o.kind === 'fire' ? D.camp.fire : D.camp.spots[o.index];
+  o.obj.position.set(x, heightAt(x, z), z);
+}
+
+function refreshAll() {
+  for (const o of objects) (o.kind === 'house' ? placeHouse : placeMarker)(o);
+  showSelection();
+}
+
+async function load() {
+  $('err').textContent = '';
+  const t0 = Date.now();
+  const tick = setInterval(() => { $('status').textContent = `Generating the zone (a minute or more the first time)... ${Math.round((Date.now() - t0) / 1000)}s`; }, 500);
+  try {
+    D = await get(`/api/camp?zone=${encodeURIComponent($('zone').value)}&land=${$('land').value || 0}`);
+  } catch (e) { clearInterval(tick); $('err').textContent = String(e); $('status').textContent = ''; return; }
+  clearInterval(tick);
+  if (!$('land').options.length || $('land').options.length !== D.lands.length) {
+    $('land').innerHTML = D.lands.map((n, i) => `<option value="${i}">${n}</option>`).join('');
+    $('land').value = D.land;
+  }
+  $('tpl').innerHTML = D.templates.map((t, i) => `<option value="${i}">${t.anchor} #${t.variant}</option>`).join('');
+  // clear the old scene
+  for (const o of objects) o.tag && o.tag.remove();
+  objects.length = 0; selected = null;
+  scene.remove(root); root = new THREE.Group(); scene.add(root);
+  // the ground: a height grid, roads tinted
+  const t = D.terrain;
+  const geo = new THREE.PlaneGeometry((t.nx - 1) * t.step, (t.nz - 1) * t.step, t.nx - 1, t.nz - 1);
+  geo.rotateX(-Math.PI / 2);
+  const pos = geo.attributes.position, cols = new Float32Array(pos.count * 3);
+  const hs = t.h, hmin = Math.min(...hs), hmax = Math.max(...hs);
+  for (let k = 0; k < pos.count; k++) {
+    const i = k % t.nx, j = Math.floor(k / t.nx);
+    const x = t.x0 + i * t.step, z = t.z0 + j * t.step;   // PlaneGeometry rows run from -z to +z after the turn
+    pos.setXYZ(k, x, hs[j * t.nx + i], z);
+    const s = (hs[j * t.nx + i] - hmin) / Math.max(1, hmax - hmin);
+    let c = [0.30 + 0.25 * s, 0.42 + 0.25 * s, 0.24 + 0.15 * s];
+    if (isRoad(x, z)) c = [0.62, 0.52, 0.36];
+    cols.set(c, k * 3);
+  }
+  geo.setAttribute('color', new THREE.BufferAttribute(cols, 3));
+  geo.computeVertexNormals();
+  terrain = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ vertexColors: true }));
+  root.add(terrain);
+  // the site's edge
+  const [i0, j0, i1, j1] = D.site;
+  const edge = [[i0, j0], [i1, j0], [i1, j1], [i0, j1]].map(([i, j]) => new THREE.Vector3(i * D.tile, heightAt(i * D.tile, j * D.tile) + 0.5, j * D.tile));
+  root.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(edge), new THREE.LineDashedMaterial({ color: 0xffffaa })));
+  // the fire, the places, the buildings
+  const fire = new THREE.Mesh(new THREE.ConeGeometry(1.4, 3, 12), new THREE.MeshBasicMaterial({ color: 0xff7a1a }));
+  fire.geometry.translate(0, 1.5, 0); root.add(fire);
+  objects.push({ kind: 'fire', obj: fire, tag: makeTag('Campfire') });
+  D.camp.spots.forEach((s, k) => {
+    if (k >= D.places) return;                       // past the server's places: townsfolk spots, unused
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 2.2, 10), new THREE.MeshBasicMaterial({ color: k === 0 ? 0x40c0ff : 0xe0e060 }));
+    m.geometry.translate(0, 1.1, 0); root.add(m);
+    objects.push({ kind: 'spot', index: k, obj: m, tag: makeTag(D.roles[k] || `Place ${k}`) });
+  });
+  for (let k = 0; k < D.camp.houses.length; k++) {
+    const obj = await houseObject(D.camp.houses[k]); root.add(obj);
+    objects.push({ kind: 'house', index: k, obj, tag: makeTag(`${D.camp.houses[k].anchor}`) });
+  }
+  refreshAll();
+  const [fx, fz] = D.camp.fire, fy = heightAt(fx, fz);
+  camera.position.set(fx - 40, fy + 55, fz - 55); controls.target.set(fx, fy, fz); controls.update();
+  $('status').textContent = `${D.name}: ${D.fixed ? 'laid by hand (saved)' : 'as generated'}`;
+}
+
+// ---- picking and dragging ----
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+let dragging = null;
+function pick(e) {
+  mouse.set(e.clientX / innerWidth * 2 - 1, -e.clientY / innerHeight * 2 + 1);
+  ray.setFromCamera(mouse, camera);
+}
+function objectAt(e) {
+  pick(e);
+  const hits = ray.intersectObjects(objects.map(o => o.obj), true);
+  if (!hits.length) return null;
+  let n = hits[0].object;
+  return objects.find(o => { let m = n; while (m) { if (m === o.obj) return true; m = m.parent; } return false; });
+}
+function groundAt(e) {
+  pick(e);
+  const hit = ray.intersectObject(terrain)[0];
+  return hit ? hit.point : null;
+}
+renderer.domElement.addEventListener('pointerdown', e => {
+  if (e.button !== 0) return;
+  const o = objectAt(e);
+  if (o) { selected = o; dragging = o; controls.enabled = false; refreshAll(); }
+});
+addEventListener('pointermove', e => {
+  if (!dragging) return;
+  const p = groundAt(e);
+  if (!p) return;
+  if (dragging.kind === 'house') { D.camp.houses[dragging.index].x = p.x; D.camp.houses[dragging.index].z = p.z; }
+  else if (dragging.kind === 'fire') D.camp.fire = [p.x, p.z];
+  else D.camp.spots[dragging.index] = [p.x, p.z, null];
+  refreshAll();
+});
+addEventListener('pointerup', () => { dragging = null; controls.enabled = true; });
+addEventListener('keydown', e => {
+  if (!selected || e.target.tagName === 'INPUT') return;
+  if (selected.kind === 'house' && (e.key === 'q' || e.key === 'Q' || e.key === 'e' || e.key === 'E')) {
+    const step = (e.shiftKey ? 5 : 15) * Math.PI / 180 * (e.key.toLowerCase() === 'q' ? 1 : -1);
+    D.camp.houses[selected.index].yaw += step; refreshAll();
+  }
+  if (selected.kind === 'house' && (e.key === 'Delete' || e.key === 'Backspace')) {
+    D.camp.houses.splice(selected.index, 1);
+    reloadKeepingEdits();
+  }
+});
+
+function showSelection() {
+  for (const o of objects) o.tag && o.tag.classList.toggle('selected', o === selected);
+  if (!selected) { $('sel').textContent = ''; return; }
+  const p = selected.obj.position, w = [p.x + D.shift[0], p.z + D.shift[2]];
+  let t = selected.kind === 'house' ? `${D.camp.houses[selected.index].anchor} #${D.camp.houses[selected.index].variant}` :
+          selected.kind === 'fire' ? 'Campfire' : (D.roles[selected.index] || `Place ${selected.index}`);
+  if (selected.kind === 'house') {
+    t += `\nfacing ${Math.round(D.camp.houses[selected.index].yaw * 180 / Math.PI) % 360} degrees`;
+    t += `\nground under it rises ${selected.rise.toFixed(1)} yalms` + (selected.bad ? '\nON A ROAD OR TOUCHING ANOTHER' : '');
+  }
+  t += `\n!pos ${w[0].toFixed(3)} ${(-p.y).toFixed(3)} ${w[1].toFixed(3)} 420`;
+  $('sel').textContent = t;
+}
+
+// edits that change what exists (add, delete) rebuild the objects from D
+async function reloadKeepingEdits() {
+  const keep = D;
+  for (const o of objects) { o.tag && o.tag.remove(); if (o.obj.userData.fp) root.remove(o.obj.userData.fp); root.remove(o.obj); }
+  objects.length = 0; selected = null;
+  const fire = new THREE.Mesh(new THREE.ConeGeometry(1.4, 3, 12), new THREE.MeshBasicMaterial({ color: 0xff7a1a }));
+  fire.geometry.translate(0, 1.5, 0); root.add(fire);
+  objects.push({ kind: 'fire', obj: fire, tag: makeTag('Campfire') });
+  keep.camp.spots.forEach((s, k) => {
+    if (k >= keep.places) return;
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 2.2, 10), new THREE.MeshBasicMaterial({ color: k === 0 ? 0x40c0ff : 0xe0e060 }));
+    m.geometry.translate(0, 1.1, 0); root.add(m);
+    objects.push({ kind: 'spot', index: k, obj: m, tag: makeTag(keep.roles[k] || `Place ${k}`) });
+  });
+  for (let k = 0; k < keep.camp.houses.length; k++) {
+    const obj = await houseObject(keep.camp.houses[k]); root.add(obj);
+    objects.push({ kind: 'house', index: k, obj, tag: makeTag(keep.camp.houses[k].anchor) });
+  }
+  refreshAll();
+}
+
+$('add').onclick = () => {
+  if (!D) return;
+  const t = D.templates[+$('tpl').value];
+  const [fx, fz] = D.camp.fire;
+  D.camp.houses.push({ anchor: t.anchor, variant: t.variant, x: fx + 18, z: fz, yaw: 0 });
+  reloadKeepingEdits();
+};
+$('save').onclick = async () => {
+  try {
+    const r = await get('/api/camp', { method: 'POST', body: JSON.stringify({ zone: D.zone, land: D.land, camp: D.camp }) });
+    $('status').textContent = `Saved to ${r.saved}.\nRebuild the zone to see it in game.`;
+  } catch (e) { $('err').textContent = String(e); }
+};
+$('reset').onclick = async () => {
+  if (!confirm('Drop the hand-laid camp for this land and go back to the generated one?')) return;
+  try { await get('/api/camp', { method: 'POST', body: JSON.stringify({ zone: D.zone, land: D.land, reset: true }) }); load(); }
+  catch (e) { $('err').textContent = String(e); }
+};
+$('load').onclick = load;
+$('land').onchange = load;
+
+// labels follow their objects on screen
+const v = new THREE.Vector3();
+renderer.setAnimationLoop(() => {
+  controls.update();
+  renderer.render(scene, camera);
+  for (const o of objects) {
+    if (!o.tag) continue;
+    v.copy(o.obj.position); v.y += o.kind === 'house' ? 10 : 3; v.project(camera);
+    const vis = v.z < 1;
+    o.tag.style.display = vis ? '' : 'none';
+    o.tag.style.left = `${(v.x + 1) / 2 * innerWidth}px`; o.tag.style.top = `${(1 - v.y) / 2 * innerHeight}px`;
+  }
+});
+load();
+</script>
+</body>
+</html>
