@@ -1,8 +1,9 @@
 """The server side of a generated zone's monsters, as one SQL file (a server module).
 
 Per monster type: a mob pool cloned from a real one (its fight, family, skills) with our model and a
-hitbox scaled to match; a mob group in the zone (levels, respawn, drops); spawn points from spawns.py.
-Deletes before inserting, so it can be re-run.
+hitbox scaled to match; a mob group in the zone (respawn, drops); spawn points from spawns.py, each
+with the type's levels (LSB keeps minLevel/maxLevel on mob_spawn_points). Inserts name their columns,
+so a column LSB adds later takes its default. Deletes before inserting, so it can be re-run.
 
 Mob ids: 0x1000000 + (zone << 12) + n. FFXI positions: x east, y down, z north.
 """
@@ -39,18 +40,22 @@ def write_sql(path, zone_id, mobs_spec, placements, source_json):
                   + (f"`modelid` = {modelid_blob(t['model_id'])}, " if t.get("model_id") else "")
                   + f"`modelHitboxSize` = LEAST(ROUND(IFNULL(`modelHitboxSize`, 4) * {scale:.2f}), 255);",
                   "INSERT INTO `mob_pools` SELECT * FROM tmp_pool;"]
-        lo, hi = (t["level"], t["level"]) if isinstance(t["level"], int) else t["level"]
-        lines.append(f"INSERT INTO `mob_groups` VALUES ({group},{pool},{zone_id},'{name}',{t.get('respawn', 600)},"
-                     f"{t.get('spawntype', 0)},{t.get('drop', 0)},{t.get('hp', 0)},0,{lo},{hi},0);")
+        lines.append("INSERT INTO `mob_groups` (`groupid`, `poolid`, `zoneid`, `name`, `respawntime`, `spawntype`, "
+                     "`dropid`, `HP`, `MP`, `allegiance`) "
+                     f"VALUES ({group},{pool},{zone_id},'{name}',{t.get('respawn', 600)},"
+                     f"{t.get('spawntype', 0)},{t.get('drop', 0)},{t.get('hp', 0)},0,0);")
         lines.append("")
     lines.append("DROP TEMPORARY TABLE IF EXISTS tmp_pool;")
     lines.append("")
     for n, p in enumerate(placements, 1):
         t = types[p["type"]]
+        lo, hi = (t["level"], t["level"]) if isinstance(t["level"], int) else t["level"]
         x, y, z = p["pos"]
         rot = int(round(-p["facing"] * 128 / math.pi)) & 0xFF
-        lines.append(f"INSERT INTO `mob_spawn_points` VALUES ({mob_base + n},0,'{t['name']}','{t['name']}',"
-                     f"{group_of[p['type']]},{x:.3f},{-z:.3f},{y:.3f},{rot});")
+        lines.append("INSERT INTO `mob_spawn_points` (`mobid`, `spawnslotid`, `mobname`, `polutils_name`, `groupid`, "
+                     "`minLevel`, `maxLevel`, `pos_x`, `pos_y`, `pos_z`, `pos_rot`) "
+                     f"VALUES ({mob_base + n},0,'{t['name']}','{t['name']}',"
+                     f"{group_of[p['type']]},{lo},{hi},{x:.3f},{-z:.3f},{y:.3f},{rot});")
     with open(path, "w") as f:
         f.write("\n".join(lines) + "\n")
     return len(placements)
